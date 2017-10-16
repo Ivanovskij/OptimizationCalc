@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         String in = "(x1 + 3) >= 22";
-        
+
         Lexer lexer = new Lexer(in);
         List<Token> tokens = lexer.parse();
         for (Token token : tokens) {
