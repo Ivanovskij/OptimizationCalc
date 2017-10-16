@@ -30,6 +30,8 @@ public class SimplexMethod {
                 table[row][col] = source[row][col];
             }
         }
+        
+        
     }
     
     
