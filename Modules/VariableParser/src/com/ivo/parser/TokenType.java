@@ -22,6 +22,8 @@ public enum TokenType {
     LPAREN,
     RPAREN,
     
+    COMMA,
+    
     EOF
     
 }

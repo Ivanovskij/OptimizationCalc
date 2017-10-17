@@ -54,7 +54,14 @@ public class Parser {
     }
     
     private FunctionalExpression function() {
-        return null;
+        final String name = consume(TokenType.WORD).getText();
+        consume(TokenType.LPAREN);
+        FunctionalExpression function = new FunctionalExpression(name);
+        while (!match(TokenType.RPAREN)) {
+            function.addArg(expression());
+            match(TokenType.COMMA);
+        }
+        return function;
     }
     
     private Expression expression() {
@@ -153,6 +160,15 @@ public class Parser {
         }
 
         return variablesName;
+    }
+    
+    private Token consume(TokenType type) {
+        final Token current = get(0);
+        if (type != current.getTokenType()) {
+            throw new RuntimeException("Token current " + current + " doesn't match " + type);
+        }
+        pos++;
+        return current;
     }
 
     

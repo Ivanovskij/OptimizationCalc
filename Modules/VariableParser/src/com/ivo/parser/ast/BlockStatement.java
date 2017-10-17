@@ -30,7 +30,7 @@ public class BlockStatement implements Statement {
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (Statement st : statements) {
-            result.append(st.toString());
+            result.append(st.toString()).append(System.lineSeparator());
         }
         return result.toString();
     }

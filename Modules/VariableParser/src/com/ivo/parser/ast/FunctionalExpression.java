@@ -40,5 +40,9 @@ public class FunctionalExpression implements Expression {
         
         return result.execute(values);
     }
-    
+
+    @Override
+    public String toString() {
+        return name + "(" + args.toString() + ")";
+    }
 }

@@ -18,7 +18,7 @@ public class Lexer {
     
     private int pos;
     
-    private static final String OPERATORS_CHARS = "+-*/=<>()";
+    private static final String OPERATORS_CHARS = "+-*/=<>(),";
     private static final Map<String, TokenType> OPERATORS;
     
     static {
@@ -36,6 +36,8 @@ public class Lexer {
         
         OPERATORS.put("(", TokenType.LPAREN);
         OPERATORS.put(")", TokenType.RPAREN);
+        
+        OPERATORS.put(",", TokenType.COMMA);
     }
     
     

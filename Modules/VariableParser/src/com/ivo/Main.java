@@ -14,7 +14,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String in = "var1 + var2";
+        String in = "sin(a) + 3";
 
         Lexer lexer = new Lexer(in);
         List<Token> tokens = lexer.parse();
@@ -27,8 +27,7 @@ public class Main {
         double c = 3;
         double d = 4;
         
-        Statement result = new Parser(tokens, 
-                a, b).parse();
+        Statement result = new Parser(tokens, a).parse();
         System.out.println(result.toString());
     }
     
