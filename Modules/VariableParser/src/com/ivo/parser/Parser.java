@@ -1,5 +1,9 @@
 package com.ivo.parser;
 
+import com.ivo.parser.ast.BinaryExpression;
+import com.ivo.parser.ast.Expression;
+import com.ivo.parser.ast.NumberExpression;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +16,7 @@ public class Parser {
     
     private final List<Token> tokens;
     
-    private int size;
+    private final int size;
     private int pos;
 
     public Parser(List<Token> tokens, Double[] args) {
@@ -22,15 +26,77 @@ public class Parser {
         pos = 0;
     }
     
-    public double parse() {
-        double result;
+    public List<Expression> parse() {
+        List<Expression> result = new ArrayList<>();
         while (!match(TokenType.EOF)) {
-            result = statement();
+            result.add(expression());
         }
         
-        return 0;
+        return result;
+    }
+    
+    private Expression statement() {
+        // function
+        if (get(0).getTokenType() == TokenType.WORD &&
+                get(1).getTokenType() == TokenType.LT) {
+            return null;
+        }
+        
+        return primary();
+    }
+    
+    private Expression expression() {
+        return additive();
+    }
+    
+    private Expression additive() {
+        Expression result = multiplicative();
+        
+        while (true) {
+            // 2 * 6 * 3
+            if (match(TokenType.PLUS)) {
+                result = new BinaryExpression('+', result, multiplicative());
+                continue;
+            }
+            if (match(TokenType.MINUS)) {
+                result = new BinaryExpression('-', result, multiplicative());
+                continue;
+            }
+            break;
+        }
+        
+        return result;
+    }
+    
+    private Expression multiplicative() {
+        Expression result = primary();
+        
+        while (true) {
+            // 2 * 6 * 3
+            if (match(TokenType.STAR)) {
+                result = new BinaryExpression('*', result, primary());
+                continue;
+            }
+            if (match(TokenType.SLASH)) {
+                result = new BinaryExpression('/', result, primary());
+                continue;
+            }
+            break;
+        }
+        
+        return result;
     }
 
+
+    private Expression primary() {
+        final Token current = get(0);
+        if (match(TokenType.NUMBER)) {
+            return new NumberExpression(Double.parseDouble(current.getText()));
+        }
+        throw new RuntimeException("Unknown expression!");
+    }
+
+    
     private boolean match(TokenType tokenType) {
         final Token current = get(0);
         if (tokenType != current.getTokenType()) { return false; }
@@ -44,12 +110,6 @@ public class Parser {
             return EOF;
         }
         return tokens.get(position);
-    }
-
-    private double statement() {
-        if (get(0).getTokenType() == TokenType.WORD) {
-            
-        }
     }
     
     
