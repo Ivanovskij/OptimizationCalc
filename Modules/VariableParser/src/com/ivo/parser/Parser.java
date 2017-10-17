@@ -108,7 +108,9 @@ public class Parser {
             return new NumberExpression(Double.parseDouble(current.getText()));
         } else if (match(TokenType.LPAREN)) {
             Expression result = expression();
-            match(TokenType.RPAREN);
+            if (!match(TokenType.RPAREN)) {
+                throw new RuntimeException("Expected RPAREN");
+            }
             return result;
         }
         throw new RuntimeException("Unknown expression!");

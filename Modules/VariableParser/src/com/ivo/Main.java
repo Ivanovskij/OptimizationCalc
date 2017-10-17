@@ -13,7 +13,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String in = "3 * 5 + 5 * (10 / 2)";
+        String in = "a + b + (c * d";
 
         Lexer lexer = new Lexer(in);
         List<Token> tokens = lexer.parse();
@@ -21,13 +21,13 @@ public class Main {
             System.out.println(token);
         }
         
-        double x1 = 1;
-        double x2 = 2;
-        double x3 = 3;
-        double x4 = 4;
+        double a = 1;
+        double b = 2;
+        double c = 3;
+        double d = 4;
         
         List<Expression> expressions = new Parser(tokens, 
-                x1, x2).parse();
+                a, b, c, d).parse();
         for (Expression expr : expressions) {
             System.out.println(expr + " = " + expr.eval());
         }
