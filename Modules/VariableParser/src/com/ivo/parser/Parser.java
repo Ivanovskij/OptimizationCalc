@@ -96,37 +96,48 @@ public class Parser {
         if (match(TokenType.NUMBER)) {
             return new NumberExpression(Double.parseDouble(current.getText()));
         } else if (match(TokenType.WORD)) {
-            int variableCounter = variablesCount();
-            if (variableCounter != args.length) {
-                throw new RuntimeException("Expected " + variableCounter + " arguments!");
+            List<String> variablesName = variablesCount();
+            int variablesCount = variablesName.size();
+            
+            if (variablesCount != args.length) {
+                throw new RuntimeException("Expected " + variablesCount + " arguments!");
             }
 
-            setVariableValueByArg();
+            setVariableValueByArg(variablesName);
             
             return new NumberExpression(Double.parseDouble(current.getText()));
         }
         throw new RuntimeException("Unknown expression!");
     }
 
-    private void setVariableValueByArg() {
+    private void setVariableValueByArg(List<String> variablesName) {
         int argCounter = 0;
-        for (int i = 0; i < tokens.size(); i++) {
-            if (tokens.get(i).getTokenType() == TokenType.WORD) {
-                tokens.get(i).setText(String.valueOf(args[argCounter]));
-                argCounter++;
+
+        for (String varName : variablesName) {
+            for (Token token : tokens) {
+                if (token.getText().equals(varName)) {
+                    token.setText(String.valueOf(args[argCounter]));
+                }
             }
+            argCounter++;
         }
+            
     }
     
-    private int variablesCount() {
-        int variableCounter = 0;
+    private List<String> variablesCount() {        
+        // delete duplicates variables name
+        List<String> variablesName = new ArrayList<>();
+        String variableName;
+        
         for (Token token : tokens) {
-            if (token.getTokenType() == TokenType.WORD) {
-                variableCounter++;
+            variableName = token.getText();
+            if (token.getTokenType() == TokenType.WORD &&
+                    variablesName.indexOf(variableName) == -1) {
+                variablesName.add(variableName);
             }
         }
 
-        return variableCounter;
+        return variablesName;
     }
 
     

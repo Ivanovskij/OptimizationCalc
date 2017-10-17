@@ -13,7 +13,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String in = "21*x1 + 18*x2 + 16*x3 + 17.5*x4";
+        String in = "";
 
         Lexer lexer = new Lexer(in);
         List<Token> tokens = lexer.parse();
@@ -27,7 +27,7 @@ public class Main {
         double x4 = 4;
         
         List<Expression> expressions = new Parser(tokens, 
-                x1, x2, x3, x4).parse();
+                x1, x2).parse();
         for (Expression expr : expressions) {
             System.out.println(expr + " = " + expr.eval());
         }
