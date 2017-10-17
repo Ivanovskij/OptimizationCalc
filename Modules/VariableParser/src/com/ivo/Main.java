@@ -4,6 +4,7 @@ import com.ivo.parser.Lexer;
 import com.ivo.parser.Parser;
 import com.ivo.parser.Token;
 import com.ivo.parser.ast.Expression;
+import com.ivo.parser.ast.Statement;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String in = "a + b + (c * d";
+        String in = "var1 + var2";
 
         Lexer lexer = new Lexer(in);
         List<Token> tokens = lexer.parse();
@@ -26,11 +27,9 @@ public class Main {
         double c = 3;
         double d = 4;
         
-        List<Expression> expressions = new Parser(tokens, 
-                a, b, c, d).parse();
-        for (Expression expr : expressions) {
-            System.out.println(expr + " = " + expr.eval());
-        }
+        Statement result = new Parser(tokens, 
+                a, b).parse();
+        System.out.println(result.toString());
     }
     
     

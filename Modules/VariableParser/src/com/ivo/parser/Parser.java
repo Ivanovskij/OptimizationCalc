@@ -1,8 +1,13 @@
 package com.ivo.parser;
 
 import com.ivo.parser.ast.BinaryExpression;
+import com.ivo.parser.ast.BlockStatement;
 import com.ivo.parser.ast.Expression;
+import com.ivo.parser.ast.FunctionStatement;
+import com.ivo.parser.ast.FunctionalExpression;
 import com.ivo.parser.ast.NumberExpression;
+import com.ivo.parser.ast.Statement;
+import com.ivo.parser.ast.EvalStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,23 +34,27 @@ public class Parser {
         pos = 0;
     }
     
-    public List<Expression> parse() {
-        List<Expression> result = new ArrayList<>();
+    public Statement parse() {
+        final BlockStatement result = new BlockStatement();
         while (!match(TokenType.EOF)) {
-            result.add(expression());
+            result.add(statement());
         }
         
         return result;
     }
     
-    private Expression statement() {
+    private Statement statement() {
         // function
         if (get(0).getTokenType() == TokenType.WORD &&
-                get(1).getTokenType() == TokenType.LT) {
-            return null;
+                get(1).getTokenType() == TokenType.LPAREN) {
+            return new FunctionStatement(function());
         }
         
-        return primary();
+        return new EvalStatement(expression());
+    }
+    
+    private FunctionalExpression function() {
+        return null;
     }
     
     private Expression expression() {
