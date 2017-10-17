@@ -13,7 +13,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String in = "";
+        String in = "3 * 5 + 5 * (10 / 2)";
 
         Lexer lexer = new Lexer(in);
         List<Token> tokens = lexer.parse();

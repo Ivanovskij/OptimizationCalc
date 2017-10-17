@@ -106,6 +106,10 @@ public class Parser {
             setVariableValueByArg(variablesName);
             
             return new NumberExpression(Double.parseDouble(current.getText()));
+        } else if (match(TokenType.LPAREN)) {
+            Expression result = expression();
+            match(TokenType.RPAREN);
+            return result;
         }
         throw new RuntimeException("Unknown expression!");
     }
