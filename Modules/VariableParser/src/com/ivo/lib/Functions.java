@@ -11,7 +11,7 @@ public class Functions {
 
     private static Map<String, Function> functions;
 
-    public Functions() {
+    static {
         functions = new HashMap<>();
         
         functions.put("sin", new Function() {
@@ -21,6 +21,26 @@ public class Functions {
                 return Math.sin(args[0]);
             }
         });
+        
+        functions.put("cos", (Function) (Double... args) -> {
+            if (args.length != 1) throw new RuntimeException("Expected 1 argument!");
+            return Math.cos(args[0]);
+        });
+        
+        functions.put("exp", (Function) (Double... args) -> {
+            if (args.length != 1) throw new RuntimeException("Expected 1 argument!");
+            return Math.exp(args[0]);
+        });
+        
+        functions.put("pow", (Function) (Double... args) -> {
+            if (args.length != 2) throw new RuntimeException("Expected 2 argument!");
+            return Math.pow(args[0], args[1]);
+        });
+        
+        functions.put("sqrt", (Function) (Double... args) -> {
+            if (args.length != 1) throw new RuntimeException("Expected 1 argument!");
+            return Math.sqrt(args[0]);
+        });
     }
     
     public static Function get(String key) {
@@ -28,7 +48,7 @@ public class Functions {
         return functions.get(key);
     }
 
-    private static boolean isExists(String key) {
+    public static boolean isExists(String key) {
         return functions.containsKey(key);
     }
     

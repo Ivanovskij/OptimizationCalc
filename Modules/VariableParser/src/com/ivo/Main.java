@@ -14,21 +14,24 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String in = "sin(a) + 3";
-
+        String in = "1.5 * pow(b1, 2) * exp(1 - pow(b1, 2)) - 20.25 * pow(b1 - b2, 2)";
+        
+        // парсить число с минусом пока что не поддерживает
+        
         Lexer lexer = new Lexer(in);
         List<Token> tokens = lexer.parse();
         for (Token token : tokens) {
             System.out.println(token);
         }
         
-        double a = 1;
-        double b = 2;
-        double c = 3;
-        double d = 4;
+        double b1 = 1;
+        double b2 = 2;
         
-        Statement result = new Parser(tokens, a).parse();
-        System.out.println(result.toString());
+        List<Expression> result = new Parser(tokens, b1, b2).parse();
+        for (Expression expr : result) {
+            System.out.println(expr.toString() + " = " + expr.eval());
+        }
+        
     }
     
     

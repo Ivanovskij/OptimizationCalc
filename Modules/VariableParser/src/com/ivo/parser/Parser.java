@@ -1,5 +1,6 @@
 package com.ivo.parser;
 
+import com.ivo.lib.Functions;
 import com.ivo.parser.ast.BinaryExpression;
 import com.ivo.parser.ast.BlockStatement;
 import com.ivo.parser.ast.Expression;
@@ -34,21 +35,21 @@ public class Parser {
         pos = 0;
     }
     
-    public Statement parse() {
-        final BlockStatement result = new BlockStatement();
+    public List<Expression> parse() {
+        List<Expression> result = new ArrayList<>();
         while (!match(TokenType.EOF)) {
-            result.add(statement());
+            result.add(expression());
         }
         
         return result;
     }
     
     private Statement statement() {
-        // function
-        if (get(0).getTokenType() == TokenType.WORD &&
+        // functions
+        /*if (get(0).getTokenType() == TokenType.WORD &&
                 get(1).getTokenType() == TokenType.LPAREN) {
             return new FunctionStatement(function());
-        }
+        }*/
         
         return new EvalStatement(expression());
     }
@@ -56,7 +57,7 @@ public class Parser {
     private FunctionalExpression function() {
         final String name = consume(TokenType.WORD).getText();
         consume(TokenType.LPAREN);
-        FunctionalExpression function = new FunctionalExpression(name);
+        final FunctionalExpression function = new FunctionalExpression(name);
         while (!match(TokenType.RPAREN)) {
             function.addArg(expression());
             match(TokenType.COMMA);
@@ -111,7 +112,11 @@ public class Parser {
         final Token current = get(0);
         if (match(TokenType.NUMBER)) {
             return new NumberExpression(Double.parseDouble(current.getText()));
-        } else if (match(TokenType.WORD)) {
+        } else if (get(0).getTokenType() == TokenType.WORD &&
+                get(1).getTokenType() == TokenType.LPAREN) {
+            return function();
+        }
+        else if (match(TokenType.WORD)) {
             List<String> variablesName = variablesCount();
             int variablesCount = variablesName.size();
             
@@ -137,7 +142,9 @@ public class Parser {
 
         for (String varName : variablesName) {
             for (Token token : tokens) {
-                if (token.getText().equals(varName)) {
+                if (!Functions.isExists(varName) && 
+                        token.getText().equals(varName)) 
+                {
                     token.setText(String.valueOf(args[argCounter]));
                 }
             }
@@ -149,13 +156,15 @@ public class Parser {
     private List<String> variablesCount() {        
         // delete duplicates variables name
         List<String> variablesName = new ArrayList<>();
-        String variableName;
+        String varName;
         
         for (Token token : tokens) {
-            variableName = token.getText();
-            if (token.getTokenType() == TokenType.WORD &&
-                    variablesName.indexOf(variableName) == -1) {
-                variablesName.add(variableName);
+            varName = token.getText();
+            if (!Functions.isExists(varName) && 
+                    token.getTokenType() == TokenType.WORD &&
+                    variablesName.indexOf(varName) == -1) 
+            {
+                variablesName.add(varName);
             }
         }
 
