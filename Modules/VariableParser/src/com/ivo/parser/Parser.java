@@ -2,6 +2,7 @@ package com.ivo.parser;
 
 import com.ivo.lib.Functions;
 import com.ivo.parser.ast.BinaryExpression;
+import com.ivo.parser.ast.ConditionalExpression;
 import com.ivo.parser.ast.Expression;
 import com.ivo.parser.ast.FunctionalExpression;
 import com.ivo.parser.ast.NumberExpression;
@@ -53,7 +54,26 @@ public class Parser {
     }
     
     private Expression expression() {
-        return additive();
+        return conditional();
+    }
+    
+    private Expression conditional() {
+        Expression result = additive();
+        
+        if (match(TokenType.LT)) {
+            return new ConditionalExpression(TokenType.LT, result, additive());
+        }
+        if (match(TokenType.LTEQ)) {
+            return new ConditionalExpression(TokenType.LTEQ, result, additive());
+        }
+        if (match(TokenType.GT)) {
+            return new ConditionalExpression(TokenType.GT, result, additive());
+        }
+        if (match(TokenType.GTEQ)) {
+            return new ConditionalExpression(TokenType.GTEQ, result, additive());
+        }
+        
+        return result;
     }
     
     private Expression additive() {
