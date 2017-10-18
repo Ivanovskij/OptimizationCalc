@@ -5,6 +5,7 @@ import com.ivo.parser.ast.BinaryExpression;
 import com.ivo.parser.ast.Expression;
 import com.ivo.parser.ast.FunctionalExpression;
 import com.ivo.parser.ast.NumberExpression;
+import com.ivo.parser.ast.UnaryExpression;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,22 +76,32 @@ public class Parser {
     }
     
     private Expression multiplicative() {
-        Expression result = primary();
+        Expression result = unary();
         
         while (true) {
             // 2 * 6 * 3
             if (match(TokenType.STAR)) {
-                result = new BinaryExpression('*', result, primary());
+                result = new BinaryExpression('*', result, unary());
                 continue;
             }
             if (match(TokenType.SLASH)) {
-                result = new BinaryExpression('/', result, primary());
+                result = new BinaryExpression('/', result, unary());
                 continue;
             }
             break;
         }
         
         return result;
+    }
+    
+    private Expression unary() {
+        if (match(TokenType.MINUS)) {
+            return new UnaryExpression('-', primary());
+        }
+        if (match(TokenType.PLUS)) {
+            return primary();
+        }
+        return primary();
     }
 
 

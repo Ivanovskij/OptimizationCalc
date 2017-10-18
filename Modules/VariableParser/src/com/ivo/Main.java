@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         //String in = "1.5 * pow(b1, 2) * exp(1 - pow(b1, 2)) - 20.25 * pow(b1 - b2, 2)";
-        String in = "a + b + sin(0)";
+        String in = "-3 + 5";
         
         // парсить число с минусом пока что не поддерживает
         
