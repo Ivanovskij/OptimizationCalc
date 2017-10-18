@@ -4,7 +4,6 @@ import com.ivo.parser.Lexer;
 import com.ivo.parser.Parser;
 import com.ivo.parser.Token;
 import com.ivo.parser.ast.Expression;
-import com.ivo.parser.ast.Statement;
 import java.util.List;
 
 /**
@@ -14,7 +13,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String in = "1.5 * pow(b1, 2) * exp(1 - pow(b1, 2)) - 20.25 * pow(b1 - b2, 2)";
+        //String in = "1.5 * pow(b1, 2) * exp(1 - pow(b1, 2)) - 20.25 * pow(b1 - b2, 2)";
+        String in = "a + b + sin(0)";
         
         // парсить число с минусом пока что не поддерживает
         

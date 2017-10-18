@@ -2,13 +2,9 @@ package com.ivo.parser;
 
 import com.ivo.lib.Functions;
 import com.ivo.parser.ast.BinaryExpression;
-import com.ivo.parser.ast.BlockStatement;
 import com.ivo.parser.ast.Expression;
-import com.ivo.parser.ast.FunctionStatement;
 import com.ivo.parser.ast.FunctionalExpression;
 import com.ivo.parser.ast.NumberExpression;
-import com.ivo.parser.ast.Statement;
-import com.ivo.parser.ast.EvalStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,16 +38,6 @@ public class Parser {
         }
         
         return result;
-    }
-    
-    private Statement statement() {
-        // functions
-        /*if (get(0).getTokenType() == TokenType.WORD &&
-                get(1).getTokenType() == TokenType.LPAREN) {
-            return new FunctionStatement(function());
-        }*/
-        
-        return new EvalStatement(expression());
     }
     
     private FunctionalExpression function() {
@@ -115,8 +101,7 @@ public class Parser {
         } else if (get(0).getTokenType() == TokenType.WORD &&
                 get(1).getTokenType() == TokenType.LPAREN) {
             return function();
-        }
-        else if (match(TokenType.WORD)) {
+        } else if (match(TokenType.WORD)) {
             List<String> variablesName = variablesCount();
             int variablesCount = variablesName.size();
             
