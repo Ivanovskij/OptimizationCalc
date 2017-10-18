@@ -24,8 +24,8 @@ public class Parser {
     private final int size;
     private int pos;
 
-    public Parser(List<Token> tokens, Double... args) {
-        this.tokens = tokens;
+    public Parser(String inStr, Double... args) {
+        this.tokens = new Lexer(inStr).parse();
         size = tokens.size();
         
         this.args = args;
@@ -33,13 +33,22 @@ public class Parser {
         pos = 0;
     }
     
-    public List<Expression> parse() {
+    /*public List<Expression> parse() {
         List<Expression> result = new ArrayList<>();
         while (!match(TokenType.EOF)) {
             result.add(expression());
         }
         
         return result;
+    }*/
+    
+    public double parse() {
+        Expression result = null;
+        while (!match(TokenType.EOF)) {
+            result = expression();
+        }
+
+        return result.eval();
     }
     
     private FunctionalExpression function() {
