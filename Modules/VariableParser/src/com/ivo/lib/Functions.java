@@ -27,6 +27,17 @@ public class Functions {
             return Math.cos(args[0]);
         });
         
+        functions.put("tg", (Function) (Double... args) -> {
+            if (args.length != 1) throw new RuntimeException("Expected 1 argument!");
+            return Math.tan(args[0]);
+        });
+        
+        functions.put("ctg", (Function) (Double... args) -> {
+            if (args.length != 1) throw new RuntimeException("Expected 1 argument!");
+            // according to the formula: ctg = 1 / tg(a)
+            return ( 1 / Math.tan(args[0]) );
+        });
+        
         functions.put("exp", (Function) (Double... args) -> {
             if (args.length != 1) throw new RuntimeException("Expected 1 argument!");
             return Math.exp(args[0]);
@@ -40,6 +51,11 @@ public class Functions {
         functions.put("sqrt", (Function) (Double... args) -> {
             if (args.length != 1) throw new RuntimeException("Expected 1 argument!");
             return Math.sqrt(args[0]);
+        });
+        
+        functions.put("log", (Function) (Double... args) -> {
+            if (args.length != 1) throw new RuntimeException("Expected 1 argument!");
+            return Math.log(args[0]);
         });
     }
     
