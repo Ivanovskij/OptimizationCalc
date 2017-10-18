@@ -1,13 +1,14 @@
 package com.ivo.parser;
 
 import com.ivo.lib.Functions;
+import com.ivo.lib.Variables;
 import com.ivo.parser.ast.BinaryExpression;
 import com.ivo.parser.ast.ConditionalExpression;
 import com.ivo.parser.ast.Expression;
 import com.ivo.parser.ast.FunctionalExpression;
 import com.ivo.parser.ast.NumberExpression;
 import com.ivo.parser.ast.UnaryExpression;
-import java.util.ArrayList;
+import com.ivo.parser.ast.VariableExpression;
 import java.util.List;
 
 /**
@@ -29,6 +30,19 @@ public class Parser {
         size = tokens.size();
         
         this.args = args;
+        
+        int num = 0; 
+        String varName;
+        Variables.removeAll();
+        for (Token token : tokens) {
+            varName = token.getText();
+            if (!Functions.isExists(varName) &&
+                    token.getTokenType() == TokenType.WORD &&
+                    !Variables.isExists(varName)) {
+                Variables.set(token.getText(), args[num]);
+                num++;
+            }
+        }
         
         pos = 0;
     }
@@ -142,16 +156,7 @@ public class Parser {
                 get(1).getTokenType() == TokenType.LPAREN) {
             return function();
         } else if (match(TokenType.WORD)) {
-            List<String> variablesName = variablesCount();
-            int variablesCount = variablesName.size();
-            
-            if (variablesCount != args.length) {
-                throw new RuntimeException("Expected " + variablesCount + " arguments!");
-            }
-
-            setVariableValueByArg(variablesName);
-            
-            return new NumberExpression(Double.parseDouble(current.getText()));
+            return new VariableExpression(current.getText());
         } else if (match(TokenType.LPAREN)) {
             Expression result = expression();
             if (!match(TokenType.RPAREN)) {
@@ -160,40 +165,6 @@ public class Parser {
             return result;
         }
         throw new RuntimeException("Unknown expression!");
-    }
-
-    private void setVariableValueByArg(List<String> variablesName) {
-        int argCounter = 0;
-
-        for (String varName : variablesName) {
-            for (Token token : tokens) {
-                if (!Functions.isExists(varName) && 
-                        token.getText().equals(varName)) 
-                {
-                    token.setText(String.valueOf(args[argCounter]));
-                }
-            }
-            argCounter++;
-        }
-            
-    }
-    
-    private List<String> variablesCount() {        
-        // delete duplicates variables name
-        List<String> variablesName = new ArrayList<>();
-        String varName;
-        
-        for (Token token : tokens) {
-            varName = token.getText();
-            if (!Functions.isExists(varName) && 
-                    token.getTokenType() == TokenType.WORD &&
-                    variablesName.indexOf(varName) == -1) 
-            {
-                variablesName.add(varName);
-            }
-        }
-
-        return variablesName;
     }
     
     private Token consume(TokenType type) {
