@@ -9,6 +9,7 @@ import com.ivo.parser.ast.FunctionalExpression;
 import com.ivo.parser.ast.NumberExpression;
 import com.ivo.parser.ast.UnaryExpression;
 import com.ivo.parser.ast.VariableExpression;
+import com.ivo.parser.util.CacheStringFunctions;
 import java.util.List;
 
 /**
@@ -24,9 +25,9 @@ public class Parser {
     
     private final int size;
     private int pos;
-
-    public Parser(String inStr, Double... args) {
-        this.tokens = new Lexer(inStr).parse();
+    
+    public Parser(List<Token> tokens, Double... args) {
+        this.tokens = tokens;
         size = tokens.size();
         
         this.args = args;
