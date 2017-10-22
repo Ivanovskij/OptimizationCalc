@@ -9,7 +9,6 @@ import com.ivo.parser.ast.FunctionalExpression;
 import com.ivo.parser.ast.NumberExpression;
 import com.ivo.parser.ast.UnaryExpression;
 import com.ivo.parser.ast.VariableExpression;
-import com.ivo.parser.util.CacheStringFunctions;
 import java.util.List;
 
 /**
@@ -40,6 +39,9 @@ public class Parser {
             if (!Functions.isExists(varName) &&
                     token.getTokenType() == TokenType.WORD &&
                     !Variables.isExists(varName)) {
+                if (num >= args.length) {
+                    throw new RuntimeException("Expected " + args.length + " arguments!");
+                }
                 Variables.set(token.getText(), args[num]);
                 num++;
             }

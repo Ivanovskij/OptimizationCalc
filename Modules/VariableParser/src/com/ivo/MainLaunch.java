@@ -1,9 +1,7 @@
 package com.ivo;
 
 import com.ivo.parser.Lexer;
-import com.ivo.parser.Parser;
 import com.ivo.parser.Token;
-import com.ivo.parser.ast.Expression;
 import java.util.List;
 
 /**
