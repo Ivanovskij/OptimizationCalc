@@ -1,12 +1,14 @@
 package com.ivo.parser;
 
-import com.ivo.lib.Functions;
-import com.ivo.lib.Variables;
+import com.ivo.parser.ast.AssignmentStatement;
 import com.ivo.parser.ast.BinaryExpression;
+import com.ivo.parser.ast.BlockStatement;
 import com.ivo.parser.ast.ConditionalExpression;
+import com.ivo.parser.ast.EvalStatement;
 import com.ivo.parser.ast.Expression;
 import com.ivo.parser.ast.FunctionalExpression;
 import com.ivo.parser.ast.NumberExpression;
+import com.ivo.parser.ast.Statement;
 import com.ivo.parser.ast.UnaryExpression;
 import com.ivo.parser.ast.VariableExpression;
 import java.util.List;
@@ -20,33 +22,14 @@ public class Parser {
     private final Token EOF = new Token(TokenType.EOF, "");
     
     private final List<Token> tokens;
-    private final Double[] args;
     
     private final int size;
     private int pos;
     
-    public Parser(List<Token> tokens, Double... args) {
+    public Parser(List<Token> tokens) {
         this.tokens = tokens;
         size = tokens.size();
-        
-        this.args = args;
-        
-        int num = 0; 
-        String varName;
-        Variables.removeAll();
-        for (Token token : tokens) {
-            varName = token.getText();
-            if (!Functions.isExists(varName) &&
-                    token.getTokenType() == TokenType.WORD &&
-                    !Variables.isExists(varName)) {
-                if (num >= args.length) {
-                    throw new RuntimeException("Expected " + args.length + " arguments!");
-                }
-                Variables.set(token.getText(), args[num]);
-                num++;
-            }
-        }
-        
+
         pos = 0;
     }
     
@@ -59,13 +42,29 @@ public class Parser {
         return result;
     }*/
     
-    public double parse() {
-        Expression result = null;
+    public Statement parse() {
+        final BlockStatement result = new BlockStatement();
         while (!match(TokenType.EOF)) {
-            result = expression();
+            result.add(statement());
         }
-
-        return result.eval();
+        return result;
+    }
+    
+    private Statement statement() {
+        if (match(TokenType.EVAL)) {
+            return new EvalStatement(expression());
+        }
+        return assignmentStatement();
+    }
+    
+    private Statement assignmentStatement() {
+        if (get(0).getTokenType() == TokenType.WORD && 
+                get(1).getTokenType() == TokenType.EQ) {
+            final String variable = consume(TokenType.WORD).getText();
+            consume(TokenType.EQ);
+            return new AssignmentStatement(variable, expression());
+        }
+        throw new RuntimeException("Unknown statement!");
     }
     
     private FunctionalExpression function() {

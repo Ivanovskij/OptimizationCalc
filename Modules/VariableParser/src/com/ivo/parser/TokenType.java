@@ -9,10 +9,13 @@ public enum TokenType {
     NUMBER,
     WORD,
     
+    EVAL,
+    
     PLUS,
     MINUS,
     STAR,
     SLASH,
+    
     EQ,     // =
     LT,     // >
     LTEQ,   // >=

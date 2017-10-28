@@ -29,6 +29,7 @@ public class Lexer {
         OPERATORS.put("*", TokenType.STAR);
         OPERATORS.put("/", TokenType.SLASH);
         
+        OPERATORS.put("=", TokenType.EQ);
         OPERATORS.put(">", TokenType.LT);
         OPERATORS.put(">=", TokenType.LTEQ);
         OPERATORS.put("<", TokenType.GT);
@@ -104,7 +105,13 @@ public class Lexer {
             buff.append(current);
             current = next();
         } 
-        addToken(TokenType.WORD, buff.toString());
+        
+        final String word = buff.toString();
+        switch (word) {
+            case "eval": addToken(TokenType.EVAL); break;
+            default:
+                addToken(TokenType.WORD, buff.toString());
+        }
     }
     
     private void tokenizeOperator() {

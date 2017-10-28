@@ -1,8 +1,6 @@
 package com.ivo;
 
-import com.ivo.parser.Lexer;
-import com.ivo.parser.Token;
-import java.util.List;
+import com.ivo.parser.ast.Statement;
 
 /**
  *
@@ -11,18 +9,18 @@ import java.util.List;
 public class MainLaunch {
 
     public static void main(String[] args) {
-        String function = "1.5 * pow(b1, 2) * exp(1 - pow(b1, 2)) - 20.25 * pow(b1 - b2, 2)";
+        String function = "b1 = 1"
+                + " b2 = 2 "
+                + "1.5 * pow(b1, 2) * exp(1 - pow(b1, 2)) - 20.25 * pow(b1 - b2, 2)";
         String func2 = "x1 + x2 + x2";
         String bound = "x1 + x2 >= 6";
 
-        Lexer lexer = new Lexer(function);
+        /*Lexer lexer = new Lexer(func2);
         List<Token> tokens = lexer.parse();
         for (Token token : tokens) {
             System.out.println(token);
-        }
-        
-        double x1 = 1;
-        double x2 = 2;
+        }*/
+
         
 //        List<Expression> result = new Parser(tokens, x1, x2).parse();
 //        for (Expression expr : result) {
@@ -32,8 +30,17 @@ public class MainLaunch {
 //        double result = new Parser(func2, x1, x2).parse();
 //        System.out.println(result);
 
-          ParserExecute pe = new ParserExecute(function, x1, x2);
-          System.out.println(pe.execute());
+        System.out.println();
+        System.out.println("====================================");
+        System.out.println();
+        
+        String task1 = "b1 = 3 "
+                + "b2 = 6 "
+                + "eval(b1 * b1) + 3 * b2";
+
+        Statement program = new ParserExecute(task1).execute();
+        System.out.println(program.toString());
+        program.execute();
     }
     
     
