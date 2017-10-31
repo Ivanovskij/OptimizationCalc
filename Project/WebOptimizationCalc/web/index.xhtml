@@ -4,9 +4,56 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Facelet Title</title>
+        <title></title>
+        <h:outputStylesheet library="css" name="main.css"/>
+        <h:outputStylesheet library="css" name="reset.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <header class="header">
+            <h:link outcome="home" class="logotype">
+                <h:graphicImage library="images"
+                                name="logotype.png"
+                                width="600"
+                                height="100"
+                                alt="logotype"/>
+            </h:link>
+            <div class="clear"></div>
+        </header>
+
+        <nav class="nav">
+            <ul>
+                <li><h:link>#{msg.nav_Simplex_method}</h:link></li>
+                <li><h:link>#{msg.nav_genetic_algorithm}</h:link></li>
+            </ul>
+            <div class="clear"></div>
+        </nav>
+        
+        <div id="page-container">
+            <main>
+                <div class="text__calculator">
+                    <h1>#{msg.main_calculator_online}</h1>
+                </div>
+                
+                <div class="text__about_method">
+                    <p>
+                        #{msg.main_text_about_simplex_method1}
+                    </p>
+                    <p>
+                        #{msg.main_text_about_simplex_method2}
+                    </p>
+                </div>
+                
+                <div class="content-container">
+                    CONTENT
+                </div>
+            </main>
+        </div>
+        
+        <footer>
+            <div class="footer-container">
+                <p>#{msg.footer_copyright}</p>
+            </div>
+        </footer>
     </h:body>
 </html>
 
