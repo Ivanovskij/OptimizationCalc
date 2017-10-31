@@ -15,7 +15,7 @@ public class Parameters {
         params = new HashMap<>();
         
         params.put(Config.BINARY_GENE_SIZE, new NumberValue("64"));
-        params.put(Config.GENE_SIZE, new NumberValue("8"));
+        params.put(Config.GENE_SIZE, new NumberValue("64"));
         params.put(Config.MUTATION_PERCENT, new NumberValue("0.2"));
     }
     

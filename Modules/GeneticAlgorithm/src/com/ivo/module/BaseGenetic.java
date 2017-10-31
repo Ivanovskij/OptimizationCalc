@@ -18,6 +18,6 @@ public interface BaseGenetic {
     
     void mutation();
 
-    void setCurrentGeneration(Chromosome[] generation);
+    void setCurrentGeneration();
     
 }
