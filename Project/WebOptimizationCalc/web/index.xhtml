@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
         <title></title>
@@ -9,51 +10,15 @@
         <h:outputStylesheet library="css" name="reset.css"/>
     </h:head>
     <h:body>
-        <header class="header">
-            <h:link outcome="home" class="logotype">
-                <h:graphicImage library="images"
-                                name="logotype.png"
-                                width="600"
-                                height="100"
-                                alt="logotype"/>
-            </h:link>
-            <div class="clear"></div>
-        </header>
-
-        <nav class="nav">
-            <ul>
-                <li><h:link>#{msg.nav_Simplex_method}</h:link></li>
-                <li><h:link>#{msg.nav_genetic_algorithm}</h:link></li>
-            </ul>
-            <div class="clear"></div>
-        </nav>
-        
-        <div id="page-container">
-            <main>
-                <div class="text__calculator">
-                    <h1>#{msg.main_calculator_online}</h1>
-                </div>
-                
-                <div class="text__about_method">
-                    <p>
-                        #{msg.main_text_about_simplex_method1}
-                    </p>
-                    <p>
-                        #{msg.main_text_about_simplex_method2}
-                    </p>
-                </div>
-                
-                <div class="content-container">
-                    CONTENT
-                </div>
-            </main>
-        </div>
-        
-        <footer>
-            <div class="footer-container">
-                <p>#{msg.footer_copyright}</p>
-            </div>
-        </footer>
+        <ui:composition template="templates/template.xhtml">
+            <ui:define name="headTitle">
+                #{msg.title_index}
+            </ui:define>
+            
+            <ui:define name="content">
+                ПОСТАНОВКА ЗАДАЧИ
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

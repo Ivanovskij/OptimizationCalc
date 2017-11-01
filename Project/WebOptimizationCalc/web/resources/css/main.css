@@ -67,6 +67,14 @@ nav ul li:last-child a {
 
 
 /* ================== MAIN ==================*/
+main {
+    padding: 0 20px;
+}
+
+.text-about-method-container {
+    margin-bottom: 30px;
+}
+
 .text__calculator {
     display: block;
     font-family: Verdana, Arial, sans-serif;
