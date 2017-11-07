@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <resource-bundle>
+            <base-name>com.ivo.web.nls.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
+    
+    
+    <!-- ============ INDEX, OTHERS =================== -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    <!-- ============ SIMPLEX =================== -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>simplex</from-outcome>
+            <to-view-id>pages/simplex/simplex.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>step2</from-outcome>
+            <to-view-id>pages/simplex/StepTwoSetData.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>step3</from-outcome>
+            <to-view-id>pages/simplex/StepThirdResult.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- ============ GENETIC =================== -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>genetic</from-outcome>
+            <to-view-id>pages/genetic/genetic.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+</faces-config>

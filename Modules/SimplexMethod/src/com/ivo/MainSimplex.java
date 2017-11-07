@@ -4,6 +4,6 @@ package com.ivo;
  *
  * @author IOAdmin
  */
-public class Main {
+public class MainSimplex {
 
 }
