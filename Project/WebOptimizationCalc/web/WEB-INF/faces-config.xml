@@ -11,6 +11,8 @@
         </resource-bundle>
     </application>
     
+    
+    <!-- ============ INDEX, OTHERS =================== -->
     <navigation-rule>
         <navigation-case>
             <from-outcome>home</from-outcome>
@@ -19,6 +21,8 @@
         </navigation-case>
     </navigation-rule>
     
+    
+    <!-- ============ SIMPLEX =================== -->
     <navigation-rule>
         <navigation-case>
             <from-outcome>simplex</from-outcome>
@@ -26,15 +30,6 @@
             <redirect>true</redirect>
         </navigation-case>
     </navigation-rule>
-    
-    <navigation-rule>
-        <navigation-case>
-            <from-outcome>step1</from-outcome>
-            <to-view-id>pages/simplex/StepOneSetConstraints.xhtml</to-view-id>
-            <redirect>true</redirect>
-        </navigation-case>
-    </navigation-rule>
-    
     <navigation-rule>
         <navigation-case>
             <from-outcome>step2</from-outcome>
@@ -42,7 +37,15 @@
             <redirect>true</redirect>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>step3</from-outcome>
+            <to-view-id>pages/simplex/StepThirdResult.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+    </navigation-rule>
     
+    <!-- ============ GENETIC =================== -->
     <navigation-rule>
         <navigation-case>
             <from-outcome>genetic</from-outcome>

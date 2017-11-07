@@ -13,7 +13,7 @@ public class MainLaunch {
     
     public static void main(String[] args) {
         bestIndividuals = new GeneticExecute("-10000", "10000", 
-            "100", "1000", "4").execute();
+            "100", "1000", "2").execute();
     }
     
 }

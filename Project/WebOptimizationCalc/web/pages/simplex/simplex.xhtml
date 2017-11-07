@@ -25,11 +25,16 @@
             
             <ui:define name="content-calc">
                 <div class="simplex-container">
-                    <p>ИНСТРУКЦИЯ. Выберите количество переменных и количество строк (количество ограничений)</p>
-                    <p>Количество переменных</p>
-                    <p>Количество строк (количество ограничений)</p>
                     <h:form>
-                        <h:commandLink action="#{constraintsBean.handleFirstStep()}">Go step2</h:commandLink>
+                        <h:outputText value="ИНСТРУКЦИЯ. Выберите количество переменных и количество строк (количество ограничений)"/>
+                        <p>Количество переменных</p>
+                        <h:inputText value="#{constraintsController.countArgs}" />
+                        <p>Количество строк (количество ограничений)</p>
+                        <h:inputText value="#{constraintsController.countConstraints}"/>
+                        
+                        <h:commandLink action="#{constraintsController.handleFirstStep()}">
+                            <h:outputText value="шаг 2"/>
+                        </h:commandLink>
                     </h:form>
                 </div>
             </ui:define>
