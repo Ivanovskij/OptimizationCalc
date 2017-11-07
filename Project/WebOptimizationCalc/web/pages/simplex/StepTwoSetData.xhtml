@@ -36,7 +36,11 @@
                             <h:column> 
                                 <ui:repeat value="#{constraintsController.argsList}" var="arg">
                                     <h:outputText class="arg-name" value="x#{arg+1}"/>
-                                    <h:inputText class="input-value" value="#{row.x}"/>
+                                    <h:inputText class="input-value" 
+                                                 value="#{row.x}"
+                                                 required="true">
+                                        <f:validator validatorId="com.ivo.web.main.validators.SimplexFieldsValidator"/>
+                                    </h:inputText>
                                 </ui:repeat>
                             </h:column>
                             <h:column>
@@ -48,7 +52,11 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">B</f:facet>
-                                <h:inputText class="input value-constraint" value="#{row.valueCondition}"/>
+                                <h:inputText class="input value-constraint" 
+                                             value="#{row.valueCondition}"
+                                             required="true">
+                                    <f:validator validatorId="com.ivo.web.main.validators.SimplexFieldsValidator"/>
+                                </h:inputText>
                             </h:column>
                         </h:dataTable>
 
