@@ -47,13 +47,15 @@ public class ConstraintsController {
     
     public String handleSecondStep() {
         if (!argValues.isEmpty()) {
+            Double[] values;
+ 
             double[] result = new double[countArgs];
             // + 1 goal function
             // + 1 valueCondition
             double[][] table = new double[countConstraints + 1][countArgs + 1];
             for (int i = 0; i < argValues.size(); i++) {
                 table[i][0] = argValues.get(i).getValueCondition();
-                Double[] values = argValues.get(i).getValues();
+                values = argValues.get(i).getValues();
                 for (int j = 0; j < values.length; j++) {
                     table[i][j + 1] = values[j];
                 }
@@ -62,7 +64,11 @@ public class ConstraintsController {
             int n = table.length - 1;
             table[n][0] = 0;
             for (int i = 0; i < funcValues.size(); i++) {
-                table[n][i+1] = funcValues.get(i).getValue();
+                if (maxOrMin.equals("max")) {
+                    table[n][i+1] = -(funcValues.get(i).getValue());
+                } else {
+                   table[n][i+1] = funcValues.get(i).getValue(); 
+                }
             }
             
             for (int i = 0; i < table.length; i++) {
