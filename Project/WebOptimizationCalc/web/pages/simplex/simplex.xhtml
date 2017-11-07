@@ -26,15 +26,20 @@
             <ui:define name="content-calc">
                 <div class="simplex-container">
                     <h:form>
-                        <h:outputText value="ИНСТРУКЦИЯ. Выберите количество переменных и количество строк (количество ограничений)"/>
-                        <p>Количество переменных</p>
-                        <h:inputText value="#{constraintsController.countArgs}" />
-                        <p>Количество строк (количество ограничений)</p>
-                        <h:inputText value="#{constraintsController.countConstraints}"/>
+                        <p class="manual">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">Инструкция:</span>
+                            Выберите количество переменных и количество строк (количество ограничений)
+                        </p>
+                        <p>Количество переменных:</p>
+                        <h:inputText class="input-count" 
+                                     value="#{constraintsController.countArgs}" />
+                        <p>Количество строк (количество ограничений):</p>
+                        <h:inputText class="input-count" 
+                                     value="#{constraintsController.countConstraints}"/>
                         
-                        <h:commandLink action="#{constraintsController.handleFirstStep()}">
-                            <h:outputText value="шаг 2"/>
-                        </h:commandLink>
+                        <h:commandButton class="button"
+                                        action="#{constraintsController.handleFirstStep()}" 
+                                        value="Далее"/>
                     </h:form>
                 </div>
             </ui:define>

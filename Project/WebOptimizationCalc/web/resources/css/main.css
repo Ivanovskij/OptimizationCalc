@@ -19,7 +19,7 @@ body {
 #page-container {
     min-height: 100%;
     padding: 5px;
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -69,6 +69,7 @@ nav ul li:last-child a {
 /* ================== MAIN ==================*/
 main {
     padding: 0 20px;
+    text-align: justify;
 }
 
 .text-about-method-container {
@@ -93,14 +94,14 @@ main {
 /* ================== FOOTER ==================*/
 footer {
     background: #26537c;
-    height: 30px;
-    margin-top: -30px;
+    height: 50px;
+    margin-top: -50px;
     text-align: center;
 }
 
 .footer-container p {
     color: #fff;
-    line-height: 30px;
+    line-height: 50px;
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 

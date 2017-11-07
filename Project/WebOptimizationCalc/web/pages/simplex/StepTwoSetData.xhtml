@@ -28,19 +28,36 @@
                 
                 <div class="simplex-container">
                     <h:form>
-                        <!-- Создать FieldsRowBean и В CONSTRAINTS LIST<FIELDSROWBEAN> заполнять значениями  -->
+                        <p class="manual">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">Инструкция:</span>
+                            Введите все значения
+                        </p>
                         <h:dataTable value="#{constraintsController.setValuesArgs()}" var="row">
                             <h:column> 
                                 <ui:repeat value="#{constraintsController.argsList}" var="arg">
-                                    <h:outputText value="x"/>
-                                    <h:inputText value="#{row.x}"/>
+                                    <h:outputText style="width:100%" class="arg-name" value="x#{arg+1}"/>
+                                    <h:inputText class="input-value" value="#{row.x}"/>
                                 </ui:repeat>
                             </h:column>
+                            <h:column>
+                                <h:selectOneMenu value="" class="select-equal">
+                                    <f:selectItem itemValue="&le;"/>
+                                    <f:selectItem itemValue="="/>
+                                    <f:selectItem itemValue="&ge;"/>
+                                </h:selectOneMenu>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">B</f:facet>
+                                <h:inputText class="input value-constraint" value=""/>
+                            </h:column>
                         </h:dataTable>
-                        <h:commandLink action="#{constraintsController.handleSecondStep()}">
-                            <h:outputText value="шаг 3"/>
-                        </h:commandLink>
-                    </h:form>           
+                        
+                        <h:commandButton class="button"
+                                         action="#{constraintsController.handleSecondStep()}" 
+                                        value="Далее"/>
+                        
+                        
+                    </h:form>
                 </div>
             </ui:define>
         </ui:composition>
