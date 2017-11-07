@@ -1,6 +1,7 @@
 package com.ivo.web.modules.simplex.controllers;
 
 
+import com.ivo.module.SimplexMethod;
 import com.ivo.web.modules.simplex.beans.ArgsBean;
 import com.ivo.web.modules.simplex.beans.FunctionBean;
 import java.util.ArrayList;
@@ -46,6 +47,34 @@ public class ConstraintsController {
     
     public String handleSecondStep() {
         if (!argValues.isEmpty()) {
+            double[] result = new double[countArgs];
+            // + 1 goal function
+            // + 1 valueCondition
+            double[][] table = new double[countConstraints + 1][countArgs + 1];
+            for (int i = 0; i < argValues.size(); i++) {
+                table[i][0] = argValues.get(i).getValueCondition();
+                Double[] values = argValues.get(i).getValues();
+                for (int j = 0; j < values.length; j++) {
+                    table[i][j + 1] = values[j];
+                }
+            }
+            
+            int n = table.length - 1;
+            table[n][0] = 0;
+            for (int i = 0; i < funcValues.size(); i++) {
+                table[n][i+1] = funcValues.get(i).getValue();
+            }
+            
+            for (int i = 0; i < table.length; i++) {
+                for (int j = 0; j < table[i].length; j++) {
+                    System.out.print(table[i][j] + " ");
+                } 
+                System.out.println("");
+            }
+            
+            SimplexMethod s = new SimplexMethod(table);
+            s.calculate(result);
+            System.out.println("F = " + (result[0] * 21 + result[1] * 18 + result[2] * 16 + result[3] * 17.5));
             return "step3";
         }
         return "error_page";
