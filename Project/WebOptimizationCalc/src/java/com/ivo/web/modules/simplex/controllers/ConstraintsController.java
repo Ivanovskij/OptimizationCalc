@@ -2,6 +2,7 @@ package com.ivo.web.modules.simplex.controllers;
 
 
 import com.ivo.web.modules.simplex.beans.ArgsBean;
+import com.ivo.web.modules.simplex.beans.FunctionBean;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +19,14 @@ public class ConstraintsController {
     private List<Integer> argsList;
     private List<Integer> constraintsList;
     
+    // constraints
     private final List<ArgsBean> argValues = new ArrayList<>();
+    // goal func
+    private final List<FunctionBean> funcValues = new ArrayList<>();
+    private double freeMemberC;
+    
+    // condition
+    private String maxOrMin = "min";
     
     private int countArgs;
     private int countConstraints;
@@ -91,4 +99,37 @@ public class ConstraintsController {
         return argValues;
     }
     
+    public List<FunctionBean> setValuesFunc() {
+        if (!funcValues.isEmpty()) {
+            funcValues.clear();
+        }
+        // называем переменные
+        // x1, x2, x3 ... xn
+        for (int i = 0; i < countArgs; i++) {
+            FunctionBean f = new FunctionBean();
+            f.setNameArg(i + 1);
+            funcValues.add(f);
+        }
+        return funcValues;
+    }
+
+    public List<FunctionBean> getFuncValues() {
+        return funcValues;
+    }
+
+    public double getFreeMemberC() {
+        return freeMemberC;
+    }
+
+    public void setFreeMemberC(double freeMemberC) {
+        this.freeMemberC = freeMemberC;
+    }
+
+    public String getMaxOrMin() {
+        return maxOrMin;
+    }
+
+    public void setMaxOrMin(String maxOrMin) {
+        this.maxOrMin = maxOrMin;
+    }
 }

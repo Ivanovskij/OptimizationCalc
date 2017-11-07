@@ -50,6 +50,7 @@
 }
 
 /* SIMPLEX SET VALUES CONSTRAINTS  */
+/* constraints */
 .input-value {
     margin: 0 8px 8px 0;
     width: 100%;
@@ -66,6 +67,20 @@
     margin: 0 10px 8px 0;
     width: 100%;
     max-width: 35px;
+}
+
+/* goal func */
+.panel-goal-func {
+    display: block;
+    text-align: left;
+}
+
+.arg-name {
+    padding-right: 1px;
+}
+
+.select-condition {
+    width: 50px;
 }
 
 

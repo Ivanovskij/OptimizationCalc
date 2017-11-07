@@ -8,13 +8,15 @@ import java.io.Serializable;
  */
 public class ArgsBean implements Serializable {
     
-    private final StringBuilder arg = new StringBuilder();
+    private final StringBuilder args = new StringBuilder();
+    private String condition;
+    private Double valueCondition;
 
     public ArgsBean() {
     }
     
     public Double[] getValues() {
-        String[] valuesStr = arg.toString().split(" ");
+        String[] valuesStr = args.toString().split(" ");
         Double[] valuesDouble = new Double[valuesStr.length];
         
         for (int i = 0; i < valuesStr.length; i++) {
@@ -25,11 +27,26 @@ public class ArgsBean implements Serializable {
     }
     
     public String getX() {
-        return arg.toString();
+        return args.toString();
     }
 
     public void setX(String x) {
-        this.arg.append(x).append(" ");
+        this.args.append(x).append(" ");
     }
 
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public Double getValueCondition() {
+        return valueCondition;
+    }
+
+    public void setValueCondition(Double valueCondition) {
+        this.valueCondition = valueCondition;
+    }
 }
