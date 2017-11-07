@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>IGNORED</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="titleHead">
+                #{msg.title_simplex}
+            </ui:define>
+            
+            <ui:define name="about-calc">
+                <div class="text__about_method">
+                    <p>
+                        #{msg.main_text_about_simplex_method1}
+                    </p>
+                    <p>
+                        #{msg.main_text_about_simplex_method2}
+                    </p>
+                </div>
+            </ui:define>
+            
+            <ui:define name="content-calc">
+                
+                <div class="simplex-container">
+                    <h:form>
+                        <p class="manual">
+                            <span>Ограничения:</span>
+                        </p>
+                        <!-- === constraints values === -->
+                        <h:dataTable value="#{constraintsController.setValuesArgs()}" var="row">
+                            <h:column> 
+                                <ui:repeat value="#{constraintsController.argsList}" var="arg">
+                                    <h:outputText class="arg-name" value="x#{arg+1}"/>
+                                    <h:inputText class="input-value" value="#{row.x}"/>
+                                </ui:repeat>
+                            </h:column>
+                            <h:column>
+                                <h:selectOneMenu value="#{row.condition}" class="select-equal">
+                                    <f:selectItem itemValue="&le;"/>
+                                    <f:selectItem itemValue="="/>
+                                    <f:selectItem itemValue="&ge;"/>
+                                </h:selectOneMenu>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">B</f:facet>
+                                <h:inputText class="input value-constraint" value="#{row.valueCondition}"/>
+                            </h:column>
+                        </h:dataTable>
+
+                        <!-- === goal function values === -->
+                        <p class="manual">
+                            <span>F(x), целевая функция:</span>
+                        </p>
+                        <h:panelGroup class="panel-goal-func">
+                            <ui:repeat value="#{constraintsController.setValuesFunc()}" var="row">
+                                <h:outputText class="arg-name" value="x#{row.nameArg}"/>
+                                <h:inputText class="input-value" value="#{row.value}"/>
+                            </ui:repeat>
+                            <h:outputText class="arg-name" value="C"/>
+                            <h:inputText class="input-value" value="#{constraintsController.freeMemberC}"/>
+                            <h:selectOneMenu value="#{constraintsController.maxOrMin}" class="select-condition">
+                                <f:selectItem itemValue="max"/>
+                                <f:selectItem itemValue="min"/>
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+                        
+                         <h:commandButton class="button"
+                                         action="#{constraintsController.handleSecondStep()}" 
+                                         value="Далее"/>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

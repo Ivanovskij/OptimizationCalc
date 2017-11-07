@@ -8,8 +8,11 @@ public class Function {
 
     public static final String func = "21 * x1 + 18 * x2 + 16 * x3 + 17.5 * x4";
     
+//    public static final double f(Double[] args) {
+//        return 21 * args[0] + 18 * args[1] + 16 * args[2] + 17.5 * args[3];
+//    }
     public static final double f(Double[] args) {
-        return 21 * args[0] + 18 * args[1] + 16 * args[2] + 17.5 * args[3];
+        return 2 * args[0] + 3 * args[1];
     }
     
     // метод динамических штрафов
@@ -60,36 +63,96 @@ public class Function {
         return true;
     }
     
-    public static boolean insideBounds(String in, Double[] args) {
-        return 8 * args[0] + 7 * args[1] + 5 * args[2] + 9 * args[3] <= 22 && 
-                8 * args[0] + 9 * args[1] + 7 * args[2] + 8 * args[3] <= 25 &&
-                10 * args[0] + 9* args[1] + 9 * args[2] + 7 * args[3] <= 38 &&
-                10 * args[0] + 11 * args[1] +  11 * args[2] + 6 * args[3] <= 30 &&
-                bound5(args);
-    } 
+//    public static boolean insideBounds(String in, Double[] args) {
+//        return 8 * args[0] + 7 * args[1] + 5 * args[2] + 9 * args[3] <= 22 && 
+//                8 * args[0] + 9 * args[1] + 7 * args[2] + 8 * args[3] <= 25 &&
+//                10 * args[0] + 9* args[1] + 9 * args[2] + 7 * args[3] <= 38 &&
+//                10 * args[0] + 11 * args[1] +  11 * args[2] + 6 * args[3] <= 30 &&
+//                bound5(args);
+//    } 
 
     
     // method static penalty
+//    public static double insideBounds(Double[] args) {
+//        double result = 0;
+//        
+//        double x1 = args[0],
+//                x2 = args[1],
+//                x3 = args[2],
+//                x4 = args[3];
+//        
+//        boolean[] bounds = {
+//            8 * x1 + 7 * x2 + 5 * x3 + 9 * x4 <= 22,
+//            8 * x1 + 9 * x2 + 7 * x3 + 8 * x4 <= 25,
+//            10 * x1 + 9 * x2 + 9 * x3 + 7 * x4 <= 38,
+//            10 * x1 + 11 * x2 +  11 * x3 + 6 * x4 <= 30
+//        };
+//        
+//        double[] boundsRight = {
+//            8 * x1 + 7 * x2 + 5 * x3 + 9 * x4,
+//            8 * x1 + 9 * x2 + 7 * x3 + 8 * x4,
+//            10 * x1 + 9 * x2 + 9 * x3 + 7 * x4,
+//            10 * x1 + 11 * x2 +  11 * x3 + 6 * x4
+//        };
+//        
+//        for (int i = 0; i < bounds.length; i++) {
+//            if (bounds[i] == false) {
+//                double res = boundsRight[i];
+//                result -= Math.pow(res, 2) + 1_000_000;
+//            }
+//        }
+//        
+//        boolean[] boundsZero = {
+//            b1(args),
+//            b2(args),
+//            b3(args),
+//            b4(args),
+//        };
+//        
+//        for (int i = 0; i < boundsZero.length; i++) {
+//            if (boundsZero[i] == false) {
+//                result -= Math.pow(args[i], 2) + 1_000_000;
+//            }
+//        }
+//        
+//        return result;
+//    }
+//    
+//    private static boolean b1(Double[] args) {
+//        return (args[0] >= 0);
+//    }
+//    private static boolean b2(Double[] args) {
+//        return (args[1] >= 0);
+//    }
+//    private static boolean b3(Double[] args) {
+//        return (args[2] >= 0);
+//    }
+//    private static boolean b4(Double[] args) {
+//        return (args[3] >= 0);
+//    }
+    
     public static double insideBounds(Double[] args) {
         double result = 0;
         
         double x1 = args[0],
-                x2 = args[1],
-                x3 = args[2],
-                x4 = args[3];
+                x2 = args[1];
         
         boolean[] bounds = {
-            8 * x1 + 7 * x2 + 5 * x3 + 9 * x4 <= 22,
-            8 * x1 + 9 * x2 + 7 * x3 + 8 * x4 <= 25,
-            10 * x1 + 9 * x2 + 9 * x3 + 7 * x4 <= 38,
-            10 * x1 + 11 * x2 +  11 * x3 + 6 * x4 <= 30
+            3 * x1 + 3 * x2 <= 15,
+            2 * x1 + 6 * x2 <= 18,
+            4 * x1 + 0 * x2 <= 16,
+            1 * x1 + 2 * x2 <= 8,
+            x1 >= 0,
+            x2 >= 0,
         };
         
         double[] boundsRight = {
-            8 * x1 + 7 * x2 + 5 * x3 + 9 * x4,
-            8 * x1 + 9 * x2 + 7 * x3 + 8 * x4,
-            10 * x1 + 9 * x2 + 9 * x3 + 7 * x4,
-            10 * x1 + 11 * x2 +  11 * x3 + 6 * x4
+            3 * x1 + 3 * x2,
+            2 * x1 + 6 * x2,
+            4 * x1 + 0 * x2,
+            1 * x1 + 2 * x2,
+            x1,
+            x2
         };
         
         for (int i = 0; i < bounds.length; i++) {
@@ -99,32 +162,17 @@ public class Function {
             }
         }
         
-        boolean[] boundsZero = {
-            b1(args),
-            b2(args),
-            b3(args),
-            b4(args),
-        };
-        
-        for (int i = 0; i < boundsZero.length; i++) {
-            if (boundsZero[i] == false) {
-                result -= Math.pow(args[i], 2) + 1_000_000;
-            }
-        }
-        
         return result;
     }
     
-    private static boolean b1(Double[] args) {
-        return (args[0] >= 0);
-    }
-    private static boolean b2(Double[] args) {
-        return (args[1] >= 0);
-    }
-    private static boolean b3(Double[] args) {
-        return (args[2] >= 0);
-    }
-    private static boolean b4(Double[] args) {
-        return (args[3] >= 0);
-    }
+    public static boolean insideBounds(String in, Double[] args) {
+        double x1 = args[0],
+                x2 = args[1];
+        return 3 * x1 + 3 * x2 <= 15 &&
+            2 * x1 + 6 * x2 <= 18 &&
+            4 * x1 + 0 * x2 <= 16 &&
+            1 * x1 + 2 * x2 <= 8&&
+            x1 >= 0&&
+            x2 >= 0;
+    } 
 }
