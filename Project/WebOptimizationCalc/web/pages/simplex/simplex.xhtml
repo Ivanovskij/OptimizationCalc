@@ -38,7 +38,7 @@
                                      value="#{constraintsController.countArgs}" 
                                      required="true"
                                      requiredMessage="#{msg.enter_fields}">
-                            <f:validator validatorId="com.ivo.web.simplex.validators.SetDataValidator"/>
+                            <f:validator validatorId="com.ivo.web.modules.simplex.validators.SetDataValidator"/>
                             <f:ajax event="keyup" render="countArgsError"/>
                         </h:inputText>
                         <h:message id="countArgsError" for="countArgs" styleClass="empty-fields"/>
@@ -49,7 +49,7 @@
                                      value="#{constraintsController.countConstraints}"
                                      required="true"
                                      requiredMessage="#{msg.enter_fields}">
-                            <f:validator validatorId="com.ivo.web.simplex.validators.SetDataValidator"/>
+                            <f:validator validatorId="com.ivo.web.modules.simplex.validators.SetDataValidator"/>
                             <f:ajax event="keyup" render="constraintsError"/>
                         </h:inputText>
                         <h:message id="constraintsError" for="constraintsCount" styleClass="empty-fields"/>

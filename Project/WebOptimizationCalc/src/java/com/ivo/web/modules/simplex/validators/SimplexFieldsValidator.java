@@ -1,4 +1,4 @@
-package com.ivo.web.simplex.validators;
+package com.ivo.web.modules.simplex.validators;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -11,7 +11,7 @@ import javax.faces.validator.ValidatorException;
  *
  * @author IOAdmin
  */
-@FacesValidator("com.ivo.web.simplex.validators.SimplexFieldsValidator")
+@FacesValidator("com.ivo.web.modules.simplex.validators.SimplexFieldsValidator")
 public class SimplexFieldsValidator implements Validator {
 
     @Override
