@@ -26,26 +26,7 @@
             <ui:define name="content-calc">
                 
                 <div class="simplex-container">
-                    <h:form>
-                        <h:panelGroup>
-                            <ui:repeat value="#{constraintsController.getArgsValues()}" var="row">
-                                <ui:repeat value="#{row.getValues()}" var="x">
-                                    <h:outputText value="#{x}"/>
-                                </ui:repeat>
-                                #{row.condition}
-                                #{row.valueCondition}
-                            </ui:repeat>
-                        </h:panelGroup>
-                        <h:panelGroup>
-                            <ui:repeat value="#{constraintsController.getFuncValues()}" var="func">
-                                <ui:repeat value="#{func.value}" var="x">
-                                    <h:outputText value="#{x}"/>
-                                </ui:repeat>
-                                <h:outputText value="C=#{constraintsController.freeMemberC}"/>
-                                <h:outputText value="условие=#{constraintsController.maxOrMin}"/>
-                            </ui:repeat>
-                        </h:panelGroup>
-                    </h:form>           
+                    <p>#{constraintsController.answer}</p>
                 </div>
             </ui:define>
         </ui:composition>
