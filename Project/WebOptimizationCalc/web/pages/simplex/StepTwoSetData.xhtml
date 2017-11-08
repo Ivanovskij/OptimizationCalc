@@ -36,11 +36,15 @@
                             <h:column> 
                                 <ui:repeat value="#{constraintsController.argsList}" var="arg">
                                     <h:outputText class="arg-name" value="x#{arg+1}"/>
-                                    <h:inputText class="input-value" 
+                                    <h:inputText id="args"
+                                                 class="input-value" 
                                                  value="#{row.x}"
-                                                 required="true">
-                                        <f:validator validatorId="com.ivo.web.main.validators.SimplexFieldsValidator"/>
+                                                 required="true"
+                                                 requiredMessage="#{msg.enter_fields}">
+                                        <f:validator validatorId="com.ivo.web.simplex.validators.SimplexFieldsValidator"/>
+                                        <f:ajax event="keyup" render="argsError"/>
                                     </h:inputText>
+                                    <h:message id="argsError" for="args" styleClass="empty-fields"/>
                                 </ui:repeat>
                             </h:column>
                             <h:column>
@@ -52,11 +56,15 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">B</f:facet>
-                                <h:inputText class="input value-constraint" 
+                                <h:inputText id="valCondition"
+                                             class="input value-constraint" 
                                              value="#{row.valueCondition}"
-                                             required="true">
-                                    <f:validator validatorId="com.ivo.web.main.validators.SimplexFieldsValidator"/>
+                                             required="true"
+                                             requiredMessage="#{msg.enter_fields}">
+                                    <f:validator validatorId="com.ivo.web.simplex.validators.SimplexFieldsValidator"/>
+                                    <f:ajax event="keyup" render="valConditionError"/>
                                 </h:inputText>
+                                <h:message id="valConditionError" for="valCondition" styleClass="empty-fields"/>
                             </h:column>
                         </h:dataTable>
 
@@ -67,10 +75,26 @@
                         <h:panelGroup class="panel-goal-func">
                             <ui:repeat value="#{constraintsController.setValuesFunc()}" var="row">
                                 <h:outputText class="arg-name" value="x#{row.nameArg}"/>
-                                <h:inputText class="input-value" value="#{row.value}"/>
+                                <h:inputText id="funcVal"
+                                             class="input-value" 
+                                             value="#{row.value}"
+                                             required="true"
+                                             requiredMessage="#{msg.enter_fields}">
+                                    <f:validator validatorId="com.ivo.web.simplex.validators.SimplexFieldsValidator"/>
+                                    <f:ajax event="keyup" render="funcValError"/>
+                                </h:inputText>
+                                <h:message id="funcValError" for="funcVal" styleClass="empty-fields"/>
                             </ui:repeat>
                             <h:outputText class="arg-name" value="C"/>
-                            <h:inputText class="input-value" value="#{constraintsController.freeMemberC}"/>
+                            <h:inputText id="funcValC" 
+                                         class="input-value" 
+                                         value="#{constraintsController.freeMemberC}"
+                                         required="true"
+                                         requiredMessage="#{msg.enter_fields}">
+                                    <f:validator validatorId="com.ivo.web.simplex.validators.SimplexFieldsValidator"/>
+                                    <f:ajax event="keyup" render="funcValCError"/>
+                            </h:inputText>
+                            <h:message id="funcValCError" for="funcValC" styleClass="empty-fields"/>
                             <h:selectOneMenu value="#{constraintsController.maxOrMin}" class="select-condition">
                                 <f:selectItem itemValue="max"/>
                                 <f:selectItem itemValue="min"/>

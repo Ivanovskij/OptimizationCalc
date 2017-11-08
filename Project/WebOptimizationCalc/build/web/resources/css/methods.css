@@ -13,6 +13,15 @@
     text-align: center;
 }
 
+/* validator */
+.empty-fields {
+    background: rgba(255,30,0,0.8);
+    border-radius: 6px;
+    color: #fff;
+    margin: 2px;
+    padding: 4px;
+}
+
 /* SIMPLEX SET CONSTRAINTS  */
 .manual {
     border-bottom: 2px solid #1a5f8c;

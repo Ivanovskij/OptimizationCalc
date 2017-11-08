@@ -1,4 +1,4 @@
-package com.ivo.web.main.validators;
+package com.ivo.web.simplex.validators;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -11,7 +11,7 @@ import javax.faces.validator.ValidatorException;
  *
  * @author IOAdmin
  */
-@FacesValidator("com.ivo.web.main.validators.SimplexFieldsValidator")
+@FacesValidator("com.ivo.web.simplex.validators.SimplexFieldsValidator")
 public class SimplexFieldsValidator implements Validator {
 
     @Override
@@ -22,7 +22,7 @@ public class SimplexFieldsValidator implements Validator {
             // profit
             Double valueComponent = Double.parseDouble(value.toString());
         } catch (IllegalArgumentException ex) {
-            FacesMessage message = new FacesMessage(ex.getMessage());
+            FacesMessage message = new FacesMessage("Введите число");
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(message);
         }

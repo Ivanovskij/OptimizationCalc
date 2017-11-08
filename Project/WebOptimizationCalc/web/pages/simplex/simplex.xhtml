@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>IGNORED</title>
     </h:head>
@@ -30,12 +31,28 @@
                             <span style="color: #007299; text-transform: uppercase; font-weight: bold;">Инструкция:</span>
                             Выберите количество переменных и количество строк (количество ограничений)
                         </p>
+                        
                         <p>Количество переменных:</p>
-                        <h:inputText class="input-count" 
-                                     value="#{constraintsController.countArgs}" />
+                        <h:inputText id="countArgs" 
+                                     class="input-count" 
+                                     value="#{constraintsController.countArgs}" 
+                                     required="true"
+                                     requiredMessage="#{msg.enter_fields}">
+                            <f:validator validatorId="com.ivo.web.simplex.validators.SetDataValidator"/>
+                            <f:ajax event="keyup" render="countArgsError"/>
+                        </h:inputText>
+                        <h:message id="countArgsError" for="countArgs" styleClass="empty-fields"/>
+                        
                         <p>Количество строк (количество ограничений):</p>
-                        <h:inputText class="input-count" 
-                                     value="#{constraintsController.countConstraints}"/>
+                        <h:inputText id="constraintsCount" 
+                                     class="input-count" 
+                                     value="#{constraintsController.countConstraints}"
+                                     required="true"
+                                     requiredMessage="#{msg.enter_fields}">
+                            <f:validator validatorId="com.ivo.web.simplex.validators.SetDataValidator"/>
+                            <f:ajax event="keyup" render="constraintsError"/>
+                        </h:inputText>
+                        <h:message id="constraintsError" for="constraintsCount" styleClass="empty-fields"/>
                         
                         <h:commandButton class="button"
                                         action="#{constraintsController.handleFirstStep()}" 
