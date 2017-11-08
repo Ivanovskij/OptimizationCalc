@@ -60,7 +60,8 @@
                                              class="input value-constraint" 
                                              value="#{row.valueCondition}"
                                              required="true"
-                                             requiredMessage="#{msg.enter_fields}">
+                                             requiredMessage="#{msg.enter_fields}"
+                                             converterMessage="#{msg.input_number}">
                                     <f:validator validatorId="com.ivo.web.modules.simplex.validators.SimplexFieldsValidator"/>
                                     <f:ajax event="keyup" render="valConditionError"/>
                                 </h:inputText>
@@ -79,7 +80,8 @@
                                              class="input-value" 
                                              value="#{row.value}"
                                              required="true"
-                                             requiredMessage="#{msg.enter_fields}">
+                                             requiredMessage="#{msg.enter_fields}"
+                                             converterMessage="#{msg.input_number}">
                                     <f:validator validatorId="com.ivo.web.modules.simplex.validators.SimplexFieldsValidator"/>
                                     <f:ajax event="keyup" render="funcValError"/>
                                 </h:inputText>
@@ -90,7 +92,8 @@
                                          class="input-value" 
                                          value="#{constraintsController.freeMemberC}"
                                          required="true"
-                                         requiredMessage="#{msg.enter_fields}">
+                                         requiredMessage="#{msg.enter_fields}"
+                                         converterMessage="#{msg.input_number}">
                                     <f:validator validatorId="com.ivo.web.modules.simplex.validators.SimplexFieldsValidator"/>
                                     <f:ajax event="keyup" render="funcValCError"/>
                             </h:inputText>

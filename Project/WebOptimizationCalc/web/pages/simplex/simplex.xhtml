@@ -31,13 +31,13 @@
                             <span style="color: #007299; text-transform: uppercase; font-weight: bold;">Инструкция:</span>
                             Выберите количество переменных и количество строк (количество ограничений)
                         </p>
-                        
                         <p>Количество переменных:</p>
                         <h:inputText id="countArgs" 
                                      class="input-count" 
                                      value="#{constraintsController.countArgs}" 
                                      required="true"
-                                     requiredMessage="#{msg.enter_fields}">
+                                     requiredMessage="#{msg.enter_fields}"
+                                     converterMessage="#{msg.input_number}">
                             <f:validator validatorId="com.ivo.web.modules.simplex.validators.SetDataValidator"/>
                             <f:ajax event="keyup" render="countArgsError"/>
                         </h:inputText>
@@ -48,7 +48,8 @@
                                      class="input-count" 
                                      value="#{constraintsController.countConstraints}"
                                      required="true"
-                                     requiredMessage="#{msg.enter_fields}">
+                                     requiredMessage="#{msg.enter_fields}"
+                                     converterMessage="#{msg.input_number}">
                             <f:validator validatorId="com.ivo.web.modules.simplex.validators.SetDataValidator"/>
                             <f:ajax event="keyup" render="constraintsError"/>
                         </h:inputText>
