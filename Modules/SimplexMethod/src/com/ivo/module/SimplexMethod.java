@@ -27,11 +27,14 @@ public class SimplexMethod {
 
     // basis
     private List<Integer> basis;
+    
+    private boolean isItEnd;
 
     /**
      *
      * @param source - contains last column values: 1 or -1 dependens from (max
      * or min) and condition (>=, <=)
+     * @param freeMemberC - free constant in the goal function
      */
     public SimplexMethod(double[][] source, double freeMemberC) {
         this.freeMemberC = freeMemberC;
@@ -123,7 +126,18 @@ public class SimplexMethod {
     }
     
     private void selectionSupportingPlan() {
+        int notOptimal_counter = 0;
+        
         while (!isOptimal()) {
+            notOptimal_counter++;
+            
+            if (notOptimal_counter >= 30) {
+                isItEnd = true;
+                resultList.clear();
+                resultList.add(new ResultBean(null, null));
+                break;
+            }
+            
             int mainRow = -1;
             int mainCol = -1;
 
@@ -232,6 +246,10 @@ public class SimplexMethod {
             setResultCurrentIter(namesRowsAndCols, description);
         }
 
+        if (resultList.get(0).getIterResults() == null) {
+            throw new RuntimeException("Не возможно выбрать первый опорный план, так как он не является оптимальным");
+        }
+        
         description = "Итерация "
                 + (currentIter)
                 + "."
@@ -247,16 +265,16 @@ public class SimplexMethod {
     }
 
     private boolean isItEnd() {
-        boolean flag = true;
-
+        //boolean flag = true;
+        isItEnd = true;
         for (int j = 1; j < rowCount; j++) {
             if (table[colCount - 1][j] < 0) {
-                flag = false;
+                isItEnd = false;
                 break;
             }
         }
 
-        return flag;
+        return isItEnd;
     }
 
     private int findMainCol() {

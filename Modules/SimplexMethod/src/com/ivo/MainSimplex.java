@@ -19,7 +19,7 @@ public class MainSimplex {
                                 { 0, 21, 18, 16, 17.5, -1} 
         };
         
-        double freeMemberC = 3;
+        double freeMemberC = 0;
         
 //        double[][] table = { {15, 3,  3, 1},
 //                                {18, 2,  6,  1},
