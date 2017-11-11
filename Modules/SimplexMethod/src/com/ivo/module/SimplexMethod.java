@@ -19,6 +19,8 @@ public class SimplexMethod {
 
     // table without basis vars
     private double[][] table;
+    // free constant in the goal function
+    private final double freeMemberC;
 
     // size m - cols, n - rows
     private int colCount, rowCount;
@@ -31,7 +33,9 @@ public class SimplexMethod {
      * @param source - contains last column values: 1 or -1 dependens from (max
      * or min) and condition (>=, <=)
      */
-    public SimplexMethod(double[][] source) {
+    public SimplexMethod(double[][] source, double freeMemberC) {
+        this.freeMemberC = freeMemberC;
+        
         resultList = new ArrayList<>();
 
         // get canonical form source
@@ -183,7 +187,7 @@ public class SimplexMethod {
                     + System.lineSeparator() : "";
 
             description += "Итерация " + (currentIter++) + "." + System.lineSeparator()
-                    + " 1. Проверка критерия оптимальности: текущий опорный план неоптимален, так как в индексной строке"
+                    + " 1. Проверка критерия оптимальности: текущий опорный план не оптимален, так как в индексной строке"
                     + System.lineSeparator()
                     + "     находятся отрицательные коэффициенты."
                     + System.lineSeparator()
@@ -194,10 +198,10 @@ public class SimplexMethod {
                     + System.lineSeparator()
                     + " 3. Определение новой свободной переменной: вычисляются значения Di по строкам как частное от "
                     + System.lineSeparator()
-                    + "     дeделения: bi / ai" + mainCol + " и из них выбирается наименьшее("
+                    + "     деления: bi / ai" + mainCol + " и из них выбирается наименьшее("
                     + (table[mainRow][0] / table[mainRow][mainCol]) + "). "
                     + System.lineSeparator()
-                    + "     Следовательно, " + (mainRow + 1) + "-ая строка  является ведущей."
+                    + "     Следовательно, " + (mainRow + 1) + "-ая строка является ведущей."
                     + System.lineSeparator()
                     + "     Разрешающий элемент равен (" + mainElement + ")"
                     + System.lineSeparator()
@@ -206,10 +210,12 @@ public class SimplexMethod {
 
             setResultCurrentIter(namesRowsAndCols, description);
 
+            String oldGorizontallyX = namesRowsAndCols[mainRow + 1][0];
+            
             updateTable(mainRow, mainCol);
 
             description = "4. Пересчет симплекс-таблицы: вместо переменной "
-                    + namesRowsAndCols[mainRow + 1][0]
+                    + oldGorizontallyX
                     + " в план войдет переменная "
                     + namesRowsAndCols[0][mainCol + 1]
                     + "."
@@ -350,12 +356,11 @@ public class SimplexMethod {
             value += argsFunc[i] * resultX[i];
         }
 
+        value += freeMemberC;
         return value;
     }
     
     private String getMathModel(double[][] source) {
-        double C = 0;
-
         final int colCount = source.length;
         final int rowCount = source[0].length;
 
@@ -372,8 +377,8 @@ public class SimplexMethod {
                     + Math.abs(source[colCount - 1][i]) + "x" + (i);
         }
 
-        if (C != 0) {
-            description += (C > 0 ? " + " : " - ") + C;
+        if (freeMemberC != 0) {
+            description += (freeMemberC > 0 ? " + " : " - ") + freeMemberC;
         }
 
         description += (source[colCount - 1][rowCount - 1] == -1 ? " => max" : " => min") + " при"

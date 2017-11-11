@@ -18,6 +18,9 @@ public class MainSimplex {
                                 { 30,  10, 11, 11, 6, 1},
                                 { 0, 21, 18, 16, 17.5, -1} 
         };
+        
+        double freeMemberC = 3;
+        
 //        double[][] table = { {15, 3,  3, 1},
 //                                {18, 2,  6,  1},
 //                                {16,  4,  0,  -1},
@@ -28,7 +31,7 @@ public class MainSimplex {
         double[] result = new double[5];
         List<ResultBean> results;
 
-        SimplexMethod S = new SimplexMethod(table);
+        SimplexMethod S = new SimplexMethod(table, freeMemberC);
         results = S.calculate(result);
         
         String[][] matrix;
