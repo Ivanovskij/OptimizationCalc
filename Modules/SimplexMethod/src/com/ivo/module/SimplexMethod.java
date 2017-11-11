@@ -42,7 +42,7 @@ public class SimplexMethod {
 
         initSimplexTable(canonicalSource);
         // getMathModel - give old source for parse
-        setResultCurrentIter(namesRowsAndCols.clone(),
+        setResultCurrentIter(namesRowsAndCols,
                 getMathModel(source) + "Принимая свободные переменные равными 0, получаем первый опорный план:");
 
         // search optimal plan
@@ -151,9 +151,9 @@ public class SimplexMethod {
                     + ".";
 
             updateTable(mainRow, mainCol);
-            setResultCurrentIter(namesRowsAndCols.clone(), description);
+            setResultCurrentIter(namesRowsAndCols, description);
             doubleValuesToString();
-            setResultCurrentIter(namesRowsAndCols.clone(), "Получаем новую симплекс таблицу");
+            setResultCurrentIter(namesRowsAndCols, "Получаем новую симплекс таблицу");
         }
     }
 
@@ -204,7 +204,7 @@ public class SimplexMethod {
                     + " и находится на пересечении ведущего столбца и ведущей строки."
                     + System.lineSeparator();
 
-            setResultCurrentIter(namesRowsAndCols.clone(), description);
+            setResultCurrentIter(namesRowsAndCols, description);
 
             updateTable(mainRow, mainCol);
 
@@ -219,11 +219,11 @@ public class SimplexMethod {
                     + "    новые данные. Остальные элементы таблицы пересчитываем по правилу прямоугольника."
                     + System.lineSeparator();
             
-            setResultCurrentIter(namesRowsAndCols.clone(), description);
+            setResultCurrentIter(namesRowsAndCols, description);
             
             doubleValuesToString();
             
-            setResultCurrentIter(namesRowsAndCols.clone(), description);
+            setResultCurrentIter(namesRowsAndCols, description);
         }
 
         description = "Итерация "
@@ -308,8 +308,14 @@ public class SimplexMethod {
         namesRowsAndCols[mainRow + 1][0] = namesRowsAndCols[0][mainCol + 1];
     }
 
-    private void setResultCurrentIter(String[][] namesRowsAndCols, String description) {
-        resultList.add(new ResultBean(namesRowsAndCols, description));
+    private void setResultCurrentIter(String[][] arr, String description) {
+        String[][] clone = new String[arr.length][arr[0].length];
+        
+        for (int i = 0; i < arr.length; i++) {
+            System.arraycopy(arr[i], 0, clone[i], 0, arr[0].length);
+        }
+        
+        resultList.add(new ResultBean(clone, description));
     }
 
     private void setArgsFunc(double[][] source) {
