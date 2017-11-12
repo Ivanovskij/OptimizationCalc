@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author IOAdmin
  */
-public class SimplexMethod {
+public class SimplexMethodForWeb {
 
     private final List<ResultBean> resultList;    // result on each iteration
     private double[] argsFunc;
@@ -36,7 +36,7 @@ public class SimplexMethod {
      * or min) and condition (>=, <=)
      * @param freeMemberC - free constant in the goal function
      */
-    public SimplexMethod(double[][] source, double freeMemberC) {
+    public SimplexMethodForWeb(double[][] source, double freeMemberC) {
         this.freeMemberC = freeMemberC;
         
         resultList = new ArrayList<>();
@@ -56,7 +56,7 @@ public class SimplexMethod {
         selectionSupportingPlan();
     }
 
-    public List<ResultBean> calculate(double[] result) {
+    public List<ResultBean> calculate() {
         iterations();
         getResultsX();
 

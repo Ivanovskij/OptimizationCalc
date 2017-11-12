@@ -1,7 +1,7 @@
 package com.ivo;
 
 import com.ivo.beans.ResultBean;
-import com.ivo.module.SimplexMethod;
+import com.ivo.module.SimplexMethodForWeb;
 import com.ivo.utils.ExportToWord;
 import java.util.List;
 
@@ -31,8 +31,8 @@ public class MainSimplex {
         double[] result = new double[5];
         List<ResultBean> results;
 
-        SimplexMethod S = new SimplexMethod(table, freeMemberC);
-        results = S.calculate(result);
+        SimplexMethodForWeb S = new SimplexMethodForWeb(table, freeMemberC);
+        results = S.calculate();
         
         String[][] matrix;
         for (ResultBean res: results) {
