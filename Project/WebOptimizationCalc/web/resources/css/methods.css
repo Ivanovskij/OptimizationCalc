@@ -137,3 +137,27 @@ td {
 .table-resulttd:first-child {
     text-align: left;
 }
+
+/* results */
+.results-method {
+    border-bottom: 2px solid #1a5f8c;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+}
+
+
+/* save word button */
+.save-to-word input {
+    background: rgba(3, 77, 151, 1);
+    border: none;
+    box-shadow: 0 1px 1px rgba(0,0,0,.3);
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+    padding: 15px;
+}
+
+.save-to-word input:hover {
+    background: rgba(3, 77, 151, 0.8);
+}

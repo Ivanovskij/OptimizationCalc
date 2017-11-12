@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -34,6 +35,7 @@ public class ConstraintsController implements Serializable {
     private int countConstraints;
     
     // results
+    @ManagedProperty("#{results}")
     private List<ResultBean> results;
     private double resultGoalFunc;
     private double[] resultsX;
