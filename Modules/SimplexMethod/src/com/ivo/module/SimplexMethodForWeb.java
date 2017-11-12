@@ -19,7 +19,6 @@ public class SimplexMethodForWeb {
     private final List<ResultBean> resultList;    // result on each iteration
     private double[] argsFunc;
     private String[][] namesRowsAndCols;
-    private double[] resultX;   // result values x
 
     // table without basis vars
     private double[][] table;
@@ -33,6 +32,10 @@ public class SimplexMethodForWeb {
     private List<Integer> basis;
     
     private boolean isItEnd;
+    
+    // results
+    private double resultGoalFunc;
+    private double[] resultsX;  // result values x
 
     /**
      *
@@ -62,7 +65,8 @@ public class SimplexMethodForWeb {
 
     public List<ResultBean> calculate() throws Exception {
         iterations();
-        getResultsX();
+        setResultsX();
+        setResultGoalFunc();
 
         return resultList;
     }
@@ -87,7 +91,7 @@ public class SimplexMethodForWeb {
 
         table = new double[colCount][rowCount + colCount - 1];
         basis = new ArrayList<>();
-        resultX = new double[rowCount - 1];
+        resultsX = new double[rowCount - 1];
 
         // create basis
         for (int i = 0; i < colCount; i++) {
@@ -109,17 +113,17 @@ public class SimplexMethodForWeb {
 
         // create the table of description for zerow iteration
         namesRowsAndCols = new String[table.length + 1][table[0].length + 1];
-        namesRowsAndCols[0][0] = BOLD + "Базис" + BOLD_END;
-        namesRowsAndCols[0][1] = BOLD + "B" + BOLD_END;
-        namesRowsAndCols[namesRowsAndCols.length - 1][0] = BOLD + "F(X)" + BOLD_END;
+        namesRowsAndCols[0][0] = "Базис";
+        namesRowsAndCols[0][1] = "B";
+        namesRowsAndCols[namesRowsAndCols.length - 1][0] = "F(X)";
 
         int countArgs = source[0].length;
         for (int i = 1; i < namesRowsAndCols.length - 1; i++) {
-            namesRowsAndCols[i][0] = BOLD + "x" + (countArgs++) + BOLD_END;
+            namesRowsAndCols[i][0] = "x" + (countArgs++);
         }
 
         for (int i = 2; i < namesRowsAndCols[0].length; i++) {
-            namesRowsAndCols[0][i] = BOLD + "x" + (i - 1) + BOLD_END;
+            namesRowsAndCols[0][i] = "x" + (i - 1);
         }
 
         for (int i = 1; i < namesRowsAndCols.length; i++) {
@@ -363,27 +367,25 @@ public class SimplexMethodForWeb {
         }
     }
     
-    public double[] getResultsX() {
-        for (int i = 0; i < resultX.length; i++) {
+    public void setResultsX() {
+        for (int i = 0; i < resultsX.length; i++) {
             for (int j = 1; j < namesRowsAndCols.length; j++) {
                 String x = "x" + (i + 1);
                 if (namesRowsAndCols[j][0].equals(x)) {
-                    resultX[i] = Double.parseDouble(namesRowsAndCols[j][1]);
+                    resultsX[i] = Double.parseDouble(namesRowsAndCols[j][1]);
                 }
             }
         }
-
-        return resultX;
     }
 
-    public double getResultGoalFunc() {
-        double value = 0;
+    public void setResultGoalFunc() {
+        resultGoalFunc = 0;
         for (int i = 0; i < argsFunc.length; i++) {
-            value += argsFunc[i] * resultX[i];
+            resultGoalFunc += argsFunc[i] * resultsX[i];
         }
 
-        value += freeMemberC;
-        return value;
+        resultGoalFunc += freeMemberC;
+        resultGoalFunc = RoundUtil.round(resultGoalFunc, 3);
     }
     
     private String getMathModel(double[][] source) {
@@ -434,4 +436,13 @@ public class SimplexMethodForWeb {
             }
         }
     }
+
+    public double getResultGoalFunc() {
+        return resultGoalFunc;
+    }
+
+    public double[] getResultsX() {
+        return resultsX;
+    }
+
 }

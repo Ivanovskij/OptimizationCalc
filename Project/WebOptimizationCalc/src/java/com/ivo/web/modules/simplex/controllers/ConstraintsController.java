@@ -35,6 +35,8 @@ public class ConstraintsController implements Serializable {
     
     // results
     private List<ResultBean> results;
+    private double resultGoalFunc;
+    private double[] resultsX;
     
     /**
      * Creates a new instance of ConstraintsBean
@@ -56,6 +58,8 @@ public class ConstraintsController implements Serializable {
             
             try {
                 results = sc.calculate();
+                this.resultGoalFunc = sc.getResultGoalFunc();
+                this.resultsX = sc.getResultsX();
             } catch (Exception ex) {
                 throw new Exception(ex.getMessage());
             }
@@ -153,5 +157,25 @@ public class ConstraintsController implements Serializable {
 
     public void setResults(List<ResultBean> results) {
         this.results = results;
+    }
+
+    public double getResultGoalFunc() {
+        return resultGoalFunc;
+    }
+
+    public void setResultGoalFunc(double resultGoalFunc) {
+        this.resultGoalFunc = resultGoalFunc;
+    }
+
+    public Double[] getResultsX() {
+        Double[] result = new Double[resultsX.length];
+        for (int i = 0; i < resultsX.length; i++) {
+            result[i] = new Double(resultsX[i]);
+        }
+        return result;
+    }
+
+    public void setResultsX(double[] resultsX) {
+        this.resultsX = resultsX;
     }
 }

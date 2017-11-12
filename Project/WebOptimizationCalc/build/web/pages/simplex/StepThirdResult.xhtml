@@ -28,7 +28,9 @@
             <ui:define name="content-calc">
                 <div class="simplex-container">
                     <p class="manual">
-                        <span style="color: #007299; text-transform: uppercase; font-weight: bold;">Подробный алгоритм решения задачи:</span>
+                        <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                            Подробный алгоритм решения задачи:
+                        </span>
                     </p>
                     <div class="result-simplex-container">
                         <ui:repeat value="#{constraintsController.results}" var="r">
@@ -65,6 +67,27 @@
                                 </h:panelGroup>
                             </div>
                         </ui:repeat>
+                        <!-- out results -->
+                        <div class="results-method">
+                            <p class="manual">
+                                <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                    Оптимальный план:
+                                </span>
+                             </p>
+                            <p style="color: #ff1e00">
+                                Целевая функция = #{constraintsController.resultGoalFunc}
+                            </p>
+                            <div class="x-values" style="width: 130px; margin: 0 auto;">
+                                <c:forEach var="j" 
+                                   begin="0" 
+                                   end="#{constraintsController.countArgs - 1}">
+                                    <p style="color: #ff9500;">
+                                        <span style="float: left;">x[#{j + 1}] = </span>
+                                        <h:outputText value="#{constraintsController.getResultsX()[j]}" escape="false"/> 
+                                    </p>
+                                </c:forEach>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ui:define>
