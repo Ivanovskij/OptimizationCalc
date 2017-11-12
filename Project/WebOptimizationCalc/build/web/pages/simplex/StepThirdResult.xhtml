@@ -32,19 +32,19 @@
                             <div class="description">
                                 <h:outputText value="#{r.description}" escape="false"/>
                             </div>
-                            <div class="table-result">
-                                <table>
+                            <div class="table-result-container">
+                                <table class="table-result">
                                     <tr> 
                                         <c:forEach var="i" begin="0" end="#{constraintsController.countArgs + 1}"> 
-                                            <td>
+                                            <th>
                                                 <h:outputText value="#{r.iterResults[0][i]}" escape="false"/> 
-                                            </td>
+                                            </th>
                                         </c:forEach> 
                                     </tr> 
                                     <c:forEach var="i" begin="1" end="#{constraintsController.countConstraints + 1}"> 
                                         <tr> 
                                             <td> 
-                                                <h:outputText value="#{r.iterResults[0][i + 1]}" escape="false"/> 
+                                                <h:outputText value="#{r.iterResults[i][0]}" escape="false"/> 
                                             </td>
                                             <c:forEach var="j" begin="1" end="#{constraintsController.countArgs + 1}"> 
                                                 <td> 

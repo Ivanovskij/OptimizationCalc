@@ -92,8 +92,45 @@
     width: 50px;
 }
 
-.preformatted {
-    white-space: pre;
+/** stepThirdResult.xhtml  */
+.description {
+    border-bottom: 2px solid #1a5f8c;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    line-height: 35px; 
 }
 
+.table-result-container {
+    border-bottom: 2px solid #1a5f8c;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    width: 100%;
+}
 
+.table-result {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+}
+.table-result th, 
+.table-result td:first-child {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+}
+.table-result th, .table-result 
+td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    padding: 10px;
+}
+.table-result td {
+    background: #D8E6F3;
+}
+.table-result th:first-child, 
+.table-resulttd:first-child {
+    text-align: left;
+}
