@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>IGNORED</title>
     </h:head>
@@ -11,7 +13,7 @@
             <ui:define name="titleHead">
                 #{msg.title_simplex}
             </ui:define>
-            
+
             <ui:define name="about-calc">
                 <div class="text__about_method">
                     <p>
@@ -22,10 +24,39 @@
                     </p>
                 </div>
             </ui:define>
-            
+
             <ui:define name="content-calc">
                 <div class="simplex-container">
-                    <p></p>
+                    <div class="result-simplex-container">
+                        <ui:repeat value="#{constraintsController.results}" var="r">
+                            <div class="description">
+                                <h:outputText value="#{r.description}" escape="false"/>
+                            </div>
+                            <div class="table-result">
+                                <table>
+                                    <tr> 
+                                        <c:forEach var="i" begin="0" end="#{constraintsController.countArgs + 1}"> 
+                                            <td>
+                                                <h:outputText value="#{r.iterResults[0][i]}" escape="false"/> 
+                                            </td>
+                                        </c:forEach> 
+                                    </tr> 
+                                    <c:forEach var="i" begin="1" end="#{constraintsController.countConstraints + 1}"> 
+                                        <tr> 
+                                            <td> 
+                                                <h:outputText value="#{r.iterResults[0][i + 1]}" escape="false"/> 
+                                            </td>
+                                            <c:forEach var="j" begin="1" end="#{constraintsController.countArgs + 1}"> 
+                                                <td> 
+                                                    <h:outputText value="#{r.iterResults[i][j]}" escape="false"/> 
+                                                </td> 
+                                            </c:forEach> 
+                                        </tr> 
+                                    </c:forEach> 
+                                </table>
+                            </div>
+                        </ui:repeat>
+                    </div>
                 </div>
             </ui:define>
         </ui:composition>

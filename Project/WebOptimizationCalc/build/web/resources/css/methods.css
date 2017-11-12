@@ -92,4 +92,8 @@
     width: 50px;
 }
 
+.preformatted {
+    white-space: pre;
+}
+
 

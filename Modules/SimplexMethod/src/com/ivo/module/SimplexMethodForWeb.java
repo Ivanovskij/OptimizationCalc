@@ -12,6 +12,10 @@ import java.util.List;
  */
 public class SimplexMethodForWeb {
 
+    private static final String NEW_LINE = "<br>";
+    private static final String BOLD = "<b>";
+    private static final String BOLD_END = "</b>";
+    
     private final List<ResultBean> resultList;    // result on each iteration
     private double[] argsFunc;
     private String[][] namesRowsAndCols;
@@ -105,17 +109,17 @@ public class SimplexMethodForWeb {
 
         // create the table of description for zerow iteration
         namesRowsAndCols = new String[table.length + 1][table[0].length + 1];
-        namesRowsAndCols[0][0] = "Базис";
-        namesRowsAndCols[0][1] = "B";
-        namesRowsAndCols[namesRowsAndCols.length - 1][0] = "F(X)";
+        namesRowsAndCols[0][0] = BOLD + "Базис" + BOLD_END;
+        namesRowsAndCols[0][1] = BOLD + "B" + BOLD_END;
+        namesRowsAndCols[namesRowsAndCols.length - 1][0] = BOLD + "F(X)" + BOLD_END;
 
         int countArgs = source[0].length;
         for (int i = 1; i < namesRowsAndCols.length - 1; i++) {
-            namesRowsAndCols[i][0] = "x" + (countArgs++);
+            namesRowsAndCols[i][0] = BOLD + "x" + (countArgs++) + BOLD_END;
         }
 
         for (int i = 2; i < namesRowsAndCols[0].length; i++) {
-            namesRowsAndCols[0][i] = "x" + (i - 1);
+            namesRowsAndCols[0][i] = BOLD + "x" + (i - 1) + BOLD_END;
         }
 
         for (int i = 1; i < namesRowsAndCols.length; i++) {
@@ -156,16 +160,15 @@ public class SimplexMethodForWeb {
             }
 
             String description = "Среди свободных членов bi имеются отрицательные значения, "
-                    + "следовательно, полученный базисный"
-                    + System.lineSeparator()
-                    + "план не является опорным."
-                    + System.lineSeparator()
+                    + NEW_LINE
+                    + "следовательно, полученный базисный план не является опорным."
+                    + NEW_LINE
                     + "Выполняем преобразования симплексной таблицы:"
-                    + System.lineSeparator()
+                    + NEW_LINE
                     + "Пересчет симплекс-таблицы: вместо переменной "
-                    + namesRowsAndCols[mainRow + 1][0]
+                    + BOLD + namesRowsAndCols[mainRow + 1][0] + BOLD_END
                     + " в план войдет переменная "
-                    + namesRowsAndCols[0][mainCol + 1]
+                    + BOLD + namesRowsAndCols[0][mainCol + 1] + BOLD_END
                     + ".";
 
             updateTable(mainRow, mainCol);
@@ -198,29 +201,29 @@ public class SimplexMethodForWeb {
             double mainElement = table[mainRow][mainCol];
 
             description = (currentIter == 0) ? "Переходим к основному алгоритму симплекс-метода."
-                    + System.lineSeparator() : "";
+                    + NEW_LINE : "";
 
-            description += "Итерация " + (currentIter++) + "." + System.lineSeparator()
+            description += BOLD + "Итерация " + (currentIter++) + BOLD_END + "." + NEW_LINE
                     + " 1. Проверка критерия оптимальности: текущий опорный план не оптимален, так как в индексной строке"
-                    + System.lineSeparator()
-                    + "     находятся отрицательные коэффициенты."
-                    + System.lineSeparator()
+                    + NEW_LINE
+                    + " находятся отрицательные коэффициенты."
+                    + NEW_LINE
                     + " 2. Определение новой базисной переменной: в качестве ведущего берется столбец, соответствующий "
-                    + System.lineSeparator()
-                    + "     переменной x" + mainCol + ", так как это наибольший коэффициент по модулю("
+                    + NEW_LINE
+                    + " переменной x" + mainCol + ", так как это наибольший коэффициент по модулю("
                     + table[table.length - 1][mainCol] + ")."
-                    + System.lineSeparator()
+                    + NEW_LINE
                     + " 3. Определение новой свободной переменной: вычисляются значения Di по строкам как частное от "
-                    + System.lineSeparator()
-                    + "     деления: bi / ai" + mainCol + " и из них выбирается наименьшее("
+                    + NEW_LINE
+                    + " деления: bi / ai" + mainCol + " и из них выбирается наименьшее("
                     + (table[mainRow][0] / table[mainRow][mainCol]) + "). "
-                    + System.lineSeparator()
-                    + "     Следовательно, " + (mainRow + 1) + "-ая строка является ведущей."
-                    + System.lineSeparator()
-                    + "     Разрешающий элемент равен (" + mainElement + ")"
-                    + System.lineSeparator()
+                    + NEW_LINE
+                    + " Следовательно, " + (mainRow + 1) + "-ая строка является ведущей."
+                    + NEW_LINE
+                    + " Разрешающий элемент равен (" + mainElement + ")"
+                    + NEW_LINE
                     + " и находится на пересечении ведущего столбца и ведущей строки."
-                    + System.lineSeparator();
+                    + NEW_LINE;
 
             setResultCurrentIter(namesRowsAndCols, description);
 
@@ -233,11 +236,11 @@ public class SimplexMethodForWeb {
                     + " в план войдет переменная "
                     + namesRowsAndCols[0][mainCol + 1]
                     + "."
-                    + System.lineSeparator()
+                    + NEW_LINE
                     + "    Каждый элемент разрешающей строки делим на значение разрешающего элемента и получаем"
-                    + System.lineSeparator()
+                    + NEW_LINE
                     + "    новые данные. Остальные элементы таблицы пересчитываем по правилу прямоугольника."
-                    + System.lineSeparator();
+                    + NEW_LINE;
             
             setResultCurrentIter(namesRowsAndCols, description);
             
@@ -253,12 +256,12 @@ public class SimplexMethodForWeb {
         description = "Итерация "
                 + (currentIter)
                 + "."
-                + System.lineSeparator()
+                + NEW_LINE
                 + " 1. Проверка критерия оптимальности: текущий опорный план оптимален, так как в индексной строке"
-                + System.lineSeparator()
+                + NEW_LINE
                 + "     нет отрицательных значений."
-                + System.lineSeparator()
-                + System.lineSeparator()
+                + NEW_LINE
+                + NEW_LINE
                 + "Окончательный вариант симплекс-таблицы";
 
         setResultCurrentIter(namesRowsAndCols.clone(), description);
@@ -383,9 +386,9 @@ public class SimplexMethodForWeb {
         final int rowCount = source[0].length;
 
         String description = "Решение прямой задачи линейного программирования симплексным методом, с использованием"
-                + System.lineSeparator()
+                + NEW_LINE
                 + "симплексной таблицы."
-                + System.lineSeparator()
+                + NEW_LINE
                 + "Требуется определить значение целевой функции F(X) = "
                 + source[colCount - 1][1]
                 + "x" + 1;
@@ -400,9 +403,9 @@ public class SimplexMethodForWeb {
         }
 
         description += (source[colCount - 1][rowCount - 1] == -1 ? " => max" : " => min") + " при"
-                + System.lineSeparator()
+                + NEW_LINE
                 + " следующих условиях-ограничениях:"
-                + System.lineSeparator();
+                + NEW_LINE;
 
         // out constraints
         for (int i = 0; i < colCount - 1; i++) {
@@ -413,7 +416,7 @@ public class SimplexMethodForWeb {
                 }
             }
             description += " " + (source[i][rowCount - 1] == 1 ? " <= " : " >= ") + source[i][0]
-                    + System.lineSeparator();
+                    + NEW_LINE;
         }
 
         return description;

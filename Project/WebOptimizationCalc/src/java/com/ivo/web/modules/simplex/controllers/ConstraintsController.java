@@ -141,4 +141,12 @@ public class ConstraintsController implements Serializable {
     public void setMaxOrMin(String maxOrMin) {
         this.maxOrMin = maxOrMin;
     }
+
+    public List<ResultBean> getResults() {
+        return results;
+    }
+
+    public void setResults(List<ResultBean> results) {
+        this.results = results;
+    }
 }

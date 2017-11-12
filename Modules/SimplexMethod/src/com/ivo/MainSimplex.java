@@ -12,13 +12,18 @@ import java.util.List;
 public class MainSimplex {
 
     public static void main(String[] args) {
-        double[][] table = { {22, 8,  7, 5, 9, 1},
-                                {25, 8,  9, 7, 8, 1},
-                                {38,  10,  9, 9, 7, 1},
-                                { 30,  10, 11, 11, 6, 1},
-                                { 0, 21, 18, 16, 17.5, -1} 
+//        double[][] table = { {22, 8,  7, 5, 9, 1},
+//                                {25, 8,  9, 7, 8, 1},
+//                                {38,  10,  9, 9, 7, 1},
+//                                { 30,  10, 11, 11, 6, 1},
+//                                { 0, 21, 18, 16, 17.5, -1} 
+//        };
+//        
+
+        double[][] table = { {3, 1,  1},
+                                { 0, 0, 1} 
         };
-        
+
         double freeMemberC = 0;
         
 //        double[][] table = { {15, 3,  3, 1},
