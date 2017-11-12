@@ -50,16 +50,20 @@ public class SimplexController {
      * Calculate simplex method with description
      * @return results - all iterations results
      */
-    public List<ResultBean> calculate() {
+    public List<ResultBean> calculate() throws Exception {
         List<ResultBean> results;
 
         double[][] table = getTableValues();
         
         SimplexMethodForWeb s = new SimplexMethodForWeb(table, freeMemberC);
-        results = s.calculate();
-        setResultGoalFunc(s.getResultGoalFunc());
-        setResultsX(s.getResultsX());
-        
+        try {
+            results = s.calculate();
+            setResultGoalFunc(s.getResultGoalFunc());
+            setResultsX(s.getResultsX());
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+
         return results;
     }
 
@@ -110,7 +114,7 @@ public class SimplexController {
         }
         
         // read the goal func values
-        table[n][0] = 0;
+        table[n][0] = 0;        // last row zerow col - alsways equal 0
         for (int i = 0; i < funcValues.size(); i++) {
             table[n][i+1] = funcValues.get(i).getValue(); 
         }

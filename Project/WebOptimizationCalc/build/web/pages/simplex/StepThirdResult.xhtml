@@ -27,33 +27,45 @@
 
             <ui:define name="content-calc">
                 <div class="simplex-container">
+                    <p class="manual">
+                        <span style="color: #007299; text-transform: uppercase; font-weight: bold;">Подробный алгоритм решения задачи:</span>
+                    </p>
                     <div class="result-simplex-container">
                         <ui:repeat value="#{constraintsController.results}" var="r">
                             <div class="description">
                                 <h:outputText value="#{r.description}" escape="false"/>
                             </div>
                             <div class="table-result-container">
-                                <table class="table-result">
-                                    <tr> 
-                                        <c:forEach var="i" begin="0" end="#{constraintsController.countArgs + 1}"> 
-                                            <th>
-                                                <h:outputText value="#{r.iterResults[0][i]}" escape="false"/> 
-                                            </th>
-                                        </c:forEach> 
-                                    </tr> 
-                                    <c:forEach var="i" begin="1" end="#{constraintsController.countConstraints + 1}"> 
+                                <h:panelGroup rendered="#{constraintsController.results != null}">
+                                    <table class="table-result">
                                         <tr> 
-                                            <td> 
-                                                <h:outputText value="#{r.iterResults[i][0]}" escape="false"/> 
-                                            </td>
-                                            <c:forEach var="j" begin="1" end="#{constraintsController.countArgs + 1}"> 
-                                                <td> 
-                                                    <h:outputText value="#{r.iterResults[i][j]}" escape="false"/> 
-                                                </td> 
+                                            <c:forEach var="i" 
+                                                       begin="0" 
+                                                       end="#{constraintsController.countArgs + constraintsController.countConstraints + 1}"> 
+                                                <th>
+                                                    <h:outputText value="#{r.iterResults[0][i]}" escape="false"/> 
+                                                </th>
                                             </c:forEach> 
                                         </tr> 
-                                    </c:forEach> 
-                                </table>
+                                        <c:forEach var="i" begin="1" end="#{constraintsController.countConstraints + 1}"> 
+                                            <tr> 
+                                                <td> 
+                                                    <h:outputText value="#{r.iterResults[i][0]}" escape="false"/> 
+                                                </td>
+                                                <c:forEach var="j" 
+                                                           begin="1" 
+                                                           end="#{constraintsController.countArgs + constraintsController.countConstraints + 1}"> 
+                                                    <td> 
+                                                        <h:outputText value="#{r.iterResults[i][j]}" escape="false"/> 
+                                                    </td> 
+                                                </c:forEach> 
+                                            </tr> 
+                                        </c:forEach>
+                                    </table>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{constraintsController.results.get(0) == null}">
+                                    <h:outputText value="Не возможно выбрать начальный оптимальный план, нет решения!" escape="false"/> 
+                                </h:panelGroup>
                             </div>
                         </ui:repeat>
                     </div>

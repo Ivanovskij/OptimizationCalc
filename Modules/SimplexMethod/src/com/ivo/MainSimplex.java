@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class MainSimplex {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 //        double[][] table = { {22, 8,  7, 5, 9, 1},
 //                                {25, 8,  9, 7, 8, 1},
 //                                {38,  10,  9, 9, 7, 1},
@@ -20,8 +20,8 @@ public class MainSimplex {
 //        };
 //        
 
-        double[][] table = { {3, 1,  1},
-                                { 0, 0, 1} 
+        double[][] table = { {3, 1, 1,  -1},
+                                { 0, 2, 1, 1} 
         };
 
         double freeMemberC = 0;

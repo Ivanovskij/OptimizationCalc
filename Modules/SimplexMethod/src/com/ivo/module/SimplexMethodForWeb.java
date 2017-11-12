@@ -60,7 +60,7 @@ public class SimplexMethodForWeb {
         selectionSupportingPlan();
     }
 
-    public List<ResultBean> calculate() {
+    public List<ResultBean> calculate() throws Exception {
         iterations();
         getResultsX();
 
@@ -187,7 +187,7 @@ public class SimplexMethodForWeb {
         return true;
     }
 
-    private void iterations() {
+    private void iterations() throws Exception {
         int currentIter = 0;
         int mainCol, mainRow;
         String description;
@@ -250,7 +250,7 @@ public class SimplexMethodForWeb {
         }
 
         if (resultList.get(0).getIterResults() == null) {
-            throw new RuntimeException("Не возможно выбрать первый опорный план, так как он не является оптимальным");
+            throw new Exception("Не возможно выбрать начальный оптимальный план, нет решения!");
         }
         
         description = BOLD + "Итерация "+ (currentIter) + BOLD_END

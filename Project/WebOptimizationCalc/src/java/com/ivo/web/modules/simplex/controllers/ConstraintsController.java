@@ -49,12 +49,17 @@ public class ConstraintsController implements Serializable {
         return "error_page";
     }
     
-    public String handleSecondStep() {
+    public String handleSecondStep() throws Exception {
         if (!argValues.isEmpty()) {
             SimplexController sc = new SimplexController(argValues, funcValues, countConstraints, 
                     countArgs, maxOrMin, freeMemberC);
-            results = sc.calculate();
-
+            
+            try {
+                results = sc.calculate();
+            } catch (Exception ex) {
+                throw new Exception(ex.getMessage());
+            }
+            
             return "step3";
         }
         return "error";
