@@ -135,6 +135,7 @@ public class SimplexMethodForWeb {
         while (!isOptimal()) {
             notOptimal_counter++;
             
+            // if 30 chance not be optimal
             if (notOptimal_counter >= 30) {
                 isItEnd = true;
                 resultList.clear();
@@ -203,18 +204,23 @@ public class SimplexMethodForWeb {
             description = (currentIter == 0) ? "Переходим к основному алгоритму симплекс-метода."
                     + NEW_LINE : "";
 
-            description += BOLD + "Итерация " + (currentIter++) + BOLD_END + "." + NEW_LINE
-                    + BOLD + " 1. " + BOLD_END + "Проверка критерия оптимальности: текущий опорный план не оптимален, так как в индексной строке"
+            description += BOLD + "Итерация " + (currentIter++) + BOLD_END + "." 
                     + NEW_LINE
-                    + " находятся отрицательные коэффициенты."
+                    + BOLD + " 1. Проверка критерия оптимальности: " + BOLD_END 
                     + NEW_LINE
-                    + BOLD + " 2. " + BOLD_END + "Определение новой базисной переменной: в качестве ведущего берется столбец, соответствующий "
+                    + "Текущий опорный план не оптимален, так как в индексной строке находятся отрицательные коэффициенты."
                     + NEW_LINE
+                    + BOLD + " 2. " + BOLD_END 
+                    + BOLD + "Определение новой базисной переменной: " + BOLD_END 
+                    + NEW_LINE
+                    + "В качестве ведущего берется столбец, соответствующий "
                     + " переменной x" + mainCol + ", так как это наибольший коэффициент по модулю("
                     + table[table.length - 1][mainCol] + ")."
                     + NEW_LINE
-                    + BOLD + " 3. " + BOLD_END + "Определение новой свободной переменной: вычисляются значения Di по строкам как частное от "
+                    + BOLD + " 3. " + BOLD_END 
+                    + BOLD + "Определение новой свободной переменной: " + BOLD_END 
                     + NEW_LINE
+                    + "Вычисляются значения Di по строкам как частное от "
                     + " деления: bi / ai" + mainCol + " и из них выбирается наименьшее("
                     + (table[mainRow][0] / table[mainRow][mainCol]) + "). "
                     + NEW_LINE
@@ -231,8 +237,8 @@ public class SimplexMethodForWeb {
             
             updateTable(mainRow, mainCol);
 
-            description = BOLD + "4. " + BOLD_END + "Пересчет симплекс-таблицы: вместо переменной "
-                    + oldGorizontallyX
+            description = BOLD + "4. Пересчет симплекс-таблицы: " + BOLD_END 
+                    + "вместо переменной " + oldGorizontallyX
                     + " в план войдет переменная "
                     + namesRowsAndCols[0][mainCol + 1]
                     + "."
@@ -246,7 +252,7 @@ public class SimplexMethodForWeb {
             
             doubleValuesToString();
             
-            setResultCurrentIter(namesRowsAndCols, description);
+            setResultCurrentIter(namesRowsAndCols, "Получаем новую симлекс таблицу");
         }
 
         if (resultList.get(0).getIterResults() == null) {
@@ -256,9 +262,9 @@ public class SimplexMethodForWeb {
         description = BOLD + "Итерация "+ (currentIter) + BOLD_END
                 + "."
                 + NEW_LINE
-                + BOLD + " 1. " + BOLD_END + "Проверка критерия оптимальности: текущий опорный план оптимален, так как в индексной строке"
+                + BOLD + " 1. Проверка критерия оптимальности: " + BOLD_END 
                 + NEW_LINE
-                + "     нет отрицательных значений."
+                + "Текущий опорный план оптимален, так как в индексной строке нет отрицательных значений."
                 + NEW_LINE
                 + NEW_LINE
                 + BOLD + "Окончательный вариант симплекс-таблицы" + BOLD_END;
