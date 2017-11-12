@@ -4,6 +4,7 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import com.ivo.beans.ResultBean;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigInteger;
 import java.util.List;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
@@ -19,12 +20,17 @@ import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 public class ExportToWord {
 
     private List<ResultBean> results;
+    private OutputStream outputStream;
 
-    public ExportToWord(List<ResultBean> resultBean) {
+    public ExportToWord(List<ResultBean> resultBean, OutputStream outputStream) {
         if (resultBean == null) {
             throw new NullPointerException("resultBean not be null");
         }
+        if (outputStream == null) {
+            throw new NullPointerException("outputStream not be null");
+        }
         this.results = resultBean;
+        this.outputStream = outputStream;
     }
     
     
@@ -139,9 +145,7 @@ public class ExportToWord {
 
 
     private void saveFile(XWPFDocument docxModel) throws RuntimeException {
-        String getPath = "ПУТЬ ПЕРЕДАВАТЬ В ПАРАМЕТР В КОНСТРУКТОР"
-                + "ОН БУДЕТ БРАТЬСЯ ИЗ СЕРВЛЕТА CONTROLLERA";
-        try (FileOutputStream outputStream = new FileOutputStream("D:/Simplex.docx");) {
+        try {
             docxModel.write(outputStream);
         } catch (IOException ex) {
             throw new RuntimeException("Error save docx");

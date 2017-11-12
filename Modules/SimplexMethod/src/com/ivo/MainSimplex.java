@@ -3,6 +3,7 @@ package com.ivo;
 import com.ivo.beans.ResultBean;
 import com.ivo.module.SimplexMethodForWeb;
 import com.ivo.utils.ExportToWord;
+import java.io.FileOutputStream;
 import java.util.List;
 
 /**
@@ -53,7 +54,7 @@ public class MainSimplex {
         }
         
         try {
-            ExportToWord exportToWord = new ExportToWord(results);
+            ExportToWord exportToWord = new ExportToWord(results, new FileOutputStream("D:\\simplex.docx"));
             exportToWord.out();
         } catch (RuntimeException ex) {
             System.out.println(ex.getMessage());
