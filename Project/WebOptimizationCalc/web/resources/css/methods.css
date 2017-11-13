@@ -13,6 +13,13 @@
     text-align: center;
 }
 
+.simplex-container p {
+    color: #636363;
+    font-size: 15px;
+    font-weight: 500;
+    padding-bottom: 15px;
+}
+
 /* validator */
 .empty-fields {
     background: rgba(255,30,0,0.8);
@@ -26,13 +33,6 @@
 .manual {
     border-bottom: 2px solid #1a5f8c;
     margin-bottom: 10px;
-}
-
-.simplex-container p {
-    color: #636363;
-    font-size: 16px;
-    font-weight: 500;
-    padding-bottom: 15px;
 }
 
 .input-count {
@@ -61,7 +61,7 @@
 /* SIMPLEX SET VALUES CONSTRAINTS  */
 /* constraints */
 .input-value {
-    margin: 0 8px 8px 0;
+    margin: 0 2px 8px 0;
     width: 100%;
     max-width: 50px;
 }
@@ -85,7 +85,8 @@
 }
 
 .arg-name {
-    padding-right: 1px;
+    padding-right: 8px;
+    font-size: 15px;
 }
 
 .select-condition {
@@ -95,10 +96,10 @@
 /** stepThirdResult.xhtml  */
 .description {
     border-bottom: 2px solid #1a5f8c;
+    font-size: 15px;
     margin-bottom: 25px;
     padding-bottom: 25px;
     line-height: 35px; 
-
     text-align: justify;
 }
 
