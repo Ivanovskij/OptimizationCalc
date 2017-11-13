@@ -162,3 +162,21 @@ td {
 .save-to-word input:hover {
     background: rgba(3, 77, 151, 0.8);
 }
+
+
+/* ===================== GENETIC ======================== */
+.genetic-container {
+    background: #f2f9ff;
+    border: 3px solid #1a5f8c;
+    max-width: 1200px;
+    overflow: hidden;
+    padding: 15px;
+    text-align: center;
+}
+
+.genetic-container p {
+    color: #636363;
+    font-size: 15px;
+    font-weight: 500;
+    padding-bottom: 15px;
+}
