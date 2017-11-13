@@ -53,12 +53,12 @@ public class MainSimplex {
             }
         }
         
-        try {
-            ExportToWord exportToWord = new ExportToWord(results, new FileOutputStream("D:\\simplex.docx"));
-            exportToWord.out();
-        } catch (RuntimeException ex) {
-            System.out.println(ex.getMessage());
-        }
+//        try {
+//            ExportToWord exportToWord = new ExportToWord(results, new FileOutputStream("D:\\simplex.docx"));
+//            exportToWord.out();
+//        } catch (RuntimeException ex) {
+//            System.out.println(ex.getMessage());
+//        }
         
         
         System.out.println("=================");

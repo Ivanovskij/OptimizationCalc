@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -35,7 +34,9 @@ public class ConstraintsController implements Serializable {
     private int countConstraints;
     
     // results
-    @ManagedProperty("#{results}")
+    // first generate table for simplex
+    // need for simplex for word
+    private double[][] table;       
     private List<ResultBean> results;
     private double resultGoalFunc;
     private double[] resultsX;
@@ -62,6 +63,7 @@ public class ConstraintsController implements Serializable {
                 results = sc.calculate();
                 this.resultGoalFunc = sc.getResultGoalFunc();
                 this.resultsX = sc.getResultsX();
+                this.table = sc.getTableValues();
             } catch (Exception ex) {
                 throw new Exception(ex.getMessage());
             }
@@ -179,5 +181,9 @@ public class ConstraintsController implements Serializable {
 
     public void setResultsX(double[] resultsX) {
         this.resultsX = resultsX;
+    }
+
+    public double[][] getTable() {
+        return table;
     }
 }

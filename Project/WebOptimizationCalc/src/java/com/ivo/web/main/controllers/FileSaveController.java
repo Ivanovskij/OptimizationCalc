@@ -1,12 +1,12 @@
 package com.ivo.web.main.controllers;
 
 import com.ivo.beans.ResultBean;
+import com.ivo.module.SimplexMethodForWord;
 import com.ivo.utils.ExportToWord;
 import com.ivo.web.modules.simplex.controllers.ConstraintsController;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -42,14 +42,29 @@ public class FileSaveController implements Serializable {
         ConstraintsController bean = (ConstraintsController) facesContext.getApplication()
             .evaluateExpressionGet(context, "#{constraintsController}", ConstraintsController.class);
         
-        List<ResultBean> results = bean.getResults();
-        if (results == null) {
-            throw new Exception("Ошибка при взятии результатов решения"); 
+        double[][] table = bean.getTable();
+        if (table == null) {
+            throw new Exception("Ошибка при взятии результатов решения, параметр: table"); 
         }
+        double freeMemberC = bean.getFreeMemberC();
+        
+        SimplexMethodForWord sm = new SimplexMethodForWord(table, freeMemberC);
+        
+        List<ResultBean> results = sm.calculate();
+        if (results == null) {
+            throw new Exception("Ошибка при взятии результатов решения, параметр: results"); 
+        }
+        double[] resultsX = sm.getResultsX();
+        if (resultsX == null) {
+            throw new Exception("Ошибка при взятии результатов решения, параметр: resultsX"); 
+        }
+        double resultFunc = sm.getResultGoalFunc();
+        
         
         // export
         try {
-            ExportToWord export = new ExportToWord(results, externalContext.getResponseOutputStream());
+            ExportToWord export = new ExportToWord(results, resultFunc, resultsX,
+                    externalContext.getResponseOutputStream());
             export.out();
         } catch (IOException | RuntimeException ex) {
             throw new Exception("Ошибка при сохранении файла решения.");

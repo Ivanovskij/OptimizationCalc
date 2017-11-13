@@ -24,7 +24,7 @@ public class SimplexController {
     
     private double resultGoalFunc;
     private double[] resultsX;
-
+    
     
     public SimplexController(List<ArgsBean> constraintsValues, List<FunctionBean> funcValues,
             int countConstraints, int countArgs, String maxOrMin, double freeMemberC) 
@@ -72,7 +72,7 @@ public class SimplexController {
      * @return table - right table for simplex method
      *  last col containt: -1 or 1, dependens from conditions(max or min)
      */
-    private double[][] getTableValues() {
+    public double[][] getTableValues() {
         // read constraints value
         // + 1 goal function
         // + 1 valueCondition

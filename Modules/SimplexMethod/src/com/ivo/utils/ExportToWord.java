@@ -2,7 +2,6 @@ package com.ivo.utils;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import com.ivo.beans.ResultBean;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigInteger;
@@ -20,17 +19,27 @@ import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 public class ExportToWord {
 
     private List<ResultBean> results;
+    private double resultGoalFunc;
+    private double[] resultsX;
+    
     private OutputStream outputStream;
 
-    public ExportToWord(List<ResultBean> resultBean, OutputStream outputStream) {
+    public ExportToWord(List<ResultBean> resultBean, double resultGoalFunc,
+            double[] resultsX, OutputStream outputStream) 
+    {
         if (resultBean == null) {
             throw new NullPointerException("resultBean not be null");
         }
         if (outputStream == null) {
             throw new NullPointerException("outputStream not be null");
         }
+        if (resultsX == null) {
+            throw new NullPointerException("resultsX not be null");
+        }
         this.results = resultBean;
         this.outputStream = outputStream;
+        this.resultGoalFunc = resultGoalFunc;
+        this.resultsX = resultsX;
     }
     
     
@@ -42,6 +51,7 @@ public class ExportToWord {
             
             setHeaderAboutMethod(docxModel);
             setDataSimplex(docxModel);
+            setResults(docxModel);
             
             saveFile(docxModel); 
         } catch (RuntimeException e) {
@@ -128,12 +138,32 @@ public class ExportToWord {
         paragraph = docxModel.createParagraph();
         setRun(paragraph.createRun(), "111111", "=================", true, true);
     }
+    
+    private void setResults(XWPFDocument docxModel) {
+        XWPFParagraph paragraph = docxModel.createParagraph();
+        setRun(paragraph.createRun(), "111111", "=================", true, true);
+        paragraph = docxModel.createParagraph();
+        paragraph.setAlignment(ParagraphAlignment.CENTER);
+        setRun(paragraph.createRun(), "06357a", "Оптимальный план", false, true);
+        paragraph = docxModel.createParagraph();
+        setRun(paragraph.createRun(), "111111", "=================", true, true);
+        
+        /* optimal plan */
+        paragraph = docxModel.createParagraph();
+        paragraph.setAlignment(ParagraphAlignment.CENTER);
+        setRun(paragraph.createRun(), "06357a", "Целевая функция = " + resultGoalFunc, false, true);
+        /* results x */
+        for (int i = 0; i < resultsX.length; i++) {
+            paragraph = docxModel.createParagraph();
+            paragraph.setAlignment(ParagraphAlignment.CENTER);
+            setRun(paragraph.createRun(), "06357a", "x[" + i + "] = " + resultsX[i], false, true);
+        }
+    }
 
     private void addBreak(XWPFDocument docxModel) {
         // отступ
         XWPFParagraph paragraph = docxModel.createParagraph();
-        paragraph.setAlignment(ParagraphAlignment.CENTER);
-        setRun(paragraph.createRun(), "000000", "", false, false);
+        setRun(paragraph.createRun(), "000000", "", false, true);
     }
     
     private void setRun(XWPFRun run, String colorRGB, String text, boolean bold, boolean addBreak) {
