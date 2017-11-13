@@ -1,6 +1,5 @@
 package com.ivo;
 
-import com.ivo.parser.ast.Statement;
 
 /**
  *
@@ -34,13 +33,12 @@ public class MainLaunch {
         System.out.println("====================================");
         System.out.println();
         
-        String task1 = "b1 = 3 "
-                + "b2 = 6 "
-                + "eval(b1 * b1) + 3 * b2";
+        String task1 = "(b1 * b1) + 3 * b2";
+        double b1 = 2;
+        double b2 = 3;
 
-        Statement program = new ParserExecute(task1).execute();
-        System.out.println(program.toString());
-        program.execute();
+        double result = new ParserExecute(task1, b1, b2).execute();
+        System.out.println(result);
     }
     
     
