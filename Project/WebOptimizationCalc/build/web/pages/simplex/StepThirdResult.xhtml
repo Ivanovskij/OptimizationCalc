@@ -33,30 +33,30 @@
                         </span>
                     </p>
                     <div class="result-simplex-container">
-                        <ui:repeat value="#{constraintsController.results}" var="r">
+                        <ui:repeat value="#{sConstraintsController.results}" var="r">
                             <div class="description">
                                 <h:outputText value="#{r.description}" escape="false"/>
                             </div>
                             <div class="table-result-container">
-                                <h:panelGroup rendered="#{constraintsController.results != null}">
+                                <h:panelGroup rendered="#{sConstraintsController.results != null}">
                                     <table class="table-result">
                                         <tr> 
                                             <c:forEach var="i" 
                                                        begin="0" 
-                                                       end="#{constraintsController.countArgs + constraintsController.countConstraints + 1}"> 
+                                                       end="#{sConstraintsController.countArgs + sConstraintsController.countConstraints + 1}"> 
                                                 <th>
                                                     <h:outputText value="#{r.iterResults[0][i]}" escape="false"/> 
                                                 </th>
                                             </c:forEach> 
                                         </tr> 
-                                        <c:forEach var="i" begin="1" end="#{constraintsController.countConstraints + 1}"> 
+                                        <c:forEach var="i" begin="1" end="#{sConstraintsController.countConstraints + 1}"> 
                                             <tr> 
                                                 <td> 
                                                     <h:outputText value="#{r.iterResults[i][0]}" escape="false"/> 
                                                 </td>
                                                 <c:forEach var="j" 
                                                            begin="1" 
-                                                           end="#{constraintsController.countArgs + constraintsController.countConstraints + 1}"> 
+                                                           end="#{sConstraintsController.countArgs + sConstraintsController.countConstraints + 1}"> 
                                                     <td> 
                                                         <h:outputText value="#{r.iterResults[i][j]}" escape="false"/> 
                                                     </td> 
@@ -75,15 +75,15 @@
                                 </span>
                              </p>
                             <p style="color: #ff1e00">
-                                Целевая функция = #{constraintsController.resultGoalFunc}
+                                Целевая функция = #{sConstraintsController.resultGoalFunc}
                             </p>
                             <div class="x-values" style="width: 130px; margin: 0 auto;">
                                 <c:forEach var="j" 
                                    begin="0" 
-                                   end="#{constraintsController.countArgs - 1}">
+                                   end="#{sConstraintsController.countArgs - 1}">
                                     <p style="color: #ff9500;">
                                         <span style="float: left;">x[#{j + 1}] = </span>
-                                        <h:outputText value="#{constraintsController.getResultsX()[j]}" escape="false"/> 
+                                        <h:outputText value="#{sConstraintsController.getResultsX()[j]}" escape="false"/> 
                                     </p>
                                 </c:forEach>
                             </div>

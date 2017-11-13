@@ -32,9 +32,9 @@
                             <span>Ограничения:</span>
                         </p>
                         <!-- === constraints values === -->
-                        <h:dataTable value="#{constraintsController.setValuesArgs()}" var="row">
+                        <h:dataTable value="#{sConstraintsController.setValuesArgs()}" var="row">
                             <h:column> 
-                                <ui:repeat value="#{constraintsController.argsList}" var="arg">
+                                <ui:repeat value="#{sConstraintsController.argsList}" var="arg">
                                     <h:inputText id="args"
                                                  class="input-value" 
                                                  value="#{row.x}"
@@ -74,7 +74,7 @@
                             <span>F(x), целевая функция:</span>
                         </p>
                         <h:panelGroup class="panel-goal-func">
-                            <ui:repeat value="#{constraintsController.setValuesFunc()}" var="row">
+                            <ui:repeat value="#{sConstraintsController.setValuesFunc()}" var="row">
                                 <h:inputText id="funcVal"
                                              class="input-value" 
                                              value="#{row.value}"
@@ -90,7 +90,7 @@
                             <h:outputText class="arg-name" value="C"/>
                             <h:inputText id="funcValC" 
                                          class="input-value" 
-                                         value="#{constraintsController.freeMemberC}"
+                                         value="#{sConstraintsController.freeMemberC}"
                                          required="true"
                                          requiredMessage="#{msg.enter_fields}"
                                          converterMessage="#{msg.input_number}">
@@ -98,14 +98,14 @@
                                     <f:ajax event="keyup" render="funcValCError"/>
                             </h:inputText>
                             <h:message id="funcValCError" for="funcValC" styleClass="empty-fields"/>
-                            <h:selectOneMenu value="#{constraintsController.maxOrMin}" class="select-condition">
+                            <h:selectOneMenu value="#{sConstraintsController.maxOrMin}" class="select-condition">
                                 <f:selectItem itemValue="max"/>
                                 <f:selectItem itemValue="min"/>
                             </h:selectOneMenu>
                         </h:panelGroup>
                         
                          <h:commandButton class="button"
-                                         action="#{constraintsController.handleSecondStep()}" 
+                                         action="#{sConstraintsController.handleSecondStep()}" 
                                          value="Далее"/>
                     </h:form>
                 </div>

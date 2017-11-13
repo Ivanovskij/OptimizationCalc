@@ -16,7 +16,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ConstraintsController implements Serializable {
+public class SConstraintsController implements Serializable {
 
     private List<Integer> argsList;
     private List<Integer> constraintsList;
@@ -44,7 +44,7 @@ public class ConstraintsController implements Serializable {
     /**
      * Creates a new instance of ConstraintsBean
      */
-    public ConstraintsController() {
+    public SConstraintsController() {
     }
     
     public String handleFirstStep() {

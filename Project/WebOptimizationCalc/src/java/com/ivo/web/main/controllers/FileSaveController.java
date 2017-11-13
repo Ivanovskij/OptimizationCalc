@@ -3,7 +3,7 @@ package com.ivo.web.main.controllers;
 import com.ivo.beans.ResultBean;
 import com.ivo.module.SimplexMethodForWord;
 import com.ivo.utils.ExportToWord;
-import com.ivo.web.modules.simplex.controllers.ConstraintsController;
+import com.ivo.web.modules.simplex.controllers.SConstraintsController;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -39,8 +39,8 @@ public class FileSaveController implements Serializable {
         externalContext.setResponseHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
         
         FacesContext context = FacesContext.getCurrentInstance();
-        ConstraintsController bean = (ConstraintsController) facesContext.getApplication()
-            .evaluateExpressionGet(context, "#{constraintsController}", ConstraintsController.class);
+        SConstraintsController bean = (SConstraintsController) facesContext.getApplication()
+            .evaluateExpressionGet(context, "#{sConstraintsController}", SConstraintsController.class);
         
         double[][] table = bean.getTable();
         if (table == null) {

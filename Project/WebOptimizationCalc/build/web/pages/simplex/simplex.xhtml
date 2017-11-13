@@ -34,7 +34,7 @@
                         <p>Количество переменных:</p>
                         <h:inputText id="countArgs" 
                                      class="input-count" 
-                                     value="#{constraintsController.countArgs}" 
+                                     value="#{sConstraintsController.countArgs}" 
                                      required="true"
                                      requiredMessage="#{msg.enter_fields}"
                                      converterMessage="#{msg.input_number}">
@@ -46,7 +46,7 @@
                         <p>Количество строк (количество ограничений):</p>
                         <h:inputText id="constraintsCount" 
                                      class="input-count" 
-                                     value="#{constraintsController.countConstraints}"
+                                     value="#{sConstraintsController.countConstraints}"
                                      required="true"
                                      requiredMessage="#{msg.enter_fields}"
                                      converterMessage="#{msg.input_number}">
@@ -56,7 +56,7 @@
                         <h:message id="constraintsError" for="constraintsCount" styleClass="empty-fields"/>
                         
                         <h:commandButton class="button"
-                                        action="#{constraintsController.handleFirstStep()}" 
+                                        action="#{sConstraintsController.handleFirstStep()}" 
                                         value="Далее"/>
                     </h:form>
                 </div>
