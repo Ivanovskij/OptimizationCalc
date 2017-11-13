@@ -1,4 +1,4 @@
-package com.ivo.web.modules.simplex.validators;
+package com.ivo.web.main.validators;
 
 import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
@@ -12,7 +12,7 @@ import javax.faces.validator.ValidatorException;
  *
  * @author IOAdmin
  */
-@FacesValidator("com.ivo.web.modules.simplex.validators.SetDataValidator")
+@FacesValidator("com.ivo.web.main.validators.SetDataValidator")
 public class SetDataValidator implements Validator {
 
     private static final int MIN_COUNT_ARGS = 2;

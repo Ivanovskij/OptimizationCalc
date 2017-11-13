@@ -48,10 +48,7 @@ public class SConstraintsController implements Serializable {
     }
     
     public String handleFirstStep() {
-        if (countArgs != 0 && countConstraints != 0) {
-            return "step2";
-        }
-        return "error_page";
+        return "step2";
     }
     
     public String handleSecondStep() throws Exception {

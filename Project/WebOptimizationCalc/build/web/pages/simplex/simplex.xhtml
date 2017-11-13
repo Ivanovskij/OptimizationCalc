@@ -38,7 +38,7 @@
                                      required="true"
                                      requiredMessage="#{msg.enter_fields}"
                                      converterMessage="#{msg.input_number}">
-                            <f:validator validatorId="com.ivo.web.modules.simplex.validators.SetDataValidator"/>
+                            <f:validator validatorId="com.ivo.web.main.validators.SetDataValidator"/>
                             <f:ajax event="keyup" render="countArgsError"/>
                         </h:inputText>
                         <h:message id="countArgsError" for="countArgs" styleClass="empty-fields"/>
@@ -50,7 +50,7 @@
                                      required="true"
                                      requiredMessage="#{msg.enter_fields}"
                                      converterMessage="#{msg.input_number}">
-                            <f:validator validatorId="com.ivo.web.modules.simplex.validators.SetDataValidator"/>
+                            <f:validator validatorId="com.ivo.web.main.validators.SetDataValidator"/>
                             <f:ajax event="keyup" render="constraintsError"/>
                         </h:inputText>
                         <h:message id="constraintsError" for="constraintsCount" styleClass="empty-fields"/>

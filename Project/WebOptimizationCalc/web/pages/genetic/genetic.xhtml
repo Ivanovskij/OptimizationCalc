@@ -51,6 +51,33 @@
                             </span>
                             Выберите количество переменных и количество строк (количество ограничений)
                         </p>
+                        <p>Количество переменных:</p>
+                        <h:inputText id="countArgs" 
+                                     class="input-count" 
+                                     value="#{gConstraintsController.countArgs}" 
+                                     required="true"
+                                     requiredMessage="#{msg.enter_fields}"
+                                     converterMessage="#{msg.input_number}">
+                            <f:validator validatorId="com.ivo.web.main.validators.SetDataValidator"/>
+                            <f:ajax event="keyup" render="countArgsError"/>
+                        </h:inputText>
+                        <h:message id="countArgsError" for="countArgs" styleClass="empty-fields"/>
+                        
+                        <p>Количество строк (количество ограничений):</p>
+                        <h:inputText id="constraintsCount" 
+                                     class="input-count" 
+                                     value="#{gConstraintsController.countConstraints}"
+                                     required="true"
+                                     requiredMessage="#{msg.enter_fields}"
+                                     converterMessage="#{msg.input_number}">
+                            <f:validator validatorId="com.ivo.web.main.validators.SetDataValidator"/>
+                            <f:ajax event="keyup" render="constraintsError"/>
+                        </h:inputText>
+                        <h:message id="constraintsError" for="constraintsCount" styleClass="empty-fields"/>
+                        
+                        <h:commandButton class="button"
+                                        action="#{gConstraintsController.handleFirstStep()}" 
+                                        value="Далее"/>
                     </h:form>
                 </div>
             </ui:define>

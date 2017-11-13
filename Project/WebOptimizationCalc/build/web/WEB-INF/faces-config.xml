@@ -20,6 +20,13 @@
             <redirect>true</redirect>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>error_page</from-outcome>
+            <to-view-id>/faces/errors/error.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+    </navigation-rule>
     
     
     <!-- ============ SIMPLEX =================== -->
@@ -50,6 +57,13 @@
         <navigation-case>
             <from-outcome>genetic</from-outcome>
             <to-view-id>pages/genetic/genetic.xhtml</to-view-id>
+            <redirect>true</redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>step2_genetic</from-outcome>
+            <to-view-id>pages/genetic/StepTwoSetData.xhtml</to-view-id>
             <redirect>true</redirect>
         </navigation-case>
     </navigation-rule>
