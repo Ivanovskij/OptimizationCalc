@@ -39,6 +39,17 @@ public class GConstraintsController implements Serializable {
     }
     
     public String handleSecondStep() {
+        for (int i = 0; i < argValues.size(); i++) {
+            System.out.println(argValues.get(i).getValues());
+        }
+        String function = "";
+        for (int i = 0; i < funcValues.size(); i++) {
+            function += funcValues.get(i).getValue() + "*" + "x" + (i + 1) + "+";
+        }
+        // last pos is +
+        // delete plus
+        function = function.substring(0, function.length() - 1);
+        System.out.println(function);
         return "step3_genetic";
     }
     

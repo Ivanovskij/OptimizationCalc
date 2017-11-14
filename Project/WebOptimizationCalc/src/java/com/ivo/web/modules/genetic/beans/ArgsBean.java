@@ -12,13 +12,28 @@ public class ArgsBean implements Serializable {
     private String condition;
     private Double valueCondition;
     
+    private int counterArg = 1;
+    
     public ArgsBean() {
     }
     
+    /**
+     *
+     * @return rightArgs String - right args for parser
+     */
     public String getValues() {
         // int last position
         // the result is plus
         String rightArgs = args.substring(0, args.length() - 1);
+        
+        if (condition.equals("≤")) {
+            condition = "<=";
+        } else if (condition.equals("≥")){
+            condition = ">=";
+        } else {
+            condition = "=";
+        }
+        rightArgs += " " + condition + " " + String.valueOf(valueCondition);
         return rightArgs;
     }
     
@@ -27,7 +42,7 @@ public class ArgsBean implements Serializable {
     }
 
     public void setX(String x) {
-        this.args.append(x).append("*").append(args.length()).append("+");
+        this.args.append(x).append("*").append("x").append(counterArg++).append("+");
     }
 
     public String getCondition() {
@@ -45,5 +60,4 @@ public class ArgsBean implements Serializable {
     public void setValueCondition(Double valueCondition) {
         this.valueCondition = valueCondition;
     }
-    
 }
