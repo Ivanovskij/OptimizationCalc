@@ -2,6 +2,7 @@ package com.ivo.web.modules.genetic.controllers;
 
 import com.ivo.web.modules.genetic.beans.ArgsBean;
 import com.ivo.web.modules.genetic.beans.FunctionBean;
+import com.ivo.web.modules.genetic.beans.GeneticParamsBean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,9 @@ public class GConstraintsController implements Serializable {
     
     // condition
     private String maxOrMin = "min";
+    
+    // input params for genetic algorithm
+    private GeneticParamsBean params = new GeneticParamsBean();
 
     public GConstraintsController() {
     }
@@ -51,6 +55,11 @@ public class GConstraintsController implements Serializable {
         function = function.substring(0, function.length() - 1);
         System.out.println(function);
         return "step3_genetic";
+    }
+    
+    public String handleThirdStep() {
+        
+        return "step4_genetic";
     }
     
     /*=====================================================*/
@@ -118,5 +127,13 @@ public class GConstraintsController implements Serializable {
 
     public void setMaxOrMin(String maxOrMin) {
         this.maxOrMin = maxOrMin;
+    }
+
+    public GeneticParamsBean getParams() {
+        return params;
+    }
+
+    public void setParams(GeneticParamsBean params) {
+        this.params = params;
     }
 }

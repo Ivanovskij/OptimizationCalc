@@ -1,12 +1,119 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>IGNORED</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="titleHead">
+                #{msg.title_genetic}
+            </ui:define>
+            
+            <ui:define name="about-calc">
+                <div class="text__about_method">
+                    <p>
+                        #{msg.main_text_about_genetic_method1}
+                    </p>
+                    <p>
+                        #{msg.main_text_about_genetic_method2}
+                    </p>
+                    <p>
+                        #{msg.main_text_about_genetic_method3}
+                    </p>
+                    <p>
+                        #{msg.main_text_about_genetic_method4}
+                    </p>
+                    <p>
+                        #{msg.main_text_about_genetic_method5}
+                    </p>
+                    <p>
+                        #{msg.main_text_about_genetic_method6}
+                    </p>
+                    <p>
+                        #{msg.main_text_about_genetic_method7}
+                    </p>
+                    <p>
+                        #{msg.main_text_about_genetic_method8}
+                    </p>
+                </div>
+            </ui:define>
+            
+            <ui:define name="content-calc">
+                <div class="genetic-container">
+                    <h:form>
+                        <span class="step-name">
+                            Шаг 3
+                        </span>
+                        <p class="manual">
+                            <span>Входные параметры для генетического алгоритма:</span>
+                        </p>
+                        
+                        <div class="table-params-container">
+                            <h:panelGrid styleClass="table-params">
+                                <h:outputLabel>Нижняя граница (xMin):</h:outputLabel>
+                                <h:inputText id="xmin"
+                                             value="#{gConstraintsController.params.xmin}"
+                                             required="true"
+                                             requiredMessage="#{msg.enter_fields}">
+                                    <f:validator validatorId="com.ivo.web.main.validators.EmptyFieldsValidator"/>
+                                    <f:ajax event="keyup" render="xminError"/>
+                                </h:inputText>
+                                <h:message id="xminError" for="xmin" styleClass="empty-fields"/>
+
+                                <h:outputLabel>Верхняя граница (xMax):</h:outputLabel>
+                                <h:inputText id="xmax" 
+                                             value="#{gConstraintsController.params.xmax}"
+                                             required="true"
+                                             requiredMessage="#{msg.enter_fields}">
+                                    <f:validator validatorId="com.ivo.web.main.validators.EmptyFieldsValidator"/>
+                                    <f:ajax event="keyup" render="xmaxError"/>
+                                </h:inputText>
+                                <h:message id="xmaxError" for="xmax" styleClass="empty-fields"/>    
+
+                                <h:outputLabel>Кол-во поколений (max_generations):</h:outputLabel>
+                                <h:inputText id="max_generations" 
+                                             value="#{gConstraintsController.params.max_generations}"
+                                             required="true"
+                                             requiredMessage="#{msg.enter_fields}">
+                                    <f:validator validatorId="com.ivo.web.main.validators.EmptyFieldsValidator"/>
+                                    <f:ajax event="keyup" render="maxGenError"/>
+                                </h:inputText>
+                                <h:message id="maxGenError" for="max_generations" styleClass="empty-fields"/>
+
+                                <h:outputLabel>Кол-во популяций (population_count):</h:outputLabel>
+                                <h:inputText id="population_count" 
+                                             value="#{gConstraintsController.params.population_count}"
+                                             required="true"
+                                             requiredMessage="#{msg.enter_fields}">
+                                    <f:validator validatorId="com.ivo.web.main.validators.EmptyFieldsValidator"/>
+                                    <f:ajax event="keyup" render="popCountError"/>
+                                </h:inputText>
+                                <h:message id="popCountError" for="population_count" styleClass="empty-fields"/>
+
+                                <h:outputLabel>Кол-во переменных (arg_size):</h:outputLabel>
+                                <h:inputText id="arg_size" 
+                                             value="#{gConstraintsController.countArgs}"
+                                             readonly="true"
+                                             required="true"
+                                             requiredMessage="#{msg.enter_fields}">
+                                    <f:validator validatorId="com.ivo.web.main.validators.EmptyFieldsValidator"/>
+                                    <f:ajax event="keyup" render="argSizeError"/>
+                                </h:inputText>
+                                <h:message id="argSizeError" for="arg_size" styleClass="empty-fields"/>
+                            </h:panelGrid>
+                        </div>
+                        
+                        <h:commandButton class="button"
+                                         action="#{gConstraintsController.handleThirdStep()}" 
+                                         value="Далее"/>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

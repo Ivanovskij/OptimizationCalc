@@ -1,10 +1,12 @@
 package com.ivo.web.modules.genetic.beans;
 
+import java.io.Serializable;
+
 /**
  *
  * @author IOAdmin
  */
-public class FunctionBean {
+public class FunctionBean implements Serializable {
     
     private int nameArg;
     private double value;

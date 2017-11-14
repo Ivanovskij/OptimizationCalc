@@ -3,6 +3,10 @@
     Author     : IOAdmin
 */
 
+.content-container {
+    margin-bottom: 40px;
+}
+
 /* ===================== SIMPLEX ======================== */
 .simplex-container {
     background: #f2f9ff;
@@ -180,3 +184,34 @@ td {
     font-weight: 500;
     padding-bottom: 15px;
 }
+
+.step-name {
+    border-bottom: 2px solid #1a5f8c;
+    color: #007299; 
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase; 
+}
+
+.table-params-container {
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 98%;
+}
+
+.table-params {
+    font-size: 15px;
+    margin: 0 auto;
+}
+
+.table-params td {
+    padding-bottom: 5px;
+}
+
+.table-params input {
+    padding: 3px;
+    width: 200px;
+}
+
