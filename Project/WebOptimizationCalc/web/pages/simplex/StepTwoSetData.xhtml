@@ -40,7 +40,7 @@
                                                  value="#{row.x}"
                                                  required="true"
                                                  requiredMessage="#{msg.enter_fields}">
-                                        <f:validator validatorId="com.ivo.web.modules.simplex.validators.SimplexFieldsValidator"/>
+                                        <f:validator validatorId="com.ivo.web.main.validators.EmptyFieldsValidator"/>
                                         <f:ajax event="keyup" render="argsError"/>
                                     </h:inputText>
                                     <h:outputText class="arg-name" value="x#{arg+1}"/>
@@ -62,7 +62,7 @@
                                              required="true"
                                              requiredMessage="#{msg.enter_fields}"
                                              converterMessage="#{msg.input_number}">
-                                    <f:validator validatorId="com.ivo.web.modules.simplex.validators.SimplexFieldsValidator"/>
+                                    <f:validator validatorId="com.ivo.web.main.validators.EmptyFieldsValidator"/>
                                     <f:ajax event="keyup" render="valConditionError"/>
                                 </h:inputText>
                                 <h:message id="valConditionError" for="valCondition" styleClass="empty-fields"/>
@@ -81,7 +81,7 @@
                                              required="true"
                                              requiredMessage="#{msg.enter_fields}"
                                              converterMessage="#{msg.input_number}">
-                                    <f:validator validatorId="com.ivo.web.modules.simplex.validators.SimplexFieldsValidator"/>
+                                    <f:validator validatorId="com.ivo.web.main.validators.EmptyFieldsValidator"/>
                                     <f:ajax event="keyup" render="funcValError"/>
                                 </h:inputText>
                                 <h:outputText class="arg-name" value="x#{row.nameArg}"/>
@@ -94,7 +94,7 @@
                                          required="true"
                                          requiredMessage="#{msg.enter_fields}"
                                          converterMessage="#{msg.input_number}">
-                                    <f:validator validatorId="com.ivo.web.modules.simplex.validators.SimplexFieldsValidator"/>
+                                    <f:validator validatorId="com.ivo.web.main.validators.EmptyFieldsValidator"/>
                                     <f:ajax event="keyup" render="funcValCError"/>
                             </h:inputText>
                             <h:message id="funcValCError" for="funcValC" styleClass="empty-fields"/>

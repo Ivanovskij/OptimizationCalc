@@ -15,11 +15,15 @@ public class ArgsBean implements Serializable {
     public ArgsBean() {
     }
     
-    public String getX() {
+    public String getValues() {
         // int last position
         // the result is plus
         String rightArgs = args.substring(0, args.length() - 1);
         return rightArgs;
+    }
+    
+    public String getX() {
+        return args.toString();
     }
 
     public void setX(String x) {
