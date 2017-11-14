@@ -35,9 +35,14 @@ public class GeneticAlgorithm implements BaseGenetic {
     private int arg_size;
     private double mutation_percent;
     
+    // init function and constraints
+    private Function function;
     
-    public GeneticAlgorithm() {
+    
+    public GeneticAlgorithm(String goalFunction, String[] constraints, String[] constraintsWithOutCondition) {
         setParameters();
+        
+        function = new Function(goalFunction, constraints, constraintsWithOutCondition);
         
         this.bestIndividuals = new ArrayList<>();
         
@@ -118,8 +123,8 @@ public class GeneticAlgorithm implements BaseGenetic {
     private double fitness_function(Chromosome ch) {
         Double[] args = BinaryUtil.binaryArrToNumberArr(ch.getChromosomes());
         
-        double result = Function.f(args);
-        result += Function.insideBounds(args);
+        double result = function.getValueGoalFunction(args);
+        result += function.isInBoundsStaticPenalty(args);
         return result;
     }
 
@@ -223,7 +228,7 @@ public class GeneticAlgorithm implements BaseGenetic {
         
         
         // SELECTION Idndividuals who inside bounds
-        /*Chromosome ind;
+        Double[] args;
         
         int p_counter = 0,
                 c_counter = 0,
@@ -234,8 +239,8 @@ public class GeneticAlgorithm implements BaseGenetic {
         nextGenerationGenePool = new Chromosome[population_count];
         
         for (int i = 0; i < population_count; i++) {
-            ind = childrens[i];
-            if (inside(ind)) {
+            args = BinaryUtil.binaryArrToNumberArr(childrens[i].getChromosomes());
+            if (function.isInBounds(args)) {
                 nextGenerationGenePool[nextGenCounter] = childrens[i];
                 nextGenCounter++;
                 p_counter++;
@@ -243,11 +248,11 @@ public class GeneticAlgorithm implements BaseGenetic {
         }
         
         for (int i = nextGenCounter; i < population_count; i++) {
-            ind = selectionBestParents[i];
+            args = BinaryUtil.binaryArrToNumberArr(selectionBestParents[i].getChromosomes());
             if (nextGenCounter >= population_count) {
                 break;
             }
-            if (inside(ind)) {
+            if (function.isInBounds(args)) {
                 nextGenerationGenePool[nextGenCounter] = selectionBestParents[i];
                 nextGenCounter++;
                 c_counter++;
@@ -266,10 +271,10 @@ public class GeneticAlgorithm implements BaseGenetic {
         System.out.println("p=" + p_counter + ", " + "c=" + c_counter + ", " + "null=" + null_counter);
         System.out.println("======================================");
         
-        return nextGenerationGenePool;*/
+        return nextGenerationGenePool;
         
         // SELECTION FROM PARENTS/2 and CHILDRENS/2
-        for (int i = 0; i < population_count / 2; i++) {
+        /*for (int i = 0; i < population_count / 2; i++) {
             rndFirst = RandomUtil.getRandomRangeInt(0, population_count - 1);
             do {
                 rndSecond = RandomUtil.getRandomRangeInt(0, population_count - 1);
@@ -307,12 +312,7 @@ public class GeneticAlgorithm implements BaseGenetic {
                 nextGenerationGenePool[i] = second;
             } 
         }
-        return nextGenerationGenePool;
-    }
-    
-    private boolean inside(Chromosome c) {
-        Double[] a = BinaryUtil.binaryArrToNumberArr(c.getChromosomes());
-        return Function.insideBounds("", a);
+        return nextGenerationGenePool;*/
     }
     
     private Chromosome getBestIndividual() {
@@ -320,12 +320,12 @@ public class GeneticAlgorithm implements BaseGenetic {
         
         Double[] args = BinaryUtil.binaryArrToNumberArr(curGenePool[0].getChromosomes());
         double r;
-        double max = Function.f(args);
+        double max = function.getValueGoalFunction(args);
 
         for (int i = 0; i < population_count; i++) {
             args = BinaryUtil.binaryArrToNumberArr(curGenePool[i].getChromosomes());
-            r = Function.f(args);
-            if (Function.insideBounds("",args)) {
+            r = function.getValueGoalFunction(args);
+            if (function.isInBounds(args)) {
                 if (max < r) {
                     max = r;
                     res = curGenePool[i];

@@ -5,7 +5,7 @@ package com.ivo;
  *
  * @author IOAdmin
  */
-public class MainLaunch {
+public class MainLaunchVars {
 
     public static void main(String[] args) {
         String function = "b1 = 1"

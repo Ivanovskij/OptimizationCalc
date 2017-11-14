@@ -43,6 +43,10 @@ public class GConstraintsController implements Serializable {
     }
     
     public String handleSecondStep() {
+        return "step3_genetic";
+    }
+    
+    public String handleThirdStep() {
         for (int i = 0; i < argValues.size(); i++) {
             System.out.println(argValues.get(i).getValues());
         }
@@ -54,11 +58,12 @@ public class GConstraintsController implements Serializable {
         // delete plus
         function = function.substring(0, function.length() - 1);
         System.out.println(function);
-        return "step3_genetic";
-    }
-    
-    public String handleThirdStep() {
         
+        params.setArg_size(String.valueOf(countArgs));
+        
+        System.out.println(params.getXmin() + ":" + params.getXmax() +
+                ":" + params.getMax_generations() + ":" + params.getPopulation_count() +
+                ":" + params.getArg_size());
         return "step4_genetic";
     }
     

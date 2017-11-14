@@ -1,5 +1,7 @@
 package com.ivo.utils;
 
+import com.ivo.ParserExecute;
+
 /**
  *
  * @author IOAdmin
@@ -8,12 +10,81 @@ public class Function {
 
     public static final String func = "21 * x1 + 18 * x2 + 16 * x3 + 17.5 * x4";
     
+    private String goalFunction;
+    private String[] constrains;
+    private String[] constraintsWithOutCondition;
+    
+    private ParserExecute parser; 
+
+    public Function(String goalFunction, String[] constrains, String[] constraintsWithOutCondition) {
+        this.goalFunction = goalFunction;
+        this.constrains = constrains;
+        this.constraintsWithOutCondition = constraintsWithOutCondition;
+    }
+    
+    public double getValueGoalFunction(Double[] args) {
+        double result = new ParserExecute(func, args).execute();
+        return result;
+    }  
+    
+    public double isInBoundsStaticPenalty(Double[] args) {
+        int inBound;
+        double valueConstraintWithoutCondition = 0;
+        double result = 0;
+        
+        for (int i = 0; i < constrains.length; i++) {
+            inBound = (int) new ParserExecute(constrains[i], args).execute();
+            if (inBound != 1) {
+                valueConstraintWithoutCondition = new ParserExecute(constraintsWithOutCondition[i], args).execute();
+                result -= Math.pow(valueConstraintWithoutCondition, 2) + 1_000_000;
+            }
+        }
+        
+        return result;
+    }
+    
+    public boolean isInBounds(Double[] args) {
+        int result;
+        
+        for (int i = 0; i < constrains.length; i++) {
+            result = (int) new ParserExecute(constrains[i], args).execute();
+            if (result != 1) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    /* ================================================= */
+    public String getGoalFunction() {
+        return goalFunction;
+    }
+
+    public void setGoalFunction(String goalFunction) {
+        this.goalFunction = goalFunction;
+    }
+
+    public String[] getConstrains() {
+        return constrains;
+    }
+
+    public void setConstrains(String[] constrains) {
+        this.constrains = constrains;
+    }
+
+    public String[] getConstraintsWithOutCondition() {
+        return constraintsWithOutCondition;
+    }
+
+    public void setConstraintsWithOutCondition(String[] constraintsWithOutCondition) {
+        this.constraintsWithOutCondition = constraintsWithOutCondition;
+    }
+
 //    public static final double f(Double[] args) {
 //        return 21 * args[0] + 18 * args[1] + 16 * args[2] + 17.5 * args[3];
 //    }
-    public static final double f(Double[] args) {
-        return 2 * args[0] + 3 * args[1];
-    }
+
     
     // метод динамических штрафов
 //    public static double insideBounds(String in, int[] args, int curGeneration) {
@@ -54,14 +125,14 @@ public class Function {
 //        
 //    }
     
-    private static boolean bound5(Double[] args) {
+   /* private static boolean bound5(Double[] args) {
         for (int i = 0; i < args.length; i++) {
             if (!(args[i] >= 0)) {
                 return false;
             }
         }
         return true;
-    }
+    }*/
     
 //    public static boolean insideBounds(String in, Double[] args) {
 //        return 8 * args[0] + 7 * args[1] + 5 * args[2] + 9 * args[3] <= 22 && 
@@ -131,7 +202,7 @@ public class Function {
 //        return (args[3] >= 0);
 //    }
     
-    public static double insideBounds(Double[] args) {
+   /* public static double insideBounds(Double[] args) {
         double result = 0;
         
         double x1 = args[0],
@@ -174,5 +245,5 @@ public class Function {
             1 * x1 + 2 * x2 <= 8&&
             x1 >= 0&&
             x2 >= 0;
-    } 
+    } */
 }

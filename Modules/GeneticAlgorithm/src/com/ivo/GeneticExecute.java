@@ -26,8 +26,8 @@ public class GeneticExecute {
         Parameters.set("arg_size", argSize);
     }
     
-    public List<Chromosome> execute() {
-        bestIndividuals = new GeneticAlgorithm().solve();
+    public List<Chromosome> execute(String goalFunction, String[] constraints, String[] constraintsWithOutCondition) {
+        bestIndividuals = new GeneticAlgorithm(goalFunction, constraints, constraintsWithOutCondition).solve();
         return bestIndividuals;
     }
     
