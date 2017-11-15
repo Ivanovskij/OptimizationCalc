@@ -215,3 +215,80 @@ td {
     width: 200px;
 }
 
+/* resuls */
+.genetic-result-container {
+    height: 700px;
+    overflow: auto;
+}
+
+.result-best-of-all {
+    border-bottom: 2px solid #ff0000;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.result-best-of-all .best-individual {
+    color: #ff0000;
+}
+
+.result-best-of-all .best-ind-int,
+.result-best-of-all .best-ind-double {
+    color: #000;
+    font-size: 14px;
+}
+
+.table-genetic-container {
+    margin-bottom: 10px;
+    width: 100%;
+    overflow: auto;
+}
+
+.table-genetic  {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.table-genetic caption {
+    color: #ff1e00;
+    font: Verdana, Arial, sans-serif;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.table-genetic th {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+}
+.table-genetic  th, 
+.table-genetic td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    padding: 10px;
+}
+.table-genetic td {
+    background: #D8E6F3;
+}
+
+.result-best-ind {
+    border-bottom: 2px solid #1a5f8c;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.best-individual {
+    color: #ff9500;
+    display: block;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.result-best-ind .best-ind-int,
+.result-best-ind .best-ind-double {
+    color: #000;
+    font-size: 14px;
+}

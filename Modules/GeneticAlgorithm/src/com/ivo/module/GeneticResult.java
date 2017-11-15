@@ -1,7 +1,5 @@
 package com.ivo.module;
 
-import com.ivo.utils.BinaryUtil;
-
 /**
  *
  * @author IOAdmin

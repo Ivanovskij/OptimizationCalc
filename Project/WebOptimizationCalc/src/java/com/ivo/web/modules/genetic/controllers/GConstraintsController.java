@@ -37,6 +37,7 @@ public class GConstraintsController implements Serializable {
     
     // results
     private List<GeneticResult> results;
+    private GeneticResult bestIndividualOfAll;
 
     public GConstraintsController() {
     }
@@ -55,6 +56,7 @@ public class GConstraintsController implements Serializable {
             GeneticController gc = new GeneticController(countArgs, countConstraints, 
                 argValues, funcValues, params);
             setResults(gc.calculate());
+            setBestIndividualOfAll(results.get(results.size() - 1));
         } catch (Exception ex) {
             throw new Exception("handleThirdStep() -> " + ex.getMessage());
         }
@@ -143,5 +145,13 @@ public class GConstraintsController implements Serializable {
 
     public void setResults(List<GeneticResult> results) {
         this.results = results;
+    }
+
+    public GeneticResult getBestIndividualOfAll() {
+        return bestIndividualOfAll;
+    }
+
+    public void setBestIndividualOfAll(GeneticResult bestIndividualOfAll) {
+        this.bestIndividualOfAll = bestIndividualOfAll;
     }
 }
