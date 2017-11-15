@@ -5,6 +5,7 @@ import com.ivo.utils.Config;
 import com.ivo.utils.Function;
 import com.ivo.utils.Parameters;
 import com.ivo.utils.RandomUtil;
+import com.ivo.utils.RoundUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -348,7 +349,7 @@ public class GeneticAlgorithm implements BaseGenetic {
         // set results
         bestIndividual = new Chromosome();
         bestIndividual.setChromosomes(res.getChromosomes());
-        resultBestIndividual = max;
+        resultBestIndividual = RoundUtil.round(max, 3);
         
         return res;
     }
@@ -374,11 +375,11 @@ public class GeneticAlgorithm implements BaseGenetic {
         // set args doubles
         Double[] argsDouble = BinaryUtil.binaryArrToNumberArr(bestIndividual.getChromosomes());
         gresult.setPointsDoubleBestIndividual(argsDouble);
-        
+
         // set args integers
         Integer[] argsInt = new Integer[arg_size];
         for (int i = 0; i < argsDouble.length; i++) {
-            int value = argsDouble[i].intValue();
+            int value = RoundUtil.roundToInt(argsDouble[i]);
             argsInt[i] = new Integer(value);
         }
         gresult.setPointsIntBestIndividual(argsInt);
