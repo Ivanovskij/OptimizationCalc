@@ -26,14 +26,16 @@ public class ArgsBean implements Serializable {
         // the result is plus
         String rightArgs = args.substring(0, args.length() - 1);
         
+        // need for not change original condition in session
+        String tmpCondition = "none";
         if (condition.equals("≤")) {
-            condition = "<=";
+            tmpCondition = "<=";
         } else if (condition.equals("≥")){
-            condition = ">=";
+            tmpCondition = ">=";
         } else {
             throw new Exception("Неизвестное условие: " + condition);
         }
-        rightArgs += " " + condition + " " + String.valueOf(valueCondition);
+        rightArgs += " " + tmpCondition + " " + String.valueOf(valueCondition);
         return rightArgs;
     }
     

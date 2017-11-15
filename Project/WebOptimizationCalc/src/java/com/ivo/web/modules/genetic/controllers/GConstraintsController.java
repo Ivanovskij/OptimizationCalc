@@ -1,5 +1,6 @@
 package com.ivo.web.modules.genetic.controllers;
 
+import com.ivo.module.GeneticResult;
 import com.ivo.web.modules.genetic.beans.ArgsBean;
 import com.ivo.web.modules.genetic.beans.FunctionBean;
 import com.ivo.web.modules.genetic.beans.GeneticParamsBean;
@@ -35,6 +36,7 @@ public class GConstraintsController implements Serializable {
     private GeneticParamsBean params = new GeneticParamsBean();
     
     // results
+    private List<GeneticResult> results;
 
     public GConstraintsController() {
     }
@@ -52,7 +54,7 @@ public class GConstraintsController implements Serializable {
         try {
             GeneticController gc = new GeneticController(countArgs, countConstraints, 
                 argValues, funcValues, params);
-            gc.calculate();
+            setResults(gc.calculate());
         } catch (Exception ex) {
             throw new Exception("handleThirdStep() -> " + ex.getMessage());
         }
@@ -133,5 +135,13 @@ public class GConstraintsController implements Serializable {
 
     public void setParams(GeneticParamsBean params) {
         this.params = params;
+    }
+
+    public List<GeneticResult> getResults() {
+        return results;
+    }
+
+    public void setResults(List<GeneticResult> results) {
+        this.results = results;
     }
 }

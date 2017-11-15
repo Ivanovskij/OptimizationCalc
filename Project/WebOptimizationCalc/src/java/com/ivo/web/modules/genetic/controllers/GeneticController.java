@@ -1,34 +1,35 @@
 package com.ivo.web.modules.genetic.controllers;
 
 import com.ivo.GeneticExecute;
-import com.ivo.module.Chromosome;
-import com.ivo.utils.BinaryUtil;
+import com.ivo.module.GeneticResult;
 import com.ivo.web.modules.genetic.beans.ArgsBean;
 import com.ivo.web.modules.genetic.beans.FunctionBean;
 import com.ivo.web.modules.genetic.beans.GeneticParamsBean;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author IOAdmin
  */
-public class GeneticController {
+public class GeneticController implements Serializable {
 
     private int countArgs;
     private int countConstraints;
     
     // constraints
-    private final List<ArgsBean> argValues;
+    private List<ArgsBean> argValues;
     // goal func
-    private final List<FunctionBean> funcValues;
+    private List<FunctionBean> funcValues;
     
     // condition
     private String maxOrMin = "min";
     
     // input params for genetic algorithm
     private GeneticParamsBean params;
+
+    public GeneticController() {
+    }
 
     public GeneticController(int countArgs, int countConstraints, 
             List<ArgsBean> argValues, List<FunctionBean> funcValues, GeneticParamsBean params) 
@@ -50,11 +51,8 @@ public class GeneticController {
         this.params = params;
     }
     
-    
-    // return List<ResultBean>
-    public void calculate() throws Exception {
-        // set arg size
-        params.setArg_size(String.valueOf(countArgs));
+    public List<GeneticResult> calculate() throws Exception {
+        setCountArgs();
 
         // set params
         String xMin = params.getXmin();
@@ -66,25 +64,13 @@ public class GeneticController {
         String arg_size = params.getArg_size();
         
         // make constraints
-        String[] constraints = new String[countConstraints];
-        for (int i = 0; i < argValues.size(); i++) {
-            constraints[i] = argValues.get(i).getValues();
-        }
+        String[] constraints = getContstraints();
         
         // make constraints WithOut Condition
-        String[] constraintsWithOutCondition = new String[countConstraints];
-        for (int i = 0; i < argValues.size(); i++) {
-            constraintsWithOutCondition[i] = argValues.get(i).getValuesWithoutCondition();
-        }
+        String[] constraintsWithOutCondition = getConstraintsWithOutCondition();
         
         // make function
-        String function = "";
-        for (int i = 0; i < funcValues.size(); i++) {
-            function += funcValues.get(i).getValue() + "*" + "x" + (i + 1) + "+";
-        }
-        // last pos is +
-        // delete plus
-        function = function.substring(0, function.length() - 1);
+        String function = getFunction();
         
         /*for (String c : constraints) {
             System.out.println(c);
@@ -96,12 +82,42 @@ public class GeneticController {
         System.out.println("====");
         System.out.println(function);
         */
-        // check
         
+        // get results
         GeneticExecute ga = new GeneticExecute(xMin, xMax, max_generations, population_count, arg_size);
-        List<Chromosome> b = ga.execute(function, constraints, constraintsWithOutCondition);
-        for (Chromosome ch : b) {
-            System.out.println("X = " + Arrays.toString(BinaryUtil.binaryArrToNumberArr(ch.getChromosomes())));
+        List<GeneticResult> results = ga.execute(function, constraints, constraintsWithOutCondition);
+        return results;
+    }
+
+    private String getFunction() {
+        String function = "";
+        for (int i = 0; i < funcValues.size(); i++) {
+            function += funcValues.get(i).getValue() + "*" + "x" + (i + 1) + "+";
         }
+        // last pos is +
+        // delete plus
+        function = function.substring(0, function.length() - 1);
+        return function;
+    }
+    
+    private String[] getContstraints() throws Exception {
+        String[] constraints = new String[countConstraints];
+        for (int i = 0; i < argValues.size(); i++) {
+            constraints[i] = argValues.get(i).getValues();
+        }
+        return constraints;
+    }
+    
+    private String[] getConstraintsWithOutCondition() throws Exception {
+        String[] constraintsWithOutCondition = new String[countConstraints];
+        for (int i = 0; i < argValues.size(); i++) {
+            constraintsWithOutCondition[i] = argValues.get(i).getValuesWithoutCondition();
+        }
+        return constraintsWithOutCondition;
+    }
+
+    private void setCountArgs() {
+        // set arg size
+        params.setArg_size(String.valueOf(countArgs));
     }
 }

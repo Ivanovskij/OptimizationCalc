@@ -43,6 +43,56 @@
             
             <ui:define name="content-calc">
                 <div class="genetic-container">
+                    <span class="step-name">
+                        Результат
+                    </span>
+                    <p class="manual">
+                        <span>Детальная информация о каждом поколении алгоритма:</span>
+                    </p>
+                    
+                    <ui:repeat value="#{gConstraintsController.results}" var="result">
+                        <table>
+                            <caption>Текущее поколение[#{result.currentGeneration}]></caption>
+                            <tr>
+                                <th>Мутирующие</th>
+                                <th>Умершие</th>
+                                <th>Выжившие</th>
+                                <th>Отобранные из родителей</th>
+                                <th>Отобранные из потомков</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputText value="#{result.countMutation}"/>
+                                </td>
+                                <td>
+                                    <h:outputText value="#{result.countDead}"/>
+                                </td>
+                                <td>
+                                    <h:outputText value="#{result.countSurvivor}"/>
+                                </td>
+                                <td>
+                                    <h:outputText value="#{result.countSelectionParent}"/>
+                                </td>
+                                <td>
+                                    <h:outputText value="#{result.countSelectionChildren}"/>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <div class="result-best-ind">
+                            <span>Лучшая особь в поколении = #{result.resultBestIndividual}</span>
+                            <p>
+                                <ui:repeat value="#{result.pointsIntBestIndividual}" var="intPoint">
+                                    <h:outputText value="[#{intPoint}]"/>
+                                </ui:repeat>
+                            </p>
+                            <p>
+                                <ui:repeat value="#{result.pointsDoubleBestIndividual}" var="doublePoint">
+                                    <h:outputText value="[#{doublePoint}]"/>
+                                </ui:repeat>
+                            </p>
+                        </div>
+                    </ui:repeat>
                 </div>
             </ui:define>
         </ui:composition>

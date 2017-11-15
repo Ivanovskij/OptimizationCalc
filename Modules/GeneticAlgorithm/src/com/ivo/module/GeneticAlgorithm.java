@@ -370,6 +370,20 @@ public class GeneticAlgorithm implements BaseGenetic {
         gresult.setCountSelectionChildren(countSelectionChildren);
         gresult.setCountSelectionParent(countSelectionParent);
         gresult.setBestIndividual(bestIndividual);
+        
+        // set args doubles
+        Double[] argsDouble = BinaryUtil.binaryArrToNumberArr(bestIndividual.getChromosomes());
+        gresult.setPointsDoubleBestIndividual(argsDouble);
+        
+        // set args integers
+        Integer[] argsInt = new Integer[arg_size];
+        for (int i = 0; i < argsDouble.length; i++) {
+            int value = argsDouble[i].intValue();
+            argsInt[i] = new Integer(value);
+        }
+        gresult.setPointsIntBestIndividual(argsInt);
+        
+        // set result best individual
         gresult.setResultBestIndividual(resultBestIndividual);
         
         results.add(gresult);

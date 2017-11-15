@@ -1,5 +1,7 @@
 package com.ivo.module;
 
+import com.ivo.utils.BinaryUtil;
+
 /**
  *
  * @author IOAdmin
@@ -13,6 +15,8 @@ public class GeneticResult {
     private int countSelectionChildren;
     private int countSelectionParent;
     private Chromosome bestIndividual;
+    private Integer[] pointsIntBestIndividual;
+    private Double[] pointsDoubleBestIndividual;
     private double resultBestIndividual;
 
     public GeneticResult() {
@@ -82,5 +86,19 @@ public class GeneticResult {
         this.resultBestIndividual = resultBestIndividual;
     }
 
-    
+    public Integer[] getPointsIntBestIndividual() {
+        return pointsIntBestIndividual;
+    }
+
+    public void setPointsIntBestIndividual(Integer[] pointsIntBestIndividual) {
+        this.pointsIntBestIndividual = pointsIntBestIndividual;
+    }
+
+    public Double[] getPointsDoubleBestIndividual() {
+        return pointsDoubleBestIndividual;
+    }
+
+    public void setPointsDoubleBestIndividual(Double[] pointsDoubleBestIndividual) {
+        this.pointsDoubleBestIndividual = pointsDoubleBestIndividual;
+    }
 }
