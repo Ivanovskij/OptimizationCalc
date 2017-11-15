@@ -2,6 +2,7 @@ package com.ivo;
 
 import com.ivo.module.Chromosome;
 import com.ivo.module.GeneticAlgorithm;
+import com.ivo.module.GeneticResult;
 import com.ivo.utils.Parameters;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public class GeneticExecute {
 
-    private List<Chromosome> bestIndividuals;
+    private List<GeneticResult> results;
     
     public GeneticExecute(String xMin, String xMax,
             String max_generations, String population_count,
@@ -26,9 +27,9 @@ public class GeneticExecute {
         Parameters.set("arg_size", argSize);
     }
     
-    public List<Chromosome> execute(String goalFunction, String[] constraints, String[] constraintsWithOutCondition) {
-        bestIndividuals = new GeneticAlgorithm(goalFunction, constraints, constraintsWithOutCondition).solve();
-        return bestIndividuals;
+    public List<GeneticResult> execute(String goalFunction, String[] constraints, String[] constraintsWithOutCondition) {
+        results = new GeneticAlgorithm(goalFunction, constraints, constraintsWithOutCondition).solve();
+        return results;
     }
     
     

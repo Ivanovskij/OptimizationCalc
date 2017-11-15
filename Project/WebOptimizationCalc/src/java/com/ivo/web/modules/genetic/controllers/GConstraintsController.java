@@ -33,6 +33,8 @@ public class GConstraintsController implements Serializable {
     
     // input params for genetic algorithm
     private GeneticParamsBean params = new GeneticParamsBean();
+    
+    // results
 
     public GConstraintsController() {
     }
@@ -46,24 +48,15 @@ public class GConstraintsController implements Serializable {
         return "step3_genetic";
     }
     
-    public String handleThirdStep() {
-        for (int i = 0; i < argValues.size(); i++) {
-            System.out.println(argValues.get(i).getValues());
+    public String handleThirdStep() throws Exception {
+        try {
+            GeneticController gc = new GeneticController(countArgs, countConstraints, 
+                argValues, funcValues, params);
+            gc.calculate();
+        } catch (Exception ex) {
+            throw new Exception("handleThirdStep() -> " + ex.getMessage());
         }
-        String function = "";
-        for (int i = 0; i < funcValues.size(); i++) {
-            function += funcValues.get(i).getValue() + "*" + "x" + (i + 1) + "+";
-        }
-        // last pos is +
-        // delete plus
-        function = function.substring(0, function.length() - 1);
-        System.out.println(function);
         
-        params.setArg_size(String.valueOf(countArgs));
-        
-        System.out.println(params.getXmin() + ":" + params.getXmax() +
-                ":" + params.getMax_generations() + ":" + params.getPopulation_count() +
-                ":" + params.getArg_size());
         return "step4_genetic";
     }
     

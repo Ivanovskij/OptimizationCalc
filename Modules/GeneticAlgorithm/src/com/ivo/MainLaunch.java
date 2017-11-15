@@ -1,6 +1,6 @@
 package com.ivo;
 
-import com.ivo.module.Chromosome;
+import com.ivo.module.GeneticResult;
 import java.util.List;
 
 /**
@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class MainLaunch {
     
-    private static List<Chromosome> bestIndividuals;
+    private static List<GeneticResult> results;
     
     public static void main(String[] args) {
-        String goalFunction = "21 * x1 + 18 * x2 + 16 * x3 + 17.5 * x4";
+        /*String goalFunction = "21 * x1 + 18 * x2 + 16 * x3 + 17.5 * x4";
         
         String[] constraints = {
             "8 * x1 + 7 * x2 + 5 * x3 + 9 * x4 <= 22",
@@ -38,8 +38,14 @@ public class MainLaunch {
         
         
         
-        bestIndividuals = new GeneticExecute("-10000", "10000", 
-            "100", "10000", "4").execute(goalFunction, constraints, constraintsWithOutCondition);
+        results = new GeneticExecute("-10000", "10000", 
+            "10", "10000", "4").execute(goalFunction, constraints, constraintsWithOutCondition);
+        
+        for (GeneticResult r : results) {
+            System.out.println(r.getResultBestIndividual());
+            System.out.println(r.getCountDead());
+            System.out.println(r.getCountSurvivor());
+        }*/
     }
     
 }

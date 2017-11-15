@@ -6,7 +6,6 @@ import com.ivo.utils.Function;
 import com.ivo.utils.Parameters;
 import com.ivo.utils.RandomUtil;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,7 +14,16 @@ import java.util.List;
  */
 public class GeneticAlgorithm implements BaseGenetic {
 
-    private final List<Chromosome> bestIndividuals;
+    // all results
+    private final List<GeneticResult> results;
+    
+    private int countDead;
+    private int countSurvivor;
+    private int countMutation;
+    private int countSelectionChildren;
+    private int countSelectionParent;
+    private Chromosome bestIndividual;
+    private double resultBestIndividual;
     
     // The gene pool current population
     private Chromosome[] curGenePool;
@@ -36,7 +44,7 @@ public class GeneticAlgorithm implements BaseGenetic {
     private double mutation_percent;
     
     // init function and constraints
-    private Function function;
+    private final Function function;
     
     
     public GeneticAlgorithm(String goalFunction, String[] constraints, String[] constraintsWithOutCondition) {
@@ -44,7 +52,7 @@ public class GeneticAlgorithm implements BaseGenetic {
         
         function = new Function(goalFunction, constraints, constraintsWithOutCondition);
         
-        this.bestIndividuals = new ArrayList<>();
+        this.results = new ArrayList<>();
         
         this.curGenePool = new Chromosome[population_count];
         this.nextGenerationGenePool = new Chromosome[population_count];
@@ -63,7 +71,7 @@ public class GeneticAlgorithm implements BaseGenetic {
     }
     
     @Override
-    public List<Chromosome> solve() {
+    public List<GeneticResult> solve() {
         createPopulation();
         
         do {
@@ -75,10 +83,10 @@ public class GeneticAlgorithm implements BaseGenetic {
             
             setCurrentGeneration();
             
-            getBestIndividual();
+            setInformationAboutGeneration();
         } while (curGenerations++ < max_generations);
         
-        return bestIndividuals;
+        return results;
     }
 
     @Override
@@ -184,11 +192,14 @@ public class GeneticAlgorithm implements BaseGenetic {
     @Override
     public void mutation() {
         double rnd;
+        countMutation = 0;
+        
         for (Chromosome ch : childrens) {
             rnd = RandomUtil.getRandomRangeDouble(0, 1);
             if (rnd <= mutation_percent) {
                 //System.out.println("b "+Arrays.toString(BinaryUtil.binaryArrToNumberArr(chrom.getChromosomes())));
                 mutate(ch);
+                countMutation++;
                 //System.out.println("a" + Arrays.toString(BinaryUtil.binaryArrToNumberArr(chrom.getChromosomes())));
             }
         }
@@ -230,9 +241,9 @@ public class GeneticAlgorithm implements BaseGenetic {
         // SELECTION Idndividuals who inside bounds
         Double[] args;
         
-        int p_counter = 0,
-                c_counter = 0,
-                null_counter = 0;
+        countSelectionParent = 0;
+        countSelectionChildren = 0;
+        countSurvivor = 0;
         
         int nextGenCounter = 0;
         
@@ -243,7 +254,7 @@ public class GeneticAlgorithm implements BaseGenetic {
             if (function.isInBounds(args)) {
                 nextGenerationGenePool[nextGenCounter] = childrens[i];
                 nextGenCounter++;
-                p_counter++;
+                countSelectionChildren++;
             }
         }
         
@@ -255,21 +266,22 @@ public class GeneticAlgorithm implements BaseGenetic {
             if (function.isInBounds(args)) {
                 nextGenerationGenePool[nextGenCounter] = selectionBestParents[i];
                 nextGenCounter++;
-                c_counter++;
+                countSelectionParent++;
             }
         }
         
         int i = nextGenCounter;
         while (i < population_count) {
-            nextGenerationGenePool[nextGenCounter] = childrens[i];
+            nextGenerationGenePool[nextGenCounter] = curGenePool[i];
             nextGenCounter++;
             i++;
-            null_counter++;
+            countSurvivor++;
         }
         
-        System.out.println("======================================");
-        System.out.println("p=" + p_counter + ", " + "c=" + c_counter + ", " + "null=" + null_counter);
-        System.out.println("======================================");
+        /*System.out.println("======================================");
+        System.out.println("child=" + countSelectionChildren + ", " + 
+                "parent=" + countSelectionParent + ", " + "surviour=" + countSurvivor);
+        System.out.println("======================================");*/
         
         return nextGenerationGenePool;
         
@@ -332,11 +344,34 @@ public class GeneticAlgorithm implements BaseGenetic {
                 }
             }
         }
- 
 
-        System.out.println("X = " + Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));
-        System.out.println("*****************************Best Individual[" + curGenerations + "] = " + max);
-
+        // set results
+        bestIndividual = new Chromosome();
+        bestIndividual.setChromosomes(res.getChromosomes());
+        resultBestIndividual = max;
+        
         return res;
+    }
+
+    private void setInformationAboutGeneration() {
+        // set result about best Individuals
+        getBestIndividual();
+        
+        GeneticResult gresult = new GeneticResult();
+        
+        // calc count dead
+        countDead = countSelectionChildren + countSelectionParent;
+        
+        // set results
+        gresult.setCurrentGeneration(curGenerations);
+        gresult.setCountDead(countDead);
+        gresult.setCountSurvivor(countSurvivor);
+        gresult.setCountMutation(countMutation);
+        gresult.setCountSelectionChildren(countSelectionChildren);
+        gresult.setCountSelectionParent(countSelectionParent);
+        gresult.setBestIndividual(bestIndividual);
+        gresult.setResultBestIndividual(resultBestIndividual);
+        
+        results.add(gresult);
     }
 }

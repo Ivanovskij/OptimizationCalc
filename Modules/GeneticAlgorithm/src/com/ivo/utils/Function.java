@@ -7,8 +7,6 @@ import com.ivo.ParserExecute;
  * @author IOAdmin
  */
 public class Function {
-
-    public static final String func = "21 * x1 + 18 * x2 + 16 * x3 + 17.5 * x4";
     
     private String goalFunction;
     private String[] constrains;
@@ -23,7 +21,7 @@ public class Function {
     }
     
     public double getValueGoalFunction(Double[] args) {
-        double result = new ParserExecute(func, args).execute();
+        double result = new ParserExecute(goalFunction, args).execute();
         return result;
     }  
     

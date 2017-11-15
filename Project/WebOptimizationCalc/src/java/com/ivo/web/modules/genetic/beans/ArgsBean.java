@@ -21,7 +21,7 @@ public class ArgsBean implements Serializable {
      *
      * @return rightArgs String - right args for parser
      */
-    public String getValues() {
+    public String getValues() throws Exception {
         // int last position
         // the result is plus
         String rightArgs = args.substring(0, args.length() - 1);
@@ -31,10 +31,21 @@ public class ArgsBean implements Serializable {
         } else if (condition.equals("≥")){
             condition = ">=";
         } else {
-            condition = "=";
+            throw new Exception("Неизвестное условие: " + condition);
         }
         rightArgs += " " + condition + " " + String.valueOf(valueCondition);
         return rightArgs;
+    }
+    
+    /**
+     *
+     * @return rightValueWithoutCondition String - right value without condition for parser
+     */
+    public String getValuesWithoutCondition() {
+        // int last position
+        // the result is plus
+        String rightValueWithoutCondition = args.substring(0, args.length() - 1);
+        return rightValueWithoutCondition;
     }
     
     public String getX() {
