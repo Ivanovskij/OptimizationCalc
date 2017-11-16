@@ -12,8 +12,6 @@ public class Function {
     private String[] constrains;
     private String[] constraintsWithOutCondition;
     
-    private ParserExecute parser; 
-
     public Function(String goalFunction, String[] constrains, String[] constraintsWithOutCondition) {
         this.goalFunction = goalFunction;
         this.constrains = constrains;

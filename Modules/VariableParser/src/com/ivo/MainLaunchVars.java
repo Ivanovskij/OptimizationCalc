@@ -33,11 +33,12 @@ public class MainLaunchVars {
         System.out.println("====================================");
         System.out.println();
         
-        String task1 = "b1 = 3";
-        double b1 = 2;
-        double b2 = 3;
+        String task1 = "1.5 * x1 + 0 * x2 + 0 * x3 >= 200";
+        double x1 = 199;
+        double x2 = 3;
+        double x3 = 3;
 
-        double result = new ParserExecute(task1, b1).execute();
+        double result = new ParserExecute(task1, x1, x2, x3).execute();
         System.out.println(result);*/
     }
     
