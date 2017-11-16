@@ -7,6 +7,33 @@
     margin-bottom: 40px;
 }
 
+#loading_wrapper {
+    background: #fff000;
+    border-radius: 45px;
+    display: none;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    width: 280px;
+    animation: rnd_background 2s infinite ease-in-out;
+        -webkit-animation: rnd_background 2s infinite ease-in-out;
+}
+
+#loading_wrapper p {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+@keyframes rnd_background {
+0% { background: green; }
+25% { background: yellow; }
+50% { background: pink; }
+75% { background: red; }
+100% { background: orange; }
+}
+
 /* ===================== SIMPLEX ======================== */
 .simplex-container {
     background: #f2f9ff;

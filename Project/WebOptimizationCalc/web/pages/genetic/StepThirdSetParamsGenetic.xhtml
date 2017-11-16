@@ -44,6 +44,10 @@
             
             <ui:define name="content-calc">
                 <div class="genetic-container">
+                    <div id="loading_wrapper">
+                        <p>Идет загрузка решения...</p>
+                    </div>
+                    
                     <h:form>
                         <span class="step-name">
                             Шаг 3
@@ -108,8 +112,10 @@
                         </div>
                         
                         <h:commandButton class="button"
-                                         action="#{gConstraintsController.handleThirdStep()}" 
-                                         value="Далее"/>
+                                         action="#{gConstraintsController.handleThirdStep()}"
+                                         value="Далее">
+                            <f:ajax onevent="showProgress"/>
+                        </h:commandButton>
                     </h:form>
                 </div>
             </ui:define>
