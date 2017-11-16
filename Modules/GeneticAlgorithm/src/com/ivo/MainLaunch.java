@@ -1,7 +1,6 @@
 package com.ivo;
 
 import com.ivo.module.GeneticResult;
-import com.ivo.utils.RoundUtil;
 import java.util.List;
 
 /**
@@ -56,14 +55,14 @@ public class MainLaunch {
         };*/
         
         
-        results = new GeneticExecute("0", "1", 
-            "50", "1000", "4").execute(goalFunction, constraints, constraintsWithOutCondition);
+        results = new GeneticExecute("-1000", "1000", 
+            "100", "3000", "4").execute(goalFunction, constraints, constraintsWithOutCondition);
         
-        for (GeneticResult r : results) {
+        /*for (GeneticResult r : results) {
             System.out.println(r.getResultBestIndividual());
-            /*System.out.println(r.getCountSelectionChildren());
-            System.out.println(r.getCountSelectionParent());*/
-        }
+            System.out.println(r.getCountSelectionChildren());
+            System.out.println(r.getCountSelectionParent());
+        }*/
     }
     
 }

@@ -345,7 +345,7 @@ public class GeneticAlgorithm implements BaseGenetic {
                 }
             }
         }
-
+        
         // set results
         bestIndividual = new Chromosome();
         bestIndividual.setChromosomes(res.getChromosomes());
@@ -374,6 +374,9 @@ public class GeneticAlgorithm implements BaseGenetic {
         
         // set args doubles
         Double[] argsDouble = BinaryUtil.binaryArrToNumberArr(bestIndividual.getChromosomes());
+        for (int i = 0; i < argsDouble.length; i++) {
+            argsDouble[i] = RoundUtil.round(argsDouble[i], 3);
+        }
         gresult.setPointsDoubleBestIndividual(argsDouble);
 
         // set args integers

@@ -44,36 +44,41 @@
             
             <ui:define name="content-calc">
                 <div class="genetic-container">
-                    <p:chart type="line" model="#{gConstraintsController.lineModel}" style="height:300px;"/>
-                    
                     <div class="genetic-result-container">
                         <span class="step-name">
                             Результат
                         </span>
+                        
+                        <div class="optimal-result-container">
+                            <div class="result-best-of-all">
+                                <span class="best-individual">
+                                    Оптимальный результат = #{gConstraintsController.bestIndividualOfAll.resultBestIndividual}
+                                </span>
+                                <p class="best-ind-int">
+                                    <h:outputText value="x[integer] = "/>
+                                    <ui:repeat value="#{gConstraintsController.bestIndividualOfAll.pointsIntBestIndividual}" 
+                                               var="intPoint">
+                                        <h:outputText value="[#{intPoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                                <p class="best-ind-double">
+                                    <h:outputText value="x[double] = "/>
+                                    <ui:repeat value="#{gConstraintsController.bestIndividualOfAll.pointsDoubleBestIndividual}" 
+                                               var="doublePoint">
+                                        <h:outputText value="[#{doublePoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <p:chart type="line" model="#{gConstraintsController.lineModel}" styleClass="chart"/>
+                            </div>
+                        </div>
+                        
                         <p class="manual">
                             <span>Детальная информация о каждом поколении алгоритма:</span>
                         </p>
 
-                        <div class="result-best-of-all">
-                            <span class="best-individual">
-                                Оптимальный результат = #{gConstraintsController.bestIndividualOfAll.resultBestIndividual}
-                            </span>
-                            <p class="best-ind-int">
-                                <h:outputText value="x[integer] = "/>
-                                <ui:repeat value="#{gConstraintsController.bestIndividualOfAll.pointsIntBestIndividual}" 
-                                           var="intPoint">
-                                    <h:outputText value="[#{intPoint}]"/>
-                                </ui:repeat>
-                            </p>
-                            <p class="best-ind-double">
-                                <h:outputText value="x[double] = "/>
-                                <ui:repeat value="#{gConstraintsController.bestIndividualOfAll.pointsDoubleBestIndividual}" 
-                                           var="doublePoint">
-                                    <h:outputText value="[#{doublePoint}]"/>
-                                </ui:repeat>
-                            </p>
-                        </div>
-                        
                         <ui:repeat value="#{gConstraintsController.results}" var="result">
                             <div class="table-genetic-container">
                                 <table class="table-genetic">

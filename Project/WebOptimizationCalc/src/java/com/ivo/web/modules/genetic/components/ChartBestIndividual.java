@@ -30,10 +30,9 @@ public class ChartBestIndividual implements Serializable {
 
     private void createLineModels() {
         lineModel = initCategoryModel();
-        lineModel.setTitle("Лучшие особи в каждом поколении");
+        lineModel.setTitle("График лучших особей в каждом поколении");
         lineModel.setLegendPosition("e");
-        lineModel.setShowPointLabels(true);
-        lineModel.getAxes().put(AxisType.X, new CategoryAxis("Особь"));
+        lineModel.getAxes().put(AxisType.X, new CategoryAxis("Поколение"));
         
         Axis yAxis = lineModel.getAxis(AxisType.Y);
         yAxis.setLabel("Особи");
@@ -53,6 +52,10 @@ public class ChartBestIndividual implements Serializable {
             }
         }).get().getResultBestIndividual();
         
+        // inc bounds, for normally view result
+        min -= 5;
+        max += 5;
+        
         yAxis.setMin(min);
         yAxis.setMax(max);
     }
@@ -61,9 +64,12 @@ public class ChartBestIndividual implements Serializable {
         LineChartModel model = new LineChartModel();
         
         ChartSeries x_Generation = new ChartSeries();
-        x_Generation.setLabel("Поколение");
+        x_Generation.setLabel("Значение особи");
+        
+        int step = 4;
+        
         // values
-        for (int i = 0; i < resultPoints.size(); i++) {
+        for (int i = 0; i < resultPoints.size(); i += step) {
             double resultBestInd = resultPoints.get(i).getResultBestIndividual();
             x_Generation.set(i, resultBestInd);
         }
