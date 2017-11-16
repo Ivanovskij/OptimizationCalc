@@ -1,0 +1,64 @@
+/* 
+    Created on : 16.11.2017, 22:31:09
+    Author     : IOAdmin
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #efefef;
+}
+
+#page-container {
+    background: #fff;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.clear {
+    clear: both;
+}
+
+header {
+    display: block;
+    height: 90px;
+    background-color: #fafafa;
+    border-bottom: solid 1px #dcdde0;
+    margin-bottom: 30px;
+}
+
+header h3 {
+    color: #ff0000;
+    text-transform: uppercase;
+    line-height: 80px;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+.nav {
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.nav li a {
+    background: #fff;
+    border: 1px solid #efefef;
+    color: #000;
+    float: left;
+    padding: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.error-info {
+    color: #EF3B3A;
+}
+

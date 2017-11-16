@@ -4,17 +4,42 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>#{msg.title_error}</title>
+        <h:outputStylesheet library="css" name="error.css"/>
     </h:head>
     <h:body>
-        <h:outputText value="Error Code: #{errorHandler.statusCode}"></h:outputText>
-        <br />
-        <h:outputText value="Error Desscription: #{errorHandler.message}"></h:outputText>
-        <br />
-        <h:outputText value="Exception Type: #{errorHandler.exceptionType}"></h:outputText>
-        <br />
-        <h:outputText value="Exception Calss: #{errorHandler.exception}"></h:outputText>
-        <br />
-        <h:outputText value="Request URI : #{errorHandler.requestURI}"></h:outputText>
+        <header>
+            <h3>Ошибка</h3>
+        </header>
+        
+        <div id="page-container">
+           <main>
+               <div class="nav">
+                   <h:form>
+                        <ul>
+                            <li>
+                                <h:commandLink action="home"
+                                               value="Главная"/>
+                            </li>
+                        </ul>
+                   </h:form>
+                   <div class="clear"></div>
+               </div>
+               
+               <div class="error-info">
+                   <p>
+                    <h:outputText value="Error Code: #{errorHandler.statusCode}"></h:outputText>
+                    <br />
+                    <h:outputText value="Error Desscription: #{errorHandler.message}"></h:outputText>
+                    <br />
+                    <h:outputText value="Exception Type: #{errorHandler.exceptionType}"></h:outputText>
+                    <br />
+                    <h:outputText value="Exception Calss: #{errorHandler.exception}"></h:outputText>
+                    <br />
+                    <h:outputText value="Request URI : #{errorHandler.requestURI}"></h:outputText>
+                </p>
+               </div>
+           </main>
+       </div>
     </h:body>
 </html>
 
