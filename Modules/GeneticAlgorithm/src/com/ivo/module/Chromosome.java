@@ -4,6 +4,7 @@ import com.ivo.utils.BinaryUtil;
 import com.ivo.utils.Config;
 import com.ivo.utils.Parameters;
 import com.ivo.utils.RandomUtil;
+import java.util.Random;
 
 /**
  *
@@ -42,6 +43,22 @@ public class Chromosome {
 
         setChromosomes(res);
     }
+    
+    /*public void createRandomGenes() {
+        final int arg_size = Parameters.get(Config.ARG_SIZE).asInteger();
+        final int xMin = Parameters.get(Config.X_MIN).asInteger();
+        final int xMax = Parameters.get(Config.X_MAX).asInteger();
+        
+        final Double[] res = new Double[arg_size];
+        
+        for (int i = 0; i < arg_size; i++) {
+            double rand = RandomUtil.getRandomRangeDouble(xMin, xMax);
+            res[i] = rand;
+        }
+
+        String[] binary = BinaryUtil.doubleArrToBinaryArr(res);
+        setChromosomes(binary);
+    }*/
     
     
     // *************************************

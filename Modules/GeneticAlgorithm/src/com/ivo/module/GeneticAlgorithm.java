@@ -7,6 +7,7 @@ import com.ivo.utils.Parameters;
 import com.ivo.utils.RandomUtil;
 import com.ivo.utils.RoundUtil;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -345,6 +346,9 @@ public class GeneticAlgorithm implements BaseGenetic {
                 }
             }
         }
+        
+        System.out.println(max);
+        System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));
         
         // set results
         bestIndividual = new Chromosome();
