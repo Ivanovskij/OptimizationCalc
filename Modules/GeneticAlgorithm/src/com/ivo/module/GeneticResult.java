@@ -17,7 +17,8 @@ public class GeneticResult implements Serializable {
     private Chromosome bestIndividual;
     private Integer[] pointsIntBestIndividual;
     private Double[] pointsDoubleBestIndividual;
-    private double resultBestIndividual;
+    private double resultBestIndividualDouble;
+    private int resultBestIndividualInt;
 
     public GeneticResult() {
     }
@@ -78,12 +79,20 @@ public class GeneticResult implements Serializable {
         this.bestIndividual = bestIndividual;
     }
 
-    public double getResultBestIndividual() {
-        return resultBestIndividual;
+    public double getResultBestIndividualDouble() {
+        return resultBestIndividualDouble;
     }
 
-    public void setResultBestIndividual(double resultBestIndividual) {
-        this.resultBestIndividual = resultBestIndividual;
+    public void setResultBestIndividualDouble(double resultBestIndividualDouble) {
+        this.resultBestIndividualDouble = resultBestIndividualDouble;
+    }
+
+    public int getResultBestIndividualInt() {
+        return resultBestIndividualInt;
+    }
+
+    public void setResultBestIndividualInt(int resultBestIndividualInt) {
+        this.resultBestIndividualInt = resultBestIndividualInt;
     }
 
     public Integer[] getPointsIntBestIndividual() {

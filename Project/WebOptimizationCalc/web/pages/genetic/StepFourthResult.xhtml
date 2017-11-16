@@ -52,17 +52,20 @@
                         <div class="optimal-result-container">
                             <div class="result-best-of-all">
                                 <span class="best-individual">
-                                    Оптимальный результат = #{gConstraintsController.bestIndividualOfAll.resultBestIndividual}
+                                    Оптимальный результат[целое] = #{gConstraintsController.bestIndividualOfAll.resultBestIndividualInt}
+                                </span>
+                                <span class="best-individual">
+                                    Оптимальный результат[точное] = #{gConstraintsController.bestIndividualOfAll.resultBestIndividualDouble}
                                 </span>
                                 <p class="best-ind-int">
-                                    <h:outputText value="x[integer] = "/>
+                                    <h:outputText value="x[целое] = "/>
                                     <ui:repeat value="#{gConstraintsController.bestIndividualOfAll.pointsIntBestIndividual}" 
                                                var="intPoint">
                                         <h:outputText value="[#{intPoint}]"/>
                                     </ui:repeat>
                                 </p>
                                 <p class="best-ind-double">
-                                    <h:outputText value="x[double] = "/>
+                                    <h:outputText value="x[точное] = "/>
                                     <ui:repeat value="#{gConstraintsController.bestIndividualOfAll.pointsDoubleBestIndividual}" 
                                                var="doublePoint">
                                         <h:outputText value="[#{doublePoint}]"/>
@@ -112,16 +115,16 @@
 
                             <div class="result-best-ind">
                                 <span class="best-individual">
-                                    Лучшая особь в поколении = #{result.resultBestIndividual}
+                                    Лучшая особь в поколении = #{result.resultBestIndividualDouble}
                                 </span>
                                 <p class="best-ind-int">
-                                    <h:outputText value="x[integer] = "/>
+                                    <h:outputText value="x[целое] = "/>
                                     <ui:repeat value="#{result.pointsIntBestIndividual}" var="intPoint">
                                         <h:outputText value="[#{intPoint}]"/>
                                     </ui:repeat>
                                 </p>
                                 <p class="best-ind-double">
-                                    <h:outputText value="x[double] = "/>
+                                    <h:outputText value="x[точное] = "/>
                                     <ui:repeat value="#{result.pointsDoubleBestIndividual}" var="doublePoint">
                                         <h:outputText value="[#{doublePoint}]"/>
                                     </ui:repeat>

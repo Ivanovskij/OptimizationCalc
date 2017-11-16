@@ -39,6 +39,12 @@ public class RoundUtil {
         int decimal = (int)number;
         double after_decimal = before_one_decimal - decimal;
         
+        // if after_decimal == 0
+        // number = integer; thats cool.
+        if (after_decimal == 0) {
+            return decimal;
+        }
+        
         int result;
         if (after_decimal < 0.5) {
             result = (int)(before_one_decimal - after_decimal);

@@ -347,8 +347,8 @@ public class GeneticAlgorithm implements BaseGenetic {
             }
         }
         
-        System.out.println(max);
-        System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));
+        /*System.out.println(max);
+        System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));*/
         
         // set results
         bestIndividual = new Chromosome();
@@ -392,7 +392,9 @@ public class GeneticAlgorithm implements BaseGenetic {
         gresult.setPointsIntBestIndividual(argsInt);
         
         // set result best individual
-        gresult.setResultBestIndividual(resultBestIndividual);
+        gresult.setResultBestIndividualDouble(resultBestIndividual);
+        int resultBestIndividualInt = RoundUtil.roundToInt(resultBestIndividual);
+        gresult.setResultBestIndividualInt(resultBestIndividualInt);
         
         results.add(gresult);
     }

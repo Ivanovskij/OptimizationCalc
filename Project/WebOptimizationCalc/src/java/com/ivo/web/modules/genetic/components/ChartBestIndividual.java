@@ -38,19 +38,19 @@ public class ChartBestIndividual implements Serializable {
         yAxis.setLabel("Особи");
         
         // set axis min, max
-        double min = resultPoints.stream().min(new Comparator<GeneticResult>() {
+        int min = resultPoints.stream().min(new Comparator<GeneticResult>() {
             @Override
             public int compare(GeneticResult g1, GeneticResult g2) {
-                return Double.compare(g1.getResultBestIndividual(), g2.getResultBestIndividual());
+                return Double.compare(g1.getResultBestIndividualInt(), g2.getResultBestIndividualInt());
             }
-        }).get().getResultBestIndividual();
+        }).get().getResultBestIndividualInt();
         
-        double max = resultPoints.stream().max(new Comparator<GeneticResult>() {
+        int max = resultPoints.stream().max(new Comparator<GeneticResult>() {
             @Override
             public int compare(GeneticResult g1, GeneticResult g2) {
-                return Double.compare(g1.getResultBestIndividual(), g2.getResultBestIndividual());
+                return Double.compare(g1.getResultBestIndividualInt(), g2.getResultBestIndividualInt());
             }
-        }).get().getResultBestIndividual();
+        }).get().getResultBestIndividualInt();
         
         // inc bounds, for normally view result
         min -= 5;
@@ -70,7 +70,7 @@ public class ChartBestIndividual implements Serializable {
         
         // values
         for (int i = 0; i < resultPoints.size(); i += step) {
-            double resultBestInd = resultPoints.get(i).getResultBestIndividual();
+            double resultBestInd = resultPoints.get(i).getResultBestIndividualDouble();
             x_Generation.set(i, resultBestInd);
         }
 
