@@ -1,10 +1,12 @@
 package com.ivo.module;
 
+import java.io.Serializable;
+
 /**
  *
  * @author IOAdmin
  */
-public class GeneticResult {
+public class GeneticResult implements Serializable {
 
     private int currentGeneration;
     private int countDead;

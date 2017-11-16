@@ -4,11 +4,13 @@ import com.ivo.module.GeneticResult;
 import com.ivo.web.modules.genetic.beans.ArgsBean;
 import com.ivo.web.modules.genetic.beans.FunctionBean;
 import com.ivo.web.modules.genetic.beans.GeneticParamsBean;
+import com.ivo.web.modules.genetic.components.ChartBestIndividual;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.primefaces.model.chart.LineChartModel;
 
 /**
  *
@@ -38,6 +40,9 @@ public class GConstraintsController implements Serializable {
     // results
     private List<GeneticResult> results;
     private GeneticResult bestIndividualOfAll;
+    
+    // chart
+    private LineChartModel lineModel;
 
     public GConstraintsController() {
     }
@@ -57,6 +62,9 @@ public class GConstraintsController implements Serializable {
                 argValues, funcValues, params);
             setResults(gc.calculate());
             setBestIndividualOfAll(results.get(results.size() - 1));
+            
+            ChartBestIndividual chart = new ChartBestIndividual(results);
+            setLineModel(chart.getLineModel());
         } catch (Exception ex) {
             throw new Exception("handleThirdStep() -> " + ex.getMessage());
         }
@@ -153,5 +161,13 @@ public class GConstraintsController implements Serializable {
 
     public void setBestIndividualOfAll(GeneticResult bestIndividualOfAll) {
         this.bestIndividualOfAll = bestIndividualOfAll;
+    }
+
+    public LineChartModel getLineModel() {
+        return lineModel;
+    }
+
+    public void setLineModel(LineChartModel lineModel) {
+        this.lineModel = lineModel;
     }
 }
