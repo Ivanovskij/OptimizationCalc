@@ -90,6 +90,91 @@ main {
     line-height: 1.4;
 }
 
+/* problem information */
+.problem-container {
+    border-bottom: 2px solid #1a5f8c;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    text-align: justify;
+    
+}
+
+.probleb-theme {
+    padding-bottom: 10px;
+}
+
+.theme, 
+.problem-task {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.problem-table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Arial, Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.problem-table th, 
+.problem-table td:first-child {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+}
+.problem-table th, 
+.problem-table td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+    padding: 10px;
+}
+.problem-table td {
+    background: #D8E6F3;
+}
+.problem-table th:first-child, 
+.problem-table td:first-child {
+    text-align: left;
+}
+
+.problem-description ol {
+    list-style: lower-latin;
+    margin-left: 50px;
+}
+
+/* problem-calc */
+.problem-calc-container {
+    background: #f2f9ff;
+    border: 2px solid #1a5f8c;
+    padding: 15px;
+    text-align: center;
+}
+
+.manual {
+    border-bottom: 2px solid #1a5f8c;
+    color: #007299;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.button {
+    background: rgba(3, 77, 151, 1);
+    border: none;
+    box-shadow: 0 1px 1px rgba(0,0,0,.3);
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    width: 195px;
+    margin: 10px auto;
+    padding: 10px;
+}
 
 /* ================== FOOTER ==================*/
 footer {
