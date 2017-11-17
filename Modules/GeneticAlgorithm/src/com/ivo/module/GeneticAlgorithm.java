@@ -44,6 +44,7 @@ public class GeneticAlgorithm implements BaseGenetic {
     private int gene_size;
     private int arg_size;
     private double mutation_percent;
+    private int maxOrMin;
     
     // init function and constraints
     private final Function function;
@@ -70,6 +71,7 @@ public class GeneticAlgorithm implements BaseGenetic {
         gene_size = Parameters.get(Config.GENE_SIZE).asInteger();
         arg_size = Parameters.get(Config.ARG_SIZE).asInteger();
         mutation_percent = Parameters.get(Config.MUTATION_PERCENT).asDouble();
+        maxOrMin = Parameters.get(Config.MAX_OR_MIN).asInteger();
     }
     
     @Override
@@ -330,6 +332,14 @@ public class GeneticAlgorithm implements BaseGenetic {
     }
     
     private Chromosome getBestIndividual() {
+        if (maxOrMin == 0) {
+            return getBestIndividualMin();
+        } else {
+            return getBestIndividualMax();
+        }
+    }
+    
+    private Chromosome getBestIndividualMax() {
         Chromosome res = curGenePool[0];
         
         Double[] args = BinaryUtil.binaryArrToNumberArr(curGenePool[0].getChromosomes());
@@ -351,11 +361,42 @@ public class GeneticAlgorithm implements BaseGenetic {
         System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));*/
         
         // set results
-        bestIndividual = new Chromosome();
-        bestIndividual.setChromosomes(res.getChromosomes());
-        resultBestIndividual = RoundUtil.round(max, 3);
+        setResultsBestIndividual(max, res);
         
         return res;
+    }
+    
+    private Chromosome getBestIndividualMin() {
+        Chromosome res = curGenePool[0];
+        
+        Double[] args = BinaryUtil.binaryArrToNumberArr(curGenePool[0].getChromosomes());
+        double r;
+        double min = function.getValueGoalFunction(args);
+
+        for (int i = 0; i < population_count; i++) {
+            args = BinaryUtil.binaryArrToNumberArr(curGenePool[i].getChromosomes());
+            r = function.getValueGoalFunction(args);
+            if (function.isInBounds(args)) {
+                if (min > r) {
+                    min = r;
+                    res = curGenePool[i];
+                }
+            }
+        }
+        
+        /*System.out.println(max);
+        System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));*/
+        
+        // set results
+        setResultsBestIndividual(min, res);
+        
+        return res;
+    }
+    
+    private void setResultsBestIndividual(double result, Chromosome ch) {
+        bestIndividual = new Chromosome();
+        bestIndividual.setChromosomes(ch.getChromosomes());
+        resultBestIndividual = RoundUtil.round(result, 3);
     }
 
     private void setInformationAboutGeneration() {

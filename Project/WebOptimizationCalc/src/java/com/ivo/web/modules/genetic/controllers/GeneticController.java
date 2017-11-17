@@ -63,6 +63,13 @@ public class GeneticController implements Serializable {
         
         String arg_size = params.getArg_size();
         
+        String tmpMaxOrMin = params.getMaxOrMin();
+        if (tmpMaxOrMin.equals("min")) {
+            tmpMaxOrMin = "0";
+        } else {
+            tmpMaxOrMin = "1";
+        }
+        
         // make constraints
         String[] constraints = getContstraints();
         
@@ -84,7 +91,8 @@ public class GeneticController implements Serializable {
         */
         
         // get results
-        GeneticExecute ga = new GeneticExecute(xMin, xMax, max_generations, population_count, arg_size);
+        GeneticExecute ga = new GeneticExecute(xMin, xMax, max_generations, 
+                population_count, arg_size, tmpMaxOrMin);
         List<GeneticResult> results = ga.execute(function, constraints, constraintsWithOutCondition);
         return results;
     }

@@ -19,6 +19,8 @@ public class GeneticParamsBean implements Serializable {
     private String population_count;
     
     private String arg_size;
+    
+    private String maxOrMin;
 
     public GeneticParamsBean() {
     }
@@ -61,5 +63,13 @@ public class GeneticParamsBean implements Serializable {
 
     public void setArg_size(String arg_size) {
         this.arg_size = arg_size;
+    }
+
+    public String getMaxOrMin() {
+        return maxOrMin;
+    }
+
+    public void setMaxOrMin(String maxOrMin) {
+        this.maxOrMin = maxOrMin;
     }
 }

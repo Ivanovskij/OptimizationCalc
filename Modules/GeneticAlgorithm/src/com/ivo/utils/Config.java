@@ -18,5 +18,7 @@ public class Config {
     public static final String X_MAX = "xMax";
     
     public static final String ARG_SIZE = "arg_size";
+    
+    public static final String MAX_OR_MIN = "maxOrMin";
 
 }
