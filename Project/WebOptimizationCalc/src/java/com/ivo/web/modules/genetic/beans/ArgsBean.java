@@ -32,6 +32,8 @@ public class ArgsBean implements Serializable {
             tmpCondition = "<=";
         } else if (condition.equals("≥")){
             tmpCondition = ">=";
+        } else if (condition.equals("=")) {
+            tmpCondition = "=";
         } else {
             throw new Exception("Неизвестное условие: " + condition);
         }

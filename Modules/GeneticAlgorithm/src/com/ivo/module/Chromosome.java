@@ -4,13 +4,13 @@ import com.ivo.utils.BinaryUtil;
 import com.ivo.utils.Config;
 import com.ivo.utils.Parameters;
 import com.ivo.utils.RandomUtil;
-import java.util.Random;
+import java.io.Serializable;
 
 /**
  *
  * @author IOAdmin
  */
-public class Chromosome {
+public class Chromosome implements Serializable {
 
     private String[] chromosomes;
     private double result;

@@ -14,7 +14,7 @@ public class BinaryUtil {
      */
     public static double binaryToNumber(String value) {
         double result = Double.longBitsToDouble(new BigInteger(value, 2).longValue());
-        result = RoundUtil.round(result, 9);
+        result = RoundUtil.round(result, 3);
         return result;
     }
     

@@ -78,6 +78,9 @@ public class Parser {
     private Expression conditional() {
         Expression result = additive();
         
+        if (match(TokenType.EQ)) {
+            return new ConditionalExpression(TokenType.EQ, result, additive());
+        }
         if (match(TokenType.LT)) {
             return new ConditionalExpression(TokenType.LT, result, additive());
         }

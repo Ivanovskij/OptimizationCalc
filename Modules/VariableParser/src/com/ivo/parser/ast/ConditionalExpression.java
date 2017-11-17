@@ -25,6 +25,7 @@ public class ConditionalExpression implements Expression {
         
         boolean result;
         switch (type) {
+            case EQ: result = value1.equals(value2); break;
             case LT: result = value1 > value2; break;
             case LTEQ: result = value1 >= value2; break;
             case GT: result = value1 < value2; break;
