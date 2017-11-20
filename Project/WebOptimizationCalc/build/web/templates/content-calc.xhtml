@@ -93,9 +93,11 @@
                     <span>Получить оптимальное решение:</span>
                 </p>
                 <h:form>
-                    <h:commandButton value="Симплекс-метод" 
+                    <h:commandButton action="common_simplex" 
+                                     value="Симплекс-метод" 
                                      styleClass="button simplex"/>
-                    <h:commandButton value="Генетический алгоритм" 
+                    <h:commandButton action="common_genetic"
+                                     value="Генетический алгоритм" 
                                      styleClass="button genetic"/>
                 </h:form>
             </div>

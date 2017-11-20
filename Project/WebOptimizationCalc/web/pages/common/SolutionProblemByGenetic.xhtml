@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>IGNORED</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="titleHead">
+                #{msg.title_genetic}
+            </ui:define>
+            
+            <ui:define name="about-calc">
+                <div class="text__about_method">
+                    <p>
+                        Разработка проекта решения оптимизационной задачи выбора проектов для финансирования.
+                    </p>
+                    <p>
+                        <table class="problem-table">
+                            <tr>
+                                <th>Проект</th>
+                                <th>Период 1</th>
+                                <th>Период 2</th>
+                                <th>Период 3</th>
+                                <th>Период 4</th>
+                                <th>Прибыль</th>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>8</td>
+                                <td>8</td>
+                                <td>10</td>
+                                <td>10</td>
+                                <td>21</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>7</td>
+                                <td>9</td>
+                                <td>9</td>
+                                <td>11</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>5</td>
+                                <td>7</td>
+                                <td>9</td>
+                                <td>11</td>
+                                <td>16</td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>9</td>
+                                <td>8</td>
+                                <td>8</td>
+                                <td>6</td>
+                                <td>17.5</td>
+                            </tr>
+                            <tr>
+                                <td>Ресурс банка (ден. ед.)</td>
+                                <td>22</td>
+                                <td>25</td>
+                                <td>38</td>
+                                <td>30</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </p>
+                </div>
+            </ui:define>
+            
+            <ui:define name="content-calc">
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

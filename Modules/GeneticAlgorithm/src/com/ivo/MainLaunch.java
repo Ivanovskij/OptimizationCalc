@@ -57,7 +57,7 @@ public class MainLaunch {
         
         
         results = new GeneticExecute("-10", "-100", 
-            "100", "10000", "4", "1").execute(goalFunction, constraints, constraintsWithOutCondition);
+            "50", "10000", "4", "1").execute(goalFunction, constraints, constraintsWithOutCondition);
         
         for (GeneticResult r : results) {
             System.out.println(r.getResultBestIndividualDouble());
