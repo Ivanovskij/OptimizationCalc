@@ -24,7 +24,7 @@ public class Chromosome implements Serializable {
     }
     
     
-    public void createRandomGenes() {
+    /*public void createRandomGenes() {
         final int arg_size = Parameters.get(Config.ARG_SIZE).asInteger();
         final int gene_size = Parameters.get(Config.GENE_SIZE).asInteger();
         
@@ -42,9 +42,9 @@ public class Chromosome implements Serializable {
         }
 
         setChromosomes(res);
-    }
+    }*/
     
-    /*public void createRandomGenes() {
+    public void createRandomGenes() {
         final int arg_size = Parameters.get(Config.ARG_SIZE).asInteger();
         final int xMin = Parameters.get(Config.X_MIN).asInteger();
         final int xMax = Parameters.get(Config.X_MAX).asInteger();
@@ -58,7 +58,7 @@ public class Chromosome implements Serializable {
 
         String[] binary = BinaryUtil.doubleArrToBinaryArr(res);
         setChromosomes(binary);
-    }*/
+    }
     
     
     // *************************************

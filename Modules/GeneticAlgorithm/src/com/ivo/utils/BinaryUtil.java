@@ -25,12 +25,13 @@ public class BinaryUtil {
     public static String doubleToBinary(double value) {
         String binary = Long.toBinaryString(Double.doubleToRawLongBits(value));
         if (binary.length() < 64) {
-            String tmp = binary;
+            String tmpBinary = binary;
             // add to start zerows
-            for (int i = 0; i < 64 - binary.length(); i++) {
+            binary = "";
+            for (int i = 0; i < 64 - tmpBinary.length(); i++) {
                 binary += "0";
             }
-            binary += tmp;
+            binary += tmpBinary;
         }
         return binary;
     }
