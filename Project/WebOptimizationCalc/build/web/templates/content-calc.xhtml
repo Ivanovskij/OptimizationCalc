@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>IGNORED</title>
     </h:head>
@@ -93,12 +94,20 @@
                     <span>Получить оптимальное решение:</span>
                 </p>
                 <h:form>
+                    <div id="loading_wrapper">
+                        <p>Идет загрузка решения...</p>
+                    </div>
+                    
                     <h:commandButton action="#{commonController.handleSimplex()}" 
                                      value="Симплекс-метод" 
-                                     styleClass="button simplex"/>
+                                     styleClass="button simplex">
+                        <f:ajax onevent="showProgress"/>
+                    </h:commandButton>
                     <h:commandButton action="#{commonController.handleGenetic()}"
                                      value="Генетический алгоритм" 
-                                     styleClass="button genetic"/>
+                                     styleClass="button genetic">
+                        <f:ajax onevent="showProgress"/>
+                    </h:commandButton>
                 </h:form>
             </div>
         </ui:composition>

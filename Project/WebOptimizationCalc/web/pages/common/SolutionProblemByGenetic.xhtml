@@ -73,7 +73,159 @@
             </ui:define>
             
             <ui:define name="content-calc">
-                
+                <div class="genetic-container">
+                    <div class="genetic-result-container">
+                        <span class="step-name">
+                            Результат
+                        </span>
+                        
+                        <div class="optimal-result-container">
+                            <div class="result-best-of-all" style="border:none">
+                                <p class="manual-problems">
+                                    <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                        Оптимальный план:
+                                    </span>
+                                 </p>
+                                <span class="best-individual">
+                                    Оптимальный результат[целое] = #{commonController.resultsGenetic[0].resultBestIndividualInt}
+                                </span>
+                                <span class="best-individual">
+                                    Оптимальный результат[точное] = #{commonController.resultsGenetic[0].resultBestIndividualDouble}
+                                </span>
+                                <p class="best-ind-int">
+                                    <h:outputText value="x[целое] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[0].pointsIntBestIndividual}" 
+                                               var="intPoint">
+                                        <h:outputText value="[#{intPoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                                <p class="best-ind-double">
+                                    <h:outputText value="x[точное] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[0].pointsDoubleBestIndividual}" 
+                                               var="doublePoint">
+                                        <h:outputText value="[#{doublePoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                            </div>
+                            
+                            <!-- ======== conditionAMore ====== -->
+                            <div class="result-best-of-all" style="border:none">
+                                <p class="manual-problems">
+                                    <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                        наличность (ресурс) банка в каждом периоде времени увеличится на 15%:
+                                    </span>
+                                 </p>
+                                <span class="best-individual">
+                                    Оптимальный результат[целое] = #{commonController.resultsGenetic[1].resultBestIndividualInt}
+                                </span>
+                                <span class="best-individual">
+                                    Оптимальный результат[точное] = #{commonController.resultsGenetic[1].resultBestIndividualDouble}
+                                </span>
+                                <p class="best-ind-int">
+                                    <h:outputText value="x[целое] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[1].pointsIntBestIndividual}" 
+                                               var="intPoint">
+                                        <h:outputText value="[#{intPoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                                <p class="best-ind-double">
+                                    <h:outputText value="x[точное] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[1].pointsDoubleBestIndividual}" 
+                                               var="doublePoint">
+                                        <h:outputText value="[#{doublePoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                            </div>
+                            
+                            <!-- ======== conditionALess ====== -->
+                            <div class="result-best-of-all" style="border:none">
+                                <p class="manual-problems">
+                                    <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                        наличность (ресурс) банка в каждом периоде времени уменьшится на 15%:
+                                    </span>
+                                 </p>
+                                <span class="best-individual">
+                                    Оптимальный результат[целое] = #{commonController.resultsGenetic[2].resultBestIndividualInt}
+                                </span>
+                                <span class="best-individual">
+                                    Оптимальный результат[точное] = #{commonController.resultsGenetic[2].resultBestIndividualDouble}
+                                </span>
+                                <p class="best-ind-int">
+                                    <h:outputText value="x[целое] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[2].pointsIntBestIndividual}" 
+                                               var="intPoint">
+                                        <h:outputText value="[#{intPoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                                <p class="best-ind-double">
+                                    <h:outputText value="x[точное] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[2].pointsDoubleBestIndividual}" 
+                                               var="doublePoint">
+                                        <h:outputText value="[#{doublePoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                            </div>
+                            
+                            <!-- ======== conditionB ====== -->
+                            <div class="result-best-of-all" style="border:none">
+                                <p class="manual-problems">
+                                    <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                        прибыль от реализации каждого проекта изменится на 10%:
+                                    </span>
+                                 </p>
+                                <span class="best-individual">
+                                    Оптимальный результат[целое] = #{commonController.resultsGenetic[3].resultBestIndividualInt}
+                                </span>
+                                <span class="best-individual">
+                                    Оптимальный результат[точное] = #{commonController.resultsGenetic[3].resultBestIndividualDouble}
+                                </span>
+                                <p class="best-ind-int">
+                                    <h:outputText value="x[целое] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[3].pointsIntBestIndividual}" 
+                                               var="intPoint">
+                                        <h:outputText value="[#{intPoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                                <p class="best-ind-double">
+                                    <h:outputText value="x[точное] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[3].pointsDoubleBestIndividual}" 
+                                               var="doublePoint">
+                                        <h:outputText value="[#{doublePoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                            </div>
+                            
+                            <!-- ======== conditionC ====== -->
+                            <div class="result-best-of-all" style="border:none">
+                                <p class="manual-problems">
+                                    <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                        потребности проекта А в 3-м и 4-м периодах сократятся на 15%:
+                                    </span>
+                                 </p>
+                                <span class="best-individual">
+                                    Оптимальный результат[целое] = #{commonController.resultsGenetic[4].resultBestIndividualInt}
+                                </span>
+                                <span class="best-individual">
+                                    Оптимальный результат[точное] = #{commonController.resultsGenetic[4].resultBestIndividualDouble}
+                                </span>
+                                <p class="best-ind-int">
+                                    <h:outputText value="x[целое] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[4].pointsIntBestIndividual}" 
+                                               var="intPoint">
+                                        <h:outputText value="[#{intPoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                                <p class="best-ind-double">
+                                    <h:outputText value="x[точное] = "/>
+                                    <ui:repeat value="#{commonController.resultsGenetic[4].pointsDoubleBestIndividual}" 
+                                               var="doublePoint">
+                                        <h:outputText value="[#{doublePoint}]"/>
+                                    </ui:repeat>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>

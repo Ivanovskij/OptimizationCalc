@@ -1,6 +1,8 @@
 package com.ivo.web.modules.common.controllers;
 
+import com.ivo.GeneticExecute;
 import com.ivo.beans.ResultBean;
+import com.ivo.module.GeneticResult;
 import com.ivo.module.SimplexMethodForWeb;
 import java.io.Serializable;
 import java.util.List;
@@ -37,11 +39,52 @@ public class CommonController implements Serializable {
     // results simplex
     private final double[] resultGoalFunc;
     private final double[][] resultsX;
-    /* ========================= GENETIC ========================= */
     
+    /* ========================= GENETIC ========================= */
+    String goalFunction = "21 * x1 + 18 * x2 + 16 * x3 + 17.5 * x4";
+        
+    String[] constraints = {
+        "8 * x1 + 7 * x2 + 5 * x3 + 9 * x4 <= 22",
+        "8 * x1 + 9 * x2 + 7 * x3 + 8 * x4 <= 25",
+        "10 * x1 + 9* x2 + 9 * x3 + 7 * x4 <= 38",
+        "10 * x1 + 11 * x2 +  11 * x3 + 6 * x4 <= 30",
+        "1 * x1 + 0 * x2 + 0 * x3 + 0 * x4 >= 0",
+        "0 * x1 + 1 * x2 + 0 * x3 + 0 * x4 >= 0",
+        "0 * x1 + 0 * x2 + 1 * x3 + 0 * x4 >= 0",
+        "0 * x1 + 0 * x2 + 0 * x3 + 1 * x4 >= 0",
+    };
+
+    String[] constraintsWithOutCondition = {
+        "8 * x1 + 7 * x2 + 5 * x3 + 9 * x4",
+        "8 * x1 + 9 * x2 + 7 * x3 + 8 * x4",
+        "10 * x1 + 9* x2 + 9 * x3 + 7 * x4",
+        "10 * x1 + 11 * x2 +  11 * x3 + 6 * x4",
+        "1 * x1 + 0 * x2 + 0 * x3 + 0 * x4",
+        "0 * x1 + 1 * x2 + 0 * x3 + 0 * x4",
+        "0 * x1 + 0 * x2 + 1 * x3 + 0 * x4",
+        "0 * x1 + 0 * x2 + 0 * x3 + 1 * x4",
+    };
+    
+    // in params
+    private String xMin = "-100",
+            xMax = "100",
+            max_generation = "70",
+            population_count = "2000",
+            arg_size = "4",
+            maxOrMin = "1";     // 1 - max
+    
+    // results genetic
+    private final GeneticResult[] resultsGenetic;
+    
+    
+    /**
+     *  Constructor
+     */
     public CommonController() {
         resultGoalFunc = new double[countArgs + 1];
         resultsX = new double[countConstraints + 1][countArgs + 1];
+        
+        resultsGenetic = new GeneticResult[countArgs + 1];
     }
     
     
@@ -175,8 +218,77 @@ public class CommonController implements Serializable {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="CALCULATE GENETIC">
-    public List<ResultBean> calculateGenetic() {
-        return null;
+    public void calculateGenetic() {
+        calculateGeneticOriginal();
+        calculateGeneticAmore();
+        calculateGeneticALess();
+        calculateGeneticB();
+        calculateGeneticC();
+    }
+    
+    public void calculateGeneticOriginal() {
+        GeneticExecute ge = new GeneticExecute(xMin, xMax, max_generation, population_count, arg_size, maxOrMin);
+        GeneticResult result = ge.execute(goalFunction, constraints, constraintsWithOutCondition)
+                .get(Integer.valueOf(max_generation) - 1);
+        resultsGenetic[0] = result;
+    }
+    
+    // НАЛИЧНОСТЬ (РЕСУРС) БАНКА В КАЖДОМ ПЕРИОДЕ ВРЕМЕНИ УВЕЛИЧИТСЯ НА 15%:
+    public void calculateGeneticAmore() {
+        GeneticExecute ge = new GeneticExecute(xMin, xMax, max_generation, population_count, arg_size, maxOrMin);
+        
+        String[] conditionConstraint = constraints.clone();
+        
+        conditionConstraint[0] = "8 * x1 + 7 * x2 + 5 * x3 + 9 * x4 <= 25.3";
+        conditionConstraint[1] = "8 * x1 + 9 * x2 + 7 * x3 + 8 * x4 <= 28.75";
+        conditionConstraint[2] = "10 * x1 + 9* x2 + 9 * x3 + 7 * x4 <= 43.7";
+        conditionConstraint[3] = "10 * x1 + 11 * x2 +  11 * x3 + 6 * x4 <= 34.5";
+        
+        GeneticResult result = ge.execute(goalFunction, conditionConstraint, constraintsWithOutCondition)
+                .get(Integer.valueOf(max_generation) - 1);
+        resultsGenetic[1] = result;
+    }
+    
+    // НАЛИЧНОСТЬ (РЕСУРС) БАНКА В КАЖДОМ ПЕРИОДЕ ВРЕМЕНИ УМЕНЬШИТСЯ НА 15%:
+    public void calculateGeneticALess() {
+        GeneticExecute ge = new GeneticExecute(xMin, xMax, max_generation, population_count, arg_size, maxOrMin);
+        
+        String[] conditionConstraint = constraints.clone();
+        
+        conditionConstraint[0] = "8 * x1 + 7 * x2 + 5 * x3 + 9 * x4 <= 18.7";
+        conditionConstraint[1] = "8 * x1 + 9 * x2 + 7 * x3 + 8 * x4 <= 21.25";
+        conditionConstraint[2] = "10 * x1 + 9* x2 + 9 * x3 + 7 * x4 <= 32.3";
+        conditionConstraint[3] = "10 * x1 + 11 * x2 +  11 * x3 + 6 * x4 <= 25.5";
+        
+        GeneticResult result = ge.execute(goalFunction, conditionConstraint, constraintsWithOutCondition)
+                .get(Integer.valueOf(max_generation) - 1);
+        resultsGenetic[2] = result;
+    }
+    
+    // ПРИБЫЛЬ ОТ РЕАЛИЗАЦИИ КАЖДОГО ПРОЕКТА ИЗМЕНИТСЯ НА 10%:
+    public void calculateGeneticB() {
+        GeneticExecute ge = new GeneticExecute(xMin, xMax, max_generation, population_count, arg_size, maxOrMin);
+        
+        // * 0.85
+        String goalFuncCondition = "17.85 * x1 + 15.3 * x2 + 13.6 * x3 + 14.88 * x4";
+        
+        GeneticResult result = ge.execute(goalFuncCondition, constraints, constraintsWithOutCondition)
+                .get(Integer.valueOf(max_generation) - 1);
+        resultsGenetic[3] = result;
+    }
+    
+    // ПОТРЕБНОСТИ ПРОЕКТА А В 3-М И 4-М ПЕРИОДАХ СОКРАТЯТСЯ НА 15%:
+    public void calculateGeneticC() {
+        GeneticExecute ge = new GeneticExecute(xMin, xMax, max_generation, population_count, arg_size, maxOrMin);
+        
+        String[] conditionConstraint = constraints.clone();
+        
+        conditionConstraint[2] = "8.5 * x1 + 9* x2 + 9 * x3 + 7 * x4 <= 38";
+        conditionConstraint[3] = "8.5 * x1 + 11 * x2 +  11 * x3 + 6 * x4 <= 30";
+        
+        GeneticResult result = ge.execute(goalFunction, conditionConstraint, constraintsWithOutCondition)
+                .get(Integer.valueOf(max_generation) - 1);
+        resultsGenetic[4] = result;
     }
     // </editor-fold>
     
@@ -187,6 +299,7 @@ public class CommonController implements Serializable {
 
     
     public String handleGenetic() {
+        calculateGenetic();
         return "common_genetic";
     }
     
@@ -206,5 +319,9 @@ public class CommonController implements Serializable {
 
     public int getCountConstraints() {
         return countConstraints;
+    }
+
+    public GeneticResult[] getResultsGenetic() {
+        return resultsGenetic;
     }
 }
