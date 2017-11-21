@@ -20,14 +20,14 @@ public class CommonController implements Serializable {
     
     /* ========================= SIMPLEX ========================= */
     // on max - original
-    private double[][] tableSimplex = {
+    private final double[][] tableSimplex = {
         { 22, 8, 7, 5, 9, 1 },
         { 25, 8, 9, 7, 8, 1 },
         { 38, 10, 9, 9, 7, 1 },
         { 30, 10, 11, 11, 6, 1 },
         { 0, 21, 18, 16, 17.5, -1 } 
     };
-    private double freeMemberC = 0;     // by default 0
+    private final double freeMemberC = 0;     // by default 0
     
     // condition
     private static final double FIFTEEN_PERCENT = 1.15;
@@ -35,8 +35,8 @@ public class CommonController implements Serializable {
     private static final double NINTY_PERCENT = 0.90;
     
     // results simplex
-    private double[] resultGoalFunc;
-    private double[][] resultsX;
+    private final double[] resultGoalFunc;
+    private final double[][] resultsX;
     /* ========================= GENETIC ========================= */
     
     public CommonController() {
@@ -56,12 +56,10 @@ public class CommonController implements Serializable {
         return null;
     }
     
-    public List<ResultBean> calculateSimplexOriginal() throws Exception {
-        List<ResultBean> results;
-        
+    public void calculateSimplexOriginal() throws Exception {
         SimplexMethodForWeb s = new SimplexMethodForWeb(tableSimplex, freeMemberC);
         try {
-            results = s.calculate();
+            s.calculate();
             resultGoalFunc[0] = s.getResultGoalFunc();
             for (int i = 0; i < s.getResultsX().length; i++) {
                 resultsX[0][i] = s.getResultsX()[i];
@@ -69,14 +67,10 @@ public class CommonController implements Serializable {
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
-
-        return results;
     }
     
     // НАЛИЧНОСТЬ (РЕСУРС) БАНКА В КАЖДОМ ПЕРИОДЕ ВРЕМЕНИ УВЕЛИЧИТСЯ НА 15%:
-    public List<ResultBean> calculateSimplexAMore() throws Exception {
-        List<ResultBean> results;
-        
+    public void calculateSimplexAMore() throws Exception {
         double[][] conditionTableSimplex = copyOriginalMatrix();
         
         // cast table by condition A more
@@ -87,7 +81,7 @@ public class CommonController implements Serializable {
         
         SimplexMethodForWeb s = new SimplexMethodForWeb(conditionTableSimplex, freeMemberC);
         try {
-            results = s.calculate();
+            s.calculate();
             resultGoalFunc[1] = s.getResultGoalFunc();
             for (int i = 0; i < s.getResultsX().length; i++) {
                 resultsX[1][i] = s.getResultsX()[i];
@@ -95,14 +89,10 @@ public class CommonController implements Serializable {
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
-
-        return results;
     }
     
     // НАЛИЧНОСТЬ (РЕСУРС) БАНКА В КАЖДОМ ПЕРИОДЕ ВРЕМЕНИ УМЕНЬШИТСЯ НА 15%:
-    public List<ResultBean> calculateSimplexALess() throws Exception {
-        List<ResultBean> results;
-        
+    public void calculateSimplexALess() throws Exception {
         double[][] conditionTableSimplex = copyOriginalMatrix();
         
         // cast table by condition A less
@@ -113,7 +103,7 @@ public class CommonController implements Serializable {
         
         SimplexMethodForWeb s = new SimplexMethodForWeb(conditionTableSimplex, freeMemberC);
         try {
-            results = s.calculate();
+            s.calculate();
             resultGoalFunc[2] = s.getResultGoalFunc();
             for (int i = 0; i < s.getResultsX().length; i++) {
                 resultsX[2][i] = s.getResultsX()[i];
@@ -121,14 +111,10 @@ public class CommonController implements Serializable {
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
-
-        return results;
     }
     
     // ПРИБЫЛЬ ОТ РЕАЛИЗАЦИИ КАЖДОГО ПРОЕКТА ИЗМЕНИТСЯ НА 10%:
-    public List<ResultBean> calculateSimplexB() throws Exception {
-        List<ResultBean> results;
-        
+    public void calculateSimplexB() throws Exception {
         // ПРЕОБРАЗОВАТЬ TABLE, * 0.90 - прибыль уменьшилась (можно сделать чтобы увеличится)
         
         double[][] conditionTableSimplex = copyOriginalMatrix();
@@ -143,7 +129,7 @@ public class CommonController implements Serializable {
         
         SimplexMethodForWeb s = new SimplexMethodForWeb(conditionTableSimplex, freeMemberC);
         try {
-            results = s.calculate();
+            s.calculate();
             resultGoalFunc[3] = s.getResultGoalFunc();
             for (int i = 0; i < s.getResultsX().length; i++) {
                 resultsX[3][i] = s.getResultsX()[i];
@@ -151,17 +137,11 @@ public class CommonController implements Serializable {
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
-
-
-        return results;
     }
     
     // ПОТРЕБНОСТИ ПРОЕКТА А В 3-М И 4-М ПЕРИОДАХ СОКРАТЯТСЯ НА 15%:
-    public List<ResultBean> calculateSimplexC() throws Exception {
-        List<ResultBean> results;
-        
+    public void calculateSimplexC() throws Exception {
         // ПРЕОБРАЗОВАТЬ TABLE, * A (3) и A(4) * 0.85
-        
         double[][] conditionTableSimplex = copyOriginalMatrix();
         
         // cast table by condition C
@@ -173,7 +153,7 @@ public class CommonController implements Serializable {
         
         SimplexMethodForWeb s = new SimplexMethodForWeb(conditionTableSimplex, freeMemberC);
         try {
-            results = s.calculate();
+            s.calculate();
             resultGoalFunc[4] = s.getResultGoalFunc();
             for (int i = 0; i < s.getResultsX().length; i++) {
                 resultsX[4][i] = s.getResultsX()[i];
@@ -181,8 +161,6 @@ public class CommonController implements Serializable {
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
-
-        return results;
     }
     
     private double[][] copyOriginalMatrix() {
