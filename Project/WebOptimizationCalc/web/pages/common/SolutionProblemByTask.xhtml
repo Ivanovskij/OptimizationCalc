@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>IGNORED</title>
     </h:head>
@@ -73,10 +74,119 @@
             </ui:define>
             
             <ui:define name="content-calc">
+                <div class="simplex-container">
+                    <span class="step-name">
+                        Результат симплекс-метод
+                    </span>
+                    
+                    <div class="results-method">
+                        <!-- ======== original ====== -->
+                        <p class="manual">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                Оптимальный план:
+                            </span>
+                         </p>
+                        <p style="color: #ff1e00">
+                            Целевая функция = #{commonController.resultGoalFunc[0]}
+                        </p>
+                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <p style="color: #ff9500;">
+                                    <span style="float: left;">x[#{j + 1}] = </span>
+                                    <h:outputText value="#{commonController.getResultsX()[0][j]}" escape="false"/> 
+                                </p>
+                            </c:forEach>
+                        </div>
+                        
+                        <!-- ======== conditionAMore ====== -->
+                        <p class="manual-problems">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                наличность (ресурс) банка в каждом периоде времени увеличится на 15%:
+                            </span>
+                         </p>
+                        <p style="color: #ff1e00">
+                            Целевая функция = #{commonController.resultGoalFunc[1]}
+                        </p>
+                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <p style="color: #ff9500;">
+                                    <span style="float: left;">x[#{j + 1}] = </span>
+                                    <h:outputText value="#{commonController.getResultsX()[1][j]}" escape="false"/> 
+                                </p>
+                            </c:forEach>
+                        </div>
+                        
+                        <!-- ======== conditionALess ====== -->
+                        <p class="manual-problems">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                наличность (ресурс) банка в каждом периоде времени уменьшится на 15%:
+                            </span>
+                         </p>
+                        <p style="color: #ff1e00">
+                            Целевая функция = #{commonController.resultGoalFunc[2]}
+                        </p>
+                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <p style="color: #ff9500;">
+                                    <span style="float: left;">x[#{j + 1}] = </span>
+                                    <h:outputText value="#{commonController.getResultsX()[2][j]}" escape="false"/> 
+                                </p>
+                            </c:forEach>
+                        </div>
+                        
+                        <!-- ======== conditionB ====== -->
+                        <p class="manual-problems">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                прибыль от реализации каждого проекта изменится на 10%:
+                            </span>
+                         </p>
+                        <p style="color: #ff1e00">
+                            Целевая функция = #{commonController.resultGoalFunc[3]}
+                        </p>
+                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <p style="color: #ff9500;">
+                                    <span style="float: left;">x[#{j + 1}] = </span>
+                                    <h:outputText value="#{commonController.getResultsX()[3][j]}" escape="false"/> 
+                                </p>
+                            </c:forEach>
+                        </div>
+                        
+                        <!-- ======== conditionC ====== -->
+                        <p class="manual-problems">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                потребности проекта А в 3-м и 4-м периодах сократятся на 15%:
+                            </span>
+                         </p>
+                        <p style="color: #ff1e00">
+                            Целевая функция = #{commonController.resultGoalFunc[4]}
+                        </p>
+                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <p style="color: #ff9500;">
+                                    <span style="float: left;">x[#{j + 1}] = </span>
+                                    <h:outputText value="#{commonController.getResultsX()[4][j]}" escape="false"/> 
+                                </p>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ========== GENETIC ============= -->
                 <div class="genetic-container">
                     <div class="genetic-result-container">
                         <span class="step-name">
-                            Результат
+                            Результат генетический алгоритм
                         </span>
                         
                         <div class="optimal-result-container">

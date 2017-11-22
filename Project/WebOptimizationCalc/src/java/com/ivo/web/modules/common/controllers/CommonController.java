@@ -292,15 +292,10 @@ public class CommonController implements Serializable {
     }
     // </editor-fold>
     
-    public String handleSimplex() throws Exception {
+    public String handle() throws Exception {
         calculateSimplexConditions();
-        return "common_simplex";
-    }
-
-    
-    public String handleGenetic() {
         calculateGenetic();
-        return "common_genetic";
+        return "common_analisys";
     }
     
     /* ====================================================== */

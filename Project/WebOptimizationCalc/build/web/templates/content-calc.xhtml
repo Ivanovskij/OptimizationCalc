@@ -98,14 +98,9 @@
                         <p>Идет загрузка решения...</p>
                     </div>
                     
-                    <h:commandButton action="#{commonController.handleSimplex()}" 
-                                     value="Симплекс-метод" 
-                                     styleClass="button simplex">
-                        <f:ajax onevent="showProgress"/>
-                    </h:commandButton>
-                    <h:commandButton action="#{commonController.handleGenetic()}"
-                                     value="Генетический алгоритм" 
-                                     styleClass="button genetic">
+                    <h:commandButton action="#{commonController.handle()}"
+                                     value="Анализировать результаты" 
+                                     styleClass="button analysis">
                         <f:ajax onevent="showProgress"/>
                     </h:commandButton>
                 </h:form>

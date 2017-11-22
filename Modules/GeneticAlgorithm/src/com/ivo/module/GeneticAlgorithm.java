@@ -357,8 +357,8 @@ public class GeneticAlgorithm implements BaseGenetic {
             }
         }
         
-        /*System.out.println(max);
-        System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));*/
+        System.out.println(max);
+        System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));
         
         // set results
         setResultsBestIndividual(max, res);

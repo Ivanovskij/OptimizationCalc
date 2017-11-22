@@ -95,13 +95,13 @@ public class MainLaunch {
 //            "0 * x1 + 1 * x2",
 //        };
         
-        results = new GeneticExecute("-100", "100",
-            "100", "10000", "4", "1").execute(goalFunction, constraints, constraintsWithOutCondition);
+        results = new GeneticExecute("0", "1000",
+            "100", "4300", "4", "1").execute(goalFunction, constraints, constraintsWithOutCondition);
         
-        for (GeneticResult r : results) {
+        /*for (GeneticResult r : results) {
             System.out.println(r.getResultBestIndividualDouble());
             System.out.println(Arrays.toString(r.getPointsDoubleBestIndividual()));
-        }
+        }*/
     }
     
 }

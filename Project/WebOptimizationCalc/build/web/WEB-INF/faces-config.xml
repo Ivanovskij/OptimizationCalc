@@ -85,15 +85,8 @@
     <!-- ============ COMMON =================== -->
     <navigation-rule>
         <navigation-case>
-            <from-outcome>common_simplex</from-outcome>
-            <to-view-id>pages/common/SolutionProblemBySimplex.xhtml</to-view-id>
-            <redirect>true</redirect>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <navigation-case>
-            <from-outcome>common_genetic</from-outcome>
-            <to-view-id>pages/common/SolutionProblemByGenetic.xhtml</to-view-id>
+            <from-outcome>common_analisys</from-outcome>
+            <to-view-id>pages/common/SolutionProblemByTask.xhtml</to-view-id>
             <redirect>true</redirect>
         </navigation-case>
     </navigation-rule>
