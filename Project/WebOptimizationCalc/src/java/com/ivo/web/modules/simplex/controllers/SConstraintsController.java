@@ -38,8 +38,10 @@ public class SConstraintsController implements Serializable {
     // need for simplex for word
     private double[][] table;       
     private List<ResultBean> results;
-    private double resultGoalFunc;
-    private double[] resultsX;
+    private double resultGoalFuncDouble;
+    private double[] resultsXDouble;
+    private int resultGoalFuncInt;
+    private int[] resultsXInt;
     
     /**
      * Creates a new instance of ConstraintsBean
@@ -58,8 +60,10 @@ public class SConstraintsController implements Serializable {
             
             try {
                 results = sc.calculate();
-                this.resultGoalFunc = sc.getResultGoalFunc();
-                this.resultsX = sc.getResultsX();
+                this.resultGoalFuncDouble = sc.getResultGoalFuncDouble();
+                this.resultsXDouble = sc.getResultsXDouble();
+                this.resultGoalFuncInt = sc.getResultGoalFuncInt();
+                this.resultsXInt = sc.getResultsXInt();
                 this.table = sc.getTableValues();
             } catch (Exception ex) {
                 throw new Exception(ex.getMessage());
@@ -160,24 +164,40 @@ public class SConstraintsController implements Serializable {
         this.results = results;
     }
 
-    public double getResultGoalFunc() {
-        return resultGoalFunc;
+    public double getResultGoalFuncDouble() {
+        return resultGoalFuncDouble;
     }
 
-    public void setResultGoalFunc(double resultGoalFunc) {
-        this.resultGoalFunc = resultGoalFunc;
+    public void setResultGoalFuncDouble(double resultGoalFuncDouble) {
+        this.resultGoalFuncDouble = resultGoalFuncDouble;
     }
 
     public Double[] getResultsX() {
-        Double[] result = new Double[resultsX.length];
-        for (int i = 0; i < resultsX.length; i++) {
-            result[i] = new Double(resultsX[i]);
+        Double[] result = new Double[resultsXDouble.length];
+        for (int i = 0; i < resultsXDouble.length; i++) {
+            result[i] = new Double(resultsXDouble[i]);
         }
         return result;
     }
 
-    public void setResultsX(double[] resultsX) {
-        this.resultsX = resultsX;
+    public void setResultsXDouble(double[] resultsXDouble) {
+        this.resultsXDouble = resultsXDouble;
+    }
+
+    public double getResultGoalFuncInt() {
+        return resultGoalFuncInt;
+    }
+
+    public void setResultGoalFuncInt(int resultGoalFuncInt) {
+        this.resultGoalFuncInt = resultGoalFuncInt;
+    }
+
+    public int[] getResultsXInt() {
+        return resultsXInt;
+    }
+
+    public void setResultsXInt(int[] resultsXInt) {
+        this.resultsXInt = resultsXInt;
     }
 
     public double[][] getTable() {

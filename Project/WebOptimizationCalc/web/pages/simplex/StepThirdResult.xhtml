@@ -78,16 +78,25 @@
                                 </span>
                              </p>
                             <p style="color: #ff1e00">
-                                Целевая функция = #{sConstraintsController.resultGoalFunc}
+                                Целевая функция[целое] = #{sConstraintsController.resultGoalFuncInt}
                             </p>
-                            <div class="x-values" style="width: 130px; margin: 0 auto;">
+                            <p style="color: #ff1e00">
+                                Целевая функция[точное] = #{sConstraintsController.resultGoalFuncDouble}
+                            </p>
+                            <div class="x-values">
+                                <h:outputText value="x[целое] = "/>
                                 <c:forEach var="j" 
                                    begin="0" 
                                    end="#{sConstraintsController.countArgs - 1}">
-                                    <p style="color: #ff9500;">
-                                        <span style="float: left;">x[#{j + 1}] = </span>
-                                        <h:outputText value="#{sConstraintsController.getResultsX()[j]}" escape="false"/> 
-                                    </p>
+                                    <h:outputText value="[#{sConstraintsController.getResultsXInt()[j]}]" escape="false"/> 
+                                </c:forEach>
+                            </div>
+                            <div class="x-values">
+                                <h:outputText value="x[точное] = "/>
+                                <c:forEach var="j" 
+                                   begin="0" 
+                                   end="#{sConstraintsController.countArgs - 1}">
+                                    <h:outputText value="[#{sConstraintsController.getResultsX()[j]}]" escape="false"/> 
                                 </c:forEach>
                             </div>
                         </div>

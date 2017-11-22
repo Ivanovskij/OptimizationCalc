@@ -37,8 +37,10 @@ public class CommonController implements Serializable {
     private static final double NINTY_PERCENT = 0.90;
     
     // results simplex
-    private final double[] resultGoalFunc;
-    private final double[][] resultsX;
+    private final double[] resultGoalFuncDouble;
+    private final double[][] resultsXDouble;
+    private final int[] resultGoalFuncInt;
+    private final int[][] resultsXInt;
     
     /* ========================= GENETIC ========================= */
     String goalFunction = "21 * x1 + 18 * x2 + 16 * x3 + 17.5 * x4";
@@ -81,9 +83,13 @@ public class CommonController implements Serializable {
      *  Constructor
      */
     public CommonController() {
-        resultGoalFunc = new double[countArgs + 1];
-        resultsX = new double[countConstraints + 1][countArgs + 1];
+        // simplex
+        resultGoalFuncDouble = new double[countArgs + 1];
+        resultsXDouble = new double[countConstraints + 1][countArgs + 1];
+        resultGoalFuncInt = new int[countArgs + 1];
+        resultsXInt = new int[countConstraints + 1][countArgs + 1];
         
+        // genetic
         resultsGenetic = new GeneticResult[countArgs + 1];
     }
     
@@ -103,9 +109,11 @@ public class CommonController implements Serializable {
         SimplexMethodForWeb s = new SimplexMethodForWeb(tableSimplex, freeMemberC);
         try {
             s.calculate();
-            resultGoalFunc[0] = s.getResultGoalFuncDouble();
+            resultGoalFuncDouble[0] = s.getResultGoalFuncDouble();
+            resultGoalFuncInt[0] = s.getResultGoalFuncInt();
             for (int i = 0; i < s.getResultsXDouble().length; i++) {
-                resultsX[0][i] = s.getResultsXDouble()[i];
+                resultsXDouble[0][i] = s.getResultsXDouble()[i];
+                resultsXInt[0][i] = s.getResultsXInt()[i];
             }
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
@@ -125,9 +133,11 @@ public class CommonController implements Serializable {
         SimplexMethodForWeb s = new SimplexMethodForWeb(conditionTableSimplex, freeMemberC);
         try {
             s.calculate();
-            resultGoalFunc[1] = s.getResultGoalFuncDouble();
+            resultGoalFuncDouble[1] = s.getResultGoalFuncDouble();
+            resultGoalFuncInt[1] = s.getResultGoalFuncInt();
             for (int i = 0; i < s.getResultsXDouble().length; i++) {
-                resultsX[1][i] = s.getResultsXDouble()[i];
+                resultsXDouble[1][i] = s.getResultsXDouble()[i];
+                resultsXInt[1][i] = s.getResultsXInt()[i];
             }
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
@@ -147,9 +157,11 @@ public class CommonController implements Serializable {
         SimplexMethodForWeb s = new SimplexMethodForWeb(conditionTableSimplex, freeMemberC);
         try {
             s.calculate();
-            resultGoalFunc[2] = s.getResultGoalFuncDouble();
+            resultGoalFuncDouble[2] = s.getResultGoalFuncDouble();
+            resultGoalFuncInt[2] = s.getResultGoalFuncInt();
             for (int i = 0; i < s.getResultsXDouble().length; i++) {
-                resultsX[2][i] = s.getResultsXDouble()[i];
+                resultsXDouble[2][i] = s.getResultsXDouble()[i];
+                resultsXInt[2][i] = s.getResultsXInt()[i];
             }
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
@@ -173,9 +185,11 @@ public class CommonController implements Serializable {
         SimplexMethodForWeb s = new SimplexMethodForWeb(conditionTableSimplex, freeMemberC);
         try {
             s.calculate();
-            resultGoalFunc[3] = s.getResultGoalFuncDouble();
+            resultGoalFuncDouble[3] = s.getResultGoalFuncDouble();
+            resultGoalFuncInt[3] = s.getResultGoalFuncInt();
             for (int i = 0; i < s.getResultsXDouble().length; i++) {
-                resultsX[3][i] = s.getResultsXDouble()[i];
+                resultsXDouble[3][i] = s.getResultsXDouble()[i];
+                resultsXInt[3][i] = s.getResultsXInt()[i];
             }
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
@@ -197,9 +211,11 @@ public class CommonController implements Serializable {
         SimplexMethodForWeb s = new SimplexMethodForWeb(conditionTableSimplex, freeMemberC);
         try {
             s.calculate();
-            resultGoalFunc[4] = s.getResultGoalFuncDouble();
+            resultGoalFuncDouble[4] = s.getResultGoalFuncDouble();
+            resultGoalFuncInt[4] = s.getResultGoalFuncInt();
             for (int i = 0; i < s.getResultsXDouble().length; i++) {
-                resultsX[4][i] = s.getResultsXDouble()[i];
+                resultsXDouble[4][i] = s.getResultsXDouble()[i];
+                resultsXInt[4][i] = s.getResultsXInt()[i];
             }
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
@@ -300,12 +316,12 @@ public class CommonController implements Serializable {
     
     /* ====================================================== */
 
-    public double[] getResultGoalFunc() {
-        return resultGoalFunc;
+    public double[] getResultGoalFuncDouble() {
+        return resultGoalFuncDouble;
     }
 
-    public double[][] getResultsX() {
-        return resultsX;
+    public double[][] getResultsXDouble() {
+        return resultsXDouble;
     }
 
     public int getCountArgs() {
@@ -318,5 +334,13 @@ public class CommonController implements Serializable {
 
     public GeneticResult[] getResultsGenetic() {
         return resultsGenetic;
+    }
+
+    public int[] getResultGoalFuncInt() {
+        return resultGoalFuncInt;
+    }
+
+    public int[][] getResultsXInt() {
+        return resultsXInt;
     }
 }

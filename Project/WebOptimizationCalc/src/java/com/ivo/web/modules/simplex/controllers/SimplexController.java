@@ -22,8 +22,11 @@ public class SimplexController {
     
     private double freeMemberC;
     
-    private double resultGoalFunc;
-    private double[] resultsX;
+    private double resultGoalFuncDouble;
+    private double[] resultsXDouble;
+    
+    private int resultGoalFuncInt;
+    private int[] resultsXInt;
     
     
     public SimplexController(List<ArgsBean> constraintsValues, List<FunctionBean> funcValues,
@@ -58,8 +61,10 @@ public class SimplexController {
         SimplexMethodForWeb s = new SimplexMethodForWeb(table, freeMemberC);
         try {
             results = s.calculate();
-            setResultGoalFunc(s.getResultGoalFuncDouble());
-            setResultsX(s.getResultsXDouble());
+            setResultGoalFuncDouble(s.getResultGoalFuncDouble());
+            setResultsXDouble(s.getResultsXDouble());
+            setResultGoalFuncInt(s.getResultGoalFuncInt());
+            setResultsXInt(s.getResultsXInt());
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
@@ -129,34 +134,49 @@ public class SimplexController {
     
     /**
      *
-     * @return resultGoalFunc
+     * @return resultGoalFuncDouble
      */
-    public double getResultGoalFunc() {
-        return resultGoalFunc;
+    public double getResultGoalFuncDouble() {
+        return resultGoalFuncDouble;
     }
     
     /**
      *
-     * @return resultsX
+     * @return resultsXDouble
      */
-    public double[] getResultsX() {
-        return resultsX;
+    public double[] getResultsXDouble() {
+        return resultsXDouble;
     }
     
     /**
      *
      * @param value - goal func
      */
-    public void setResultGoalFunc(double value) {
-        this.resultGoalFunc = value;
+    public void setResultGoalFuncDouble(double value) {
+        this.resultGoalFuncDouble = value;
     }
     
     /**
      *
      * @param values - result values x
      */
-    public void setResultsX(double[] values) {
-        this.resultsX = values;
+    public void setResultsXDouble(double[] values) {
+        this.resultsXDouble = values;
     }
-    
+
+    public int getResultGoalFuncInt() {
+        return resultGoalFuncInt;
+    }
+
+    public void setResultGoalFuncInt(int resultGoalFuncInt) {
+        this.resultGoalFuncInt = resultGoalFuncInt;
+    }
+
+    public int[] getResultsXInt() {
+        return resultsXInt;
+    }
+
+    public void setResultsXInt(int[] resultsXInt) {
+        this.resultsXInt = resultsXInt;
+    }
 }

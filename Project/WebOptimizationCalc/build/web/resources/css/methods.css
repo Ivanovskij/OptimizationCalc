@@ -186,6 +186,10 @@
     padding-bottom: 25px;
 }
 
+.x-values {
+    margin-bottom: 10px;
+}
+
 
 /* save word button */
 .save-to-word input {

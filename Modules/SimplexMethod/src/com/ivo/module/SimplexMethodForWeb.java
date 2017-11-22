@@ -37,7 +37,7 @@ public class SimplexMethodForWeb {
     private double resultGoalFuncDouble;
     private double[] resultsXDouble;  // result values x double
     private int resultGoalFuncInt;
-    private double[] resultsXInt;  // result values x int
+    private int[] resultsXInt;  // result values x int
     
     /**
      *
@@ -92,9 +92,7 @@ public class SimplexMethodForWeb {
         colCount = source.length;
         rowCount = source[0].length;
 
-        table = new double[colCount][rowCount + colCount - 1];
-        basis = new ArrayList<>();
-        resultsXDouble = new double[rowCount - 1];
+        initArrays();
 
         // create basis
         for (int i = 0; i < colCount; i++) {
@@ -134,6 +132,13 @@ public class SimplexMethodForWeb {
                 namesRowsAndCols[i][j] = String.valueOf(table[k][j - 1]);
             }
         }
+    }
+
+    private void initArrays() {
+        table = new double[colCount][rowCount + colCount - 1];
+        basis = new ArrayList<>();
+        resultsXDouble = new double[rowCount - 1];
+        resultsXInt = new int[rowCount - 1];
     }
     
     private void selectionSupportingPlan() {
@@ -449,7 +454,7 @@ public class SimplexMethodForWeb {
         this.resultGoalFuncInt = resultGoalFuncInt;
     }
 
-    public void setResultsXInt(double[] resultsXInt) {
+    public void setResultsXInt(int[] resultsXInt) {
         this.resultsXInt = resultsXInt;
     }
 
@@ -465,7 +470,7 @@ public class SimplexMethodForWeb {
         return resultGoalFuncInt;
     }
 
-    public double[] getResultsXInt() {
+    public int[] getResultsXInt() {
         return resultsXInt;
     }
 }

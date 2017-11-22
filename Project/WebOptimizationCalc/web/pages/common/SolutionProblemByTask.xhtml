@@ -85,18 +85,27 @@
                             <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
                                 Оптимальный план:
                             </span>
-                         </p>
-                        <p style="color: #ff1e00">
-                            Целевая функция = #{commonController.resultGoalFunc[0]}
                         </p>
-                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                        <p style="color: #ff1e00">
+                            Целевая функция[целое] = #{commonController.resultGoalFuncInt[0]}
+                        </p>
+                        <p style="color: #ff1e00">
+                            Целевая функция[точное] = #{commonController.resultGoalFuncDouble[0]}
+                        </p>
+                        <div class="x-values">
+                            <h:outputText value="x[целое] = "/>
                             <c:forEach var="j" 
                                begin="0" 
                                end="#{commonController.countArgs - 1}">
-                                <p style="color: #ff9500;">
-                                    <span style="float: left;">x[#{j + 1}] = </span>
-                                    <h:outputText value="#{commonController.getResultsX()[0][j]}" escape="false"/> 
-                                </p>
+                                <h:outputText value="[#{commonController.resultsXInt[0][j]}]" escape="false"/> 
+                            </c:forEach>
+                        </div>
+                        <div class="x-values">
+                            <h:outputText value="x[точное] = "/>
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <h:outputText value="[#{commonController.resultsXDouble[0][j]}]" escape="false"/> 
                             </c:forEach>
                         </div>
                         
@@ -107,18 +116,28 @@
                             </span>
                          </p>
                         <p style="color: #ff1e00">
-                            Целевая функция = #{commonController.resultGoalFunc[1]}
+                            Целевая функция[целое] = #{commonController.resultGoalFuncInt[1]}
                         </p>
-                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                        <p style="color: #ff1e00">
+                            Целевая функция[точное] = #{commonController.resultGoalFuncDouble[1]}
+                        </p>
+                        <div class="x-values">
+                            <h:outputText value="x[целое] = "/>
                             <c:forEach var="j" 
                                begin="0" 
                                end="#{commonController.countArgs - 1}">
-                                <p style="color: #ff9500;">
-                                    <span style="float: left;">x[#{j + 1}] = </span>
-                                    <h:outputText value="#{commonController.getResultsX()[1][j]}" escape="false"/> 
-                                </p>
+                                <h:outputText value="[#{commonController.resultsXInt[1][j]}]" escape="false"/> 
                             </c:forEach>
                         </div>
+                        <div class="x-values">
+                            <h:outputText value="x[точное] = "/>
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <h:outputText value="[#{commonController.resultsXDouble[1][j]}]" escape="false"/> 
+                            </c:forEach>
+                        </div>
+                        
                         
                         <!-- ======== conditionALess ====== -->
                         <p class="manual-problems">
@@ -127,18 +146,28 @@
                             </span>
                          </p>
                         <p style="color: #ff1e00">
-                            Целевая функция = #{commonController.resultGoalFunc[2]}
+                            Целевая функция[целое] = #{commonController.resultGoalFuncInt[2]}
                         </p>
-                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                        <p style="color: #ff1e00">
+                            Целевая функция[точное] = #{commonController.resultGoalFuncDouble[2]}
+                        </p>
+                        <div class="x-values">
+                            <h:outputText value="x[целое] = "/>
                             <c:forEach var="j" 
                                begin="0" 
                                end="#{commonController.countArgs - 1}">
-                                <p style="color: #ff9500;">
-                                    <span style="float: left;">x[#{j + 1}] = </span>
-                                    <h:outputText value="#{commonController.getResultsX()[2][j]}" escape="false"/> 
-                                </p>
+                                <h:outputText value="[#{commonController.resultsXInt[2][j]}]" escape="false"/> 
                             </c:forEach>
                         </div>
+                        <div class="x-values">
+                            <h:outputText value="x[точное] = "/>
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <h:outputText value="[#{commonController.resultsXDouble[2][j]}]" escape="false"/> 
+                            </c:forEach>
+                        </div>
+                        
                         
                         <!-- ======== conditionB ====== -->
                         <p class="manual-problems">
@@ -147,18 +176,28 @@
                             </span>
                          </p>
                         <p style="color: #ff1e00">
-                            Целевая функция = #{commonController.resultGoalFunc[3]}
+                            Целевая функция[целое] = #{commonController.resultGoalFuncInt[3]}
                         </p>
-                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                        <p style="color: #ff1e00">
+                            Целевая функция[точное] = #{commonController.resultGoalFuncDouble[3]}
+                        </p>
+                        <div class="x-values">
+                            <h:outputText value="x[целое] = "/>
                             <c:forEach var="j" 
                                begin="0" 
                                end="#{commonController.countArgs - 1}">
-                                <p style="color: #ff9500;">
-                                    <span style="float: left;">x[#{j + 1}] = </span>
-                                    <h:outputText value="#{commonController.getResultsX()[3][j]}" escape="false"/> 
-                                </p>
+                                <h:outputText value="[#{commonController.resultsXInt[3][j]}]" escape="false"/> 
                             </c:forEach>
                         </div>
+                        <div class="x-values">
+                            <h:outputText value="x[точное] = "/>
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <h:outputText value="[#{commonController.resultsXDouble[3][j]}]" escape="false"/> 
+                            </c:forEach>
+                        </div>
+                        
                         
                         <!-- ======== conditionC ====== -->
                         <p class="manual-problems">
@@ -167,18 +206,28 @@
                             </span>
                          </p>
                         <p style="color: #ff1e00">
-                            Целевая функция = #{commonController.resultGoalFunc[4]}
+                            Целевая функция[целое] = #{commonController.resultGoalFuncInt[4]}
                         </p>
-                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                        <p style="color: #ff1e00">
+                            Целевая функция[точное] = #{commonController.resultGoalFuncDouble[4]}
+                        </p>
+                        <div class="x-values">
+                            <h:outputText value="x[целое] = "/>
                             <c:forEach var="j" 
                                begin="0" 
                                end="#{commonController.countArgs - 1}">
-                                <p style="color: #ff9500;">
-                                    <span style="float: left;">x[#{j + 1}] = </span>
-                                    <h:outputText value="#{commonController.getResultsX()[4][j]}" escape="false"/> 
-                                </p>
+                                <h:outputText value="[#{commonController.resultsXInt[4][j]}]" escape="false"/> 
                             </c:forEach>
                         </div>
+                        <div class="x-values">
+                            <h:outputText value="x[точное] = "/>
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <h:outputText value="[#{commonController.resultsXDouble[4][j]}]" escape="false"/> 
+                            </c:forEach>
+                        </div>
+                        
                     </div>
                 </div>
                 
@@ -359,7 +408,7 @@
                                end="#{commonController.countArgs - 1}">
                                 <p style="color: #ff9500;">
                                     <span style="float: left;">x[#{j + 1}] = </span>
-                                    <h:outputText value="#{commonController.getResultsX()[0][j]}" escape="false"/> 
+                                    <h:outputText value="#{commonController.getResultsXDouble()[0][j]}" escape="false"/> 
                                 </p>
                             </c:forEach>
                         </div>
