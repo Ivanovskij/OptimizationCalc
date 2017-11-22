@@ -58,8 +58,8 @@ public class SimplexController {
         SimplexMethodForWeb s = new SimplexMethodForWeb(table, freeMemberC);
         try {
             results = s.calculate();
-            setResultGoalFunc(s.getResultGoalFunc());
-            setResultsX(s.getResultsX());
+            setResultGoalFunc(s.getResultGoalFuncDouble());
+            setResultsX(s.getResultsXDouble());
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }

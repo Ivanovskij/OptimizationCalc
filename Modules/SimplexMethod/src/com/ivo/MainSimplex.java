@@ -97,9 +97,9 @@ public class MainSimplex {
         
         
         System.out.println("=================");
-        System.out.println(S.getResultGoalFunc());
+        System.out.println(S.getResultGoalFuncDouble());
         System.out.println("=================");
-        double[] x = S.getResultsX();
+        double[] x = S.getResultsXDouble();
         for (int i = 0; i < x.length; i++) {
             System.out.println("X[" + i + "] = " + x[i]);
         }

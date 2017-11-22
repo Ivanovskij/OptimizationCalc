@@ -34,9 +34,11 @@ public class SimplexMethodForWeb {
     private boolean isItEnd;
     
     // results
-    private double resultGoalFunc;
-    private double[] resultsX;  // result values x
-
+    private double resultGoalFuncDouble;
+    private double[] resultsXDouble;  // result values x double
+    private int resultGoalFuncInt;
+    private double[] resultsXInt;  // result values x int
+    
     /**
      *
      * @param source - contains last column values: 1 or -1 dependens from (max
@@ -65,8 +67,9 @@ public class SimplexMethodForWeb {
 
     public List<ResultBean> calculate() throws Exception {
         iterations();
-        setResultsX();
-        setResultGoalFunc();
+        // in double, set results int
+        setResultsXDouble();
+        setResultGoalFuncDouble();
 
         return resultList;
     }
@@ -91,7 +94,7 @@ public class SimplexMethodForWeb {
 
         table = new double[colCount][rowCount + colCount - 1];
         basis = new ArrayList<>();
-        resultsX = new double[rowCount - 1];
+        resultsXDouble = new double[rowCount - 1];
 
         // create basis
         for (int i = 0; i < colCount; i++) {
@@ -366,28 +369,7 @@ public class SimplexMethodForWeb {
             argsFunc[i] = Math.abs(source[colCount - 1][i + 1]);
         }
     }
-    
-    public void setResultsX() {
-        for (int i = 0; i < resultsX.length; i++) {
-            for (int j = 1; j < namesRowsAndCols.length; j++) {
-                String x = "x" + (i + 1);
-                if (namesRowsAndCols[j][0].equals(x)) {
-                    resultsX[i] = Double.parseDouble(namesRowsAndCols[j][1]);
-                }
-            }
-        }
-    }
 
-    public void setResultGoalFunc() {
-        resultGoalFunc = 0;
-        for (int i = 0; i < argsFunc.length; i++) {
-            resultGoalFunc += argsFunc[i] * resultsX[i];
-        }
-
-        resultGoalFunc += freeMemberC;
-        resultGoalFunc = RoundUtil.round(resultGoalFunc, 3);
-    }
-    
     private String getMathModel(double[][] source) {
         final int colCount = source.length;
         final int rowCount = source[0].length;
@@ -436,13 +418,54 @@ public class SimplexMethodForWeb {
             }
         }
     }
-
-    public double getResultGoalFunc() {
-        return resultGoalFunc;
+    
+    public void setResultsXDouble() {
+        for (int i = 0; i < resultsXDouble.length; i++) {
+            for (int j = 1; j < namesRowsAndCols.length; j++) {
+                String x = "x" + (i + 1);
+                if (namesRowsAndCols[j][0].equals(x)) {
+                    double value = Double.parseDouble(namesRowsAndCols[j][1]);
+                    resultsXDouble[i] = value;
+                    resultsXInt[i] = RoundUtil.roundToInt(value);
+                }
+            }
+        }
     }
 
-    public double[] getResultsX() {
-        return resultsX;
+    public void setResultGoalFuncDouble() {
+        resultGoalFuncDouble = 0;
+        for (int i = 0; i < argsFunc.length; i++) {
+            resultGoalFuncDouble += argsFunc[i] * resultsXDouble[i];
+        }
+
+        resultGoalFuncDouble += freeMemberC;
+        resultGoalFuncDouble = RoundUtil.round(resultGoalFuncDouble, 3);
+        
+        // set result int
+        setResultGoalFuncInt(RoundUtil.roundToInt(resultGoalFuncDouble));
     }
 
+    public void setResultGoalFuncInt(int resultGoalFuncInt) {
+        this.resultGoalFuncInt = resultGoalFuncInt;
+    }
+
+    public void setResultsXInt(double[] resultsXInt) {
+        this.resultsXInt = resultsXInt;
+    }
+
+    public double getResultGoalFuncDouble() {
+        return resultGoalFuncDouble;
+    }
+
+    public double[] getResultsXDouble() {
+        return resultsXDouble;
+    }
+
+    public int getResultGoalFuncInt() {
+        return resultGoalFuncInt;
+    }
+
+    public double[] getResultsXInt() {
+        return resultsXInt;
+    }
 }
