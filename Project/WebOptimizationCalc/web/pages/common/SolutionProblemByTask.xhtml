@@ -336,6 +336,35 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- === ANALYSIS RESULTS ======= -->
+                <div class="simplex-container">
+                    <span class="step-name">
+                        Погрешность генетического алгоритма, на основе симплекс метода
+                    </span>
+                    
+                    <div class="results-method">
+                        <!-- ======== original ====== -->
+                        <p class="manual">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                Оптимальный план:
+                            </span>
+                         </p>
+                        <p style="color: #ff1e00">
+                            EPS, Целевая функция = 
+                        </p>
+                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <p style="color: #ff9500;">
+                                    <span style="float: left;">x[#{j + 1}] = </span>
+                                    <h:outputText value="#{commonController.getResultsX()[0][j]}" escape="false"/> 
+                                </p>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
             </ui:define>
         </ui:composition>
     </h:body>
