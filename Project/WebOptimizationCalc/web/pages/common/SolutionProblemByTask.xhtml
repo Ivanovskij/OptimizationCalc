@@ -331,7 +331,7 @@
                                     <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
                                         прибыль от реализации каждого проекта изменится на 10%:
                                     </span>
-                                 </p>
+                                </p>
                                 <span class="best-individual">
                                     Оптимальный результат[целое] = #{commonController.resultsGenetic[3].resultBestIndividualInt}
                                 </span>
@@ -360,7 +360,7 @@
                                     <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
                                         потребности проекта А в 3-м и 4-м периодах сократятся на 15%:
                                     </span>
-                                 </p>
+                                </p>
                                 <span class="best-individual">
                                     Оптимальный результат[целое] = #{commonController.resultsGenetic[4].resultBestIndividualInt}
                                 </span>
@@ -400,16 +400,96 @@
                             </span>
                          </p>
                         <p style="color: #ff1e00">
-                            EPS, Целевая функция = 
+                            EPS, Целевая функция[целое] = 
+                                #{commonController.resultGoalFuncInt[0] - commonController.resultsGenetic[0].resultBestIndividualInt}
                         </p>
-                        <div class="x-values" style="width: 130px; margin: 0 auto;">
+                        <div class="x-values">
+                            <h:outputText value="EPS, x[целое] = "/>
                             <c:forEach var="j" 
                                begin="0" 
                                end="#{commonController.countArgs - 1}">
-                                <p style="color: #ff9500;">
-                                    <span style="float: left;">x[#{j + 1}] = </span>
-                                    <h:outputText value="#{commonController.getResultsXDouble()[0][j]}" escape="false"/> 
-                                </p>
+                                <h:outputText value="[#{commonController.resultsXInt[0][j] - commonController.resultsGenetic[0].pointsIntBestIndividual[j]}]" 
+                                              escape="false"/> 
+                            </c:forEach>
+                        </div>
+                        
+                        <!-- ======== condtionAMore ====== -->
+                        <p class="manual-problems">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                наличность (ресурс) банка в каждом периоде времени увеличится на 15%:
+                            </span>
+                        </p>
+                        <p style="color: #ff1e00">
+                            EPS, Целевая функция[целое] = 
+                                #{commonController.resultGoalFuncInt[1] - commonController.resultsGenetic[1].resultBestIndividualInt}
+                        </p>
+                        <div class="x-values">
+                            <h:outputText value="EPS, x[целое] = "/>
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <h:outputText value="[#{commonController.resultsXInt[1][j] - commonController.resultsGenetic[1].pointsIntBestIndividual[j]}]" 
+                                              escape="false"/> 
+                            </c:forEach>
+                        </div>
+                        
+                        <!-- ======== condtionALess ====== -->
+                        <p class="manual-problems">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                наличность (ресурс) банка в каждом периоде времени уменьшится на 15%:
+                            </span>
+                        </p>
+                        <p style="color: #ff1e00">
+                            EPS, Целевая функция[целое] = 
+                                #{commonController.resultGoalFuncInt[2] - commonController.resultsGenetic[2].resultBestIndividualInt}
+                        </p>
+                        <div class="x-values">
+                            <h:outputText value="EPS, x[целое] = "/>
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <h:outputText value="[#{commonController.resultsXInt[2][j] - commonController.resultsGenetic[2].pointsIntBestIndividual[j]}]" 
+                                              escape="false"/> 
+                            </c:forEach>
+                        </div>
+                        
+                        <!-- ======== condtionB ====== -->
+                        <p class="manual-problems">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                прибыль от реализации каждого проекта изменится на 10%:
+                            </span>
+                        </p>
+                        <p style="color: #ff1e00">
+                            EPS, Целевая функция[целое] = 
+                                #{commonController.resultGoalFuncInt[3] - commonController.resultsGenetic[3].resultBestIndividualInt}
+                        </p>
+                        <div class="x-values">
+                            <h:outputText value="EPS, x[целое] = "/>
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <h:outputText value="[#{commonController.resultsXInt[3][j] - commonController.resultsGenetic[3].pointsIntBestIndividual[j]}]" 
+                                              escape="false"/> 
+                            </c:forEach>
+                        </div>
+                        
+                        <!-- ======== condtionC ====== -->
+                        <p class="manual-problems">
+                            <span style="color: #007299; text-transform: uppercase; font-weight: bold;">
+                                потребности проекта А в 3-м и 4-м периодах сократятся на 15%:
+                            </span>
+                        </p>
+                        <p style="color: #ff1e00">
+                            EPS, Целевая функция[целое] = 
+                                #{commonController.resultGoalFuncInt[4] - commonController.resultsGenetic[4].resultBestIndividualInt}
+                        </p>
+                        <div class="x-values">
+                            <h:outputText value="EPS, x[целое] = "/>
+                            <c:forEach var="j" 
+                               begin="0" 
+                               end="#{commonController.countArgs - 1}">
+                                <h:outputText value="[#{commonController.resultsXInt[4][j] - commonController.resultsGenetic[4].pointsIntBestIndividual[j]}]" 
+                                              escape="false"/> 
                             </c:forEach>
                         </div>
                     </div>
