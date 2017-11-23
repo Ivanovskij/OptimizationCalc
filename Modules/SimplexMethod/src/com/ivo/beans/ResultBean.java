@@ -1,10 +1,12 @@
 package com.ivo.beans;
 
+import java.io.Serializable;
+
 /**
  *
  * @author IOAdmin
  */
-public class ResultBean {
+public class ResultBean implements Serializable {
 
     private String[][] iterResults;   // iterations results
     private String description;       // iteration description
