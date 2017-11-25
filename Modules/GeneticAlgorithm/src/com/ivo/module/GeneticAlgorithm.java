@@ -36,6 +36,8 @@ public class GeneticAlgorithm implements BaseGenetic {
     // childrens after crossover and mutation
     private final Chromosome[] childrens;
     
+    private static final int COEFFICIENT_SELECTION_NEXT_GENERATION = 10;
+    
     // counter current generation
     private int curGenerations;
     
@@ -209,26 +211,46 @@ public class GeneticAlgorithm implements BaseGenetic {
         }
     }
     
+    /**
+     * Mutation by double random
+     */
     private void mutate(Chromosome chromosome) {
-        String[] args = chromosome.getChromosomes();
-        
-        StringBuffer resultChromosome;
+        Double[] args = BinaryUtil.binaryArrToNumberArr(chromosome.getChromosomes());
         
         for (int i = 0; i < args.length; i++) {
-            resultChromosome = new StringBuffer(args[i]);
-            for (int j = 0; j < gene_size; j++) {
-                double rnd = RandomUtil.getRandomRangeDouble(0, 1);
-                if (rnd <= mutation_percent) {
-                    char oldValueX1 = args[i].charAt(j);
-                    char newValueX1 = oldValueX1 == '1' ? '0' : '1';
-                    resultChromosome.setCharAt(j, newValueX1);
-                }
+            double rnd = RandomUtil.getRandomRangeDouble(0, 1);
+            if (rnd <= mutation_percent) {
+                args[i] = RandomUtil.getRandomRangeDouble(-3, 3);
             }
-            args[i] = resultChromosome.toString();
         }
         
-        chromosome.setChromosomes(args);
+        String[] argsStr = BinaryUtil.doubleArrToBinaryArr(args);
+        chromosome.setChromosomes(argsStr);
     }
+    
+    /**
+     * Mutation invert gen in binary string
+     */
+//    private void mutate(Chromosome chromosome) {
+//        String[] args = chromosome.getChromosomes();
+//        
+//        StringBuffer resultChromosome;
+//        
+//        for (int i = 0; i < args.length; i++) {
+//            resultChromosome = new StringBuffer(args[i]);
+//            for (int j = 0; j < gene_size; j++) {
+//                double rnd = RandomUtil.getRandomRangeDouble(0, 1);
+//                if (rnd <= mutation_percent) {
+//                    char oldValueX1 = args[i].charAt(j);
+//                    char newValueX1 = oldValueX1 == '1' ? '0' : '1';
+//                    resultChromosome.setCharAt(j, newValueX1);
+//                }
+//            }
+//            args[i] = resultChromosome.toString();
+//        }
+//        
+//        chromosome.setChromosomes(args);
+//    }
 
     @Override
     public void setCurrentGeneration() {
@@ -241,9 +263,33 @@ public class GeneticAlgorithm implements BaseGenetic {
         Chromosome first, second;
         double resFirst, resSecond;
         
+        // a large selection is given for children
+        countSelectionParent = 0;
+        countSelectionChildren = 0;
+        countSurvivor = 0;
+        
+        countSurvivor = RandomUtil.getRandomRangeInt(0, COEFFICIENT_SELECTION_NEXT_GENERATION);
+        
+        for (int i = 0; i < countSurvivor; i++) {
+            nextGenerationGenePool[i] = curGenePool[i];
+        }
+        
+        countSelectionParent = RandomUtil.getRandomRangeInt(0, COEFFICIENT_SELECTION_NEXT_GENERATION);
+        
+        for (int i = countSurvivor; i < countSurvivor + countSelectionParent; i++) {
+            nextGenerationGenePool[i] = selectionBestParents[i];
+        }
+        
+        for (int i = countSurvivor + countSelectionParent; i < population_count; i++) {
+            nextGenerationGenePool[i] = childrens[i];
+        }
+        
+        countSelectionChildren = population_count - countSurvivor + countSelectionParent;
+        
+        return nextGenerationGenePool;
         
         // SELECTION Idndividuals who inside bounds
-        Double[] args;
+        /*Double[] args;
         
         countSelectionParent = 0;
         countSelectionChildren = 0;
@@ -282,12 +328,12 @@ public class GeneticAlgorithm implements BaseGenetic {
             countSurvivor++;
         }
         
-        /*System.out.println("======================================");
+        System.out.println("======================================");
         System.out.println("child=" + countSelectionChildren + ", " + 
                 "parent=" + countSelectionParent + ", " + "surviour=" + countSurvivor);
-        System.out.println("======================================");*/
+        System.out.println("======================================");
         
-        return nextGenerationGenePool;
+        return nextGenerationGenePool;*/
         
         // SELECTION FROM PARENTS/2 and CHILDRENS/2
         /*for (int i = 0; i < population_count / 2; i++) {
@@ -357,7 +403,7 @@ public class GeneticAlgorithm implements BaseGenetic {
             }
         }
         
-        /*System.out.println(max);
+       /* System.out.println(max);
         System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));*/
         
         // set results

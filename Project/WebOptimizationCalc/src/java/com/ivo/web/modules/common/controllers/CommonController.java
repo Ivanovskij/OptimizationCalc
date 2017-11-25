@@ -68,10 +68,10 @@ public class CommonController implements Serializable {
     };
     
     // in params
-    private String xMin = "-100",
-            xMax = "100",
-            max_generation = "70",
-            population_count = "2000",
+    private String xMin = "0",
+            xMax = "30",
+            max_generation = "80",
+            population_count = "2400",
             arg_size = "4",
             maxOrMin = "1";     // 1 - max
     
