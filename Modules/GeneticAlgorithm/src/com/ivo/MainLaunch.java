@@ -95,8 +95,8 @@ public class MainLaunch {
 //            "0 * x1 + 1 * x2",
 //        };
         
-        results = new GeneticExecute("0", "1000",
-            "100", "4300", "4", "1").execute(goalFunction, constraints, constraintsWithOutCondition);
+        results = new GeneticExecute("0", "10000",
+            "1000", "2000", "2", "1").execute(goalFunction, constraints, constraintsWithOutCondition);
         
         /*for (GeneticResult r : results) {
             System.out.println(r.getResultBestIndividualDouble());

@@ -391,6 +391,17 @@ public class GeneticAlgorithm implements BaseGenetic {
         Double[] args = BinaryUtil.binaryArrToNumberArr(curGenePool[0].getChromosomes());
         double r;
         double max = function.getValueGoalFunction(args);
+        
+        // give the res, who is In bounds
+        // else curGenePool[0]
+        for (int i = 0; i < population_count; i++) {
+            args = BinaryUtil.binaryArrToNumberArr(curGenePool[i].getChromosomes());
+            if (function.isInBounds(args)) {
+                res = curGenePool[i];
+                max = function.getValueGoalFunction(args);
+                break;
+            }
+        }
 
         for (int i = 0; i < population_count; i++) {
             args = BinaryUtil.binaryArrToNumberArr(curGenePool[i].getChromosomes());
@@ -403,8 +414,8 @@ public class GeneticAlgorithm implements BaseGenetic {
             }
         }
         
-       /* System.out.println(max);
-        System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));*/
+        System.out.println(max);
+        System.out.println(Arrays.toString(BinaryUtil.binaryArrToNumberArr(res.getChromosomes())));
         
         // set results
         setResultsBestIndividual(max, res);
