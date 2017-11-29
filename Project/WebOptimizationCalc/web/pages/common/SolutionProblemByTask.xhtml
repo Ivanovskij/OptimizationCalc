@@ -373,17 +373,8 @@
                          </p>
                         <p style="color: #ff1e00">
                             EPS, Целевая функция[целое] = 
-                                #{commonController.resultGoalFuncInt[0] - commonController.resultsGenetic[0].resultBestIndividualInt}
+                                #{commonController.resultsEps[0]}%
                         </p>
-                        <div class="x-values">
-                            <h:outputText value="EPS, x[целое] = "/>
-                            <c:forEach var="j" 
-                               begin="0" 
-                               end="#{commonController.countArgs - 1}">
-                                <h:outputText value="[#{commonController.resultsXInt[0][j] - commonController.resultsGenetic[0].pointsIntBestIndividual[j]}]" 
-                                              escape="false"/> 
-                            </c:forEach>
-                        </div>
                         
                         <!-- ======== condtionAMore ====== -->
                         <p class="manual-problems">
@@ -393,17 +384,8 @@
                         </p>
                         <p style="color: #ff1e00">
                             EPS, Целевая функция[целое] = 
-                                #{commonController.resultGoalFuncInt[1] - commonController.resultsGenetic[1].resultBestIndividualInt}
+                                #{commonController.resultsEps[1]}%
                         </p>
-                        <div class="x-values">
-                            <h:outputText value="EPS, x[целое] = "/>
-                            <c:forEach var="j" 
-                               begin="0" 
-                               end="#{commonController.countArgs - 1}">
-                                <h:outputText value="[#{commonController.resultsXInt[1][j] - commonController.resultsGenetic[1].pointsIntBestIndividual[j]}]" 
-                                              escape="false"/> 
-                            </c:forEach>
-                        </div>
                         
                         <!-- ======== condtionALess ====== -->
                         <p class="manual-problems">
@@ -413,17 +395,8 @@
                         </p>
                         <p style="color: #ff1e00">
                             EPS, Целевая функция[целое] = 
-                                #{commonController.resultGoalFuncInt[2] - commonController.resultsGenetic[2].resultBestIndividualInt}
+                                #{commonController.resultsEps[2]}%
                         </p>
-                        <div class="x-values">
-                            <h:outputText value="EPS, x[целое] = "/>
-                            <c:forEach var="j" 
-                               begin="0" 
-                               end="#{commonController.countArgs - 1}">
-                                <h:outputText value="[#{commonController.resultsXInt[2][j] - commonController.resultsGenetic[2].pointsIntBestIndividual[j]}]" 
-                                              escape="false"/> 
-                            </c:forEach>
-                        </div>
                         
                         <!-- ======== condtionB ====== -->
                         <p class="manual-problems">
@@ -433,17 +406,8 @@
                         </p>
                         <p style="color: #ff1e00">
                             EPS, Целевая функция[целое] = 
-                                #{commonController.resultGoalFuncInt[3] - commonController.resultsGenetic[3].resultBestIndividualInt}
+                                #{commonController.resultsEps[3]}%
                         </p>
-                        <div class="x-values">
-                            <h:outputText value="EPS, x[целое] = "/>
-                            <c:forEach var="j" 
-                               begin="0" 
-                               end="#{commonController.countArgs - 1}">
-                                <h:outputText value="[#{commonController.resultsXInt[3][j] - commonController.resultsGenetic[3].pointsIntBestIndividual[j]}]" 
-                                              escape="false"/> 
-                            </c:forEach>
-                        </div>
                         
                         <!-- ======== condtionC ====== -->
                         <p class="manual-problems">
@@ -453,17 +417,8 @@
                         </p>
                         <p style="color: #ff1e00">
                             EPS, Целевая функция[целое] = 
-                                #{commonController.resultGoalFuncInt[4] - commonController.resultsGenetic[4].resultBestIndividualInt}
+                                #{commonController.resultsEps[4]}%
                         </p>
-                        <div class="x-values">
-                            <h:outputText value="EPS, x[целое] = "/>
-                            <c:forEach var="j" 
-                               begin="0" 
-                               end="#{commonController.countArgs - 1}">
-                                <h:outputText value="[#{commonController.resultsXInt[4][j] - commonController.resultsGenetic[4].pointsIntBestIndividual[j]}]" 
-                                              escape="false"/> 
-                            </c:forEach>
-                        </div>
                     </div>
                 </div>
             </ui:define>

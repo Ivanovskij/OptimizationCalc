@@ -4,6 +4,7 @@ import com.ivo.GeneticExecute;
 import com.ivo.beans.ResultBean;
 import com.ivo.module.GeneticResult;
 import com.ivo.module.SimplexMethodForWeb;
+import com.ivo.utils.RoundUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -42,6 +43,9 @@ public class CommonController implements Serializable {
     private final int[] resultGoalFuncInt;
     private final int[][] resultsXInt;
     
+    // epsilon on foundation simplex
+    private final double[] resultsEps;
+    
     /* ========================= GENETIC ========================= */
     String goalFunction = "21 * x1 + 18 * x2 + 16 * x3 + 17.5 * x4";
         
@@ -70,8 +74,8 @@ public class CommonController implements Serializable {
     // in params
     private String xMin = "0",
             xMax = "30",
-            max_generation = "80",
-            population_count = "2400",
+            max_generation = "65",
+            population_count = "2000",
             arg_size = "4",
             maxOrMin = "1";     // 1 - max
     
@@ -91,6 +95,9 @@ public class CommonController implements Serializable {
         
         // genetic
         resultsGenetic = new GeneticResult[countArgs + 1];
+        
+        // eps
+        resultsEps = new double[countArgs + 1];
     }
     
     
@@ -308,9 +315,21 @@ public class CommonController implements Serializable {
     }
     // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="CALCULATE EPS">
+    public void calculateEps() {
+        for (int i = 0; i < countArgs + 1; i++) {
+            int absoluteEps = resultsGenetic[i].getResultBestIndividualInt() - resultGoalFuncInt[i];
+            absoluteEps = Math.abs(absoluteEps);
+            // x = deltaX / xD * 100%;
+            resultsEps[i] = RoundUtil.round((double)(absoluteEps) / (double)(resultGoalFuncInt[i]) * 100, 1);
+        }
+    }
+    // </editor-fold>
+    
     public String handle() throws Exception {
         calculateSimplexConditions();
         calculateGenetic();
+        calculateEps();
         return "common_analisys";
     }
     
@@ -342,5 +361,9 @@ public class CommonController implements Serializable {
 
     public int[][] getResultsXInt() {
         return resultsXInt;
+    }
+
+    public double[] getResultsEps() {
+        return resultsEps;
     }
 }
