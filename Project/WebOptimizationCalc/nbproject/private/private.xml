@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/Programming/Java/Projects-Standlaone/OptimizationCalc/Project/WebOptimizationCalc/web/WEB-INF/faces-config.xml</file>
+            <file>file:/F:/Programming/Java/Projects-Standlaone/OptimizationCalc/Project/WebOptimizationCalc/web/resources/css/login.css</file>
+            <file>file:/F:/Programming/Java/Projects-Standlaone/OptimizationCalc/Project/WebOptimizationCalc/web/login.xhtml</file>
+            <file>file:/F:/Programming/Java/Projects-Standlaone/OptimizationCalc/Project/WebOptimizationCalc/src/java/com/ivo/web/main/beans/UserLogin.java</file>
+        </group>
     </open-files>
 </project-private>

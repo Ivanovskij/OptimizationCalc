@@ -21,7 +21,7 @@
             <div class="thumbnail">
                 <h:graphicImage library="images" name="hat.svg" alt="hat"/>
             </div>
-            <h:form class="login-form">
+            <h:form id="login-form" class="login-form">
                 <h:inputText id="username" styleClass="input" p:placeholder="имя" 
                              value="#{userLogin.name}" required="true"
                              requiredMessage="#{msg.login_empty_error}">
