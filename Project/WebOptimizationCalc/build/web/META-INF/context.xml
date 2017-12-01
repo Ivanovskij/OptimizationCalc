@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/WebOptimizationCalc">
     
+    <Resource 
+        name="jdbc/db_optim_func"
+        auth="Container"
+        type="javax.sql.DataSource"
+        username="root"
+        password="root"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/db_optim_func"/>
+    
     <Realm className="org.apache.catalina.realm.DataSourceRealm"
        localDataSource="true" 
        dataSourceName="jdbc/db_optim_func"

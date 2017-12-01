@@ -1,9 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Вход</title>
         <h:outputStylesheet library="css" name="login.css"/>
     </h:head>
     <h:body>
@@ -19,11 +21,23 @@
             <div class="thumbnail">
                 <h:graphicImage library="images" name="hat.svg" alt="hat"/>
             </div>
-            <form class="login-form">
-                <input type="text" placeholder="имя"/>
-                <input type="password" placeholder="пароль"/>
-                <button>Логин</button>
-            </form>
+            <h:form class="login-form">
+                <h:inputText id="username" styleClass="input" p:placeholder="имя" 
+                             value="#{userLogin.name}" required="true"
+                             requiredMessage="#{msg.login_empty_error}">
+                    <f:ajax event="keyup" render="userError"/>
+                </h:inputText>
+                <h:message id="userError" for="username" styleClass="login-error"/>
+                
+                <h:inputSecret id="userpass" styleClass="input" p:placeholder="пароль" 
+                               value="#{userLogin.password}" required="true"
+                               requiredMessage="#{msg.login_empty_error}">
+                    <f:ajax event="keyup" render="passError"/>
+                </h:inputSecret>
+                <h:message id="passError" for="userpass" styleClass="pass-error"/>
+                
+                <h:commandButton styleClass="button" value="Логин" action="#{userLogin.login}"/>
+            </h:form>
         </div>
     </h:body>
 </html>
